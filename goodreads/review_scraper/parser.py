@@ -1,14 +1,12 @@
-from bs4 import BeautifulSoup
 from langdetect import detect
 from langdetect.lang_detect_exception import LangDetectException
-from utilities.review import Review
-from utilities.utils import remove_whitespace
+from base_scraper.parser import Parser as BaseParser
+from goodreads.entities.review import Review
 
-class ReviewPageParser:
-
+class ReviewPageParser(BaseParser):
     def __init__(self, html, edition):
+        super().__init__(html)
         self.edition = edition
-        self.soup = BeautifulSoup(html, 'html.parser')
         self.reviews = self.soup.find_all('div', class_='review')
     
     def contains_only_reviews(self):
@@ -41,7 +39,7 @@ class ReviewPageParser:
         count_elem = self.get_count_element()
         if not ' of ' in count_elem.text:
             return 0
-        words = remove_whitespace(count_elem.text).strip().split(' ')
+        words = self.remove_whitespace(count_elem.text).strip().split(' ')
         return int(words[3])
 
     def get_count_element(self):
@@ -100,5 +98,5 @@ class ReviewPageParser:
             return None
 
     def get_text_or_none(self, field):
-        if field: return remove_whitespace(field.get_text(' '))
+        if field: return self.remove_whitespace(field.get_text(' '))
         return None

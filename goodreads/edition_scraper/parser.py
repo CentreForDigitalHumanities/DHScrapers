@@ -1,10 +1,8 @@
-from bs4 import BeautifulSoup
-from utilities.edition import Edition
-from utilities.utils import remove_whitespace
+from base_scraper.parser import Parser as BaseParser
+from goodreads.entities.edition import Edition
 
-class EditionPageParser():
-    def __init__(self, html):
-        self.soup = BeautifulSoup(html, 'html.parser')
+
+class EditionPageParser(BaseParser):
 
     def get_number_of_editions(self):
         '''
@@ -61,9 +59,9 @@ class EditionPageParser():
         else:
             text = row.text.strip()
             if 'published' in text.lower():
-                edition.pub_details = remove_whitespace(text)
+                edition.pub_details = self.remove_whitespace(text)
             elif not text == 'more details' and not text == 'less detail':
-                edition.edition_details = remove_whitespace(text)
+                edition.edition_details = self.remove_whitespace(text)
 
     def set_rating_details(self, data_value, edition):
         text = data_value.text.strip()
@@ -76,20 +74,20 @@ class EditionPageParser():
     def set_isbns(self, title_text, data_value, edition):
         text = data_value.text.strip()
         if title_text.strip().lower() == 'isbn13:':
-            edition.isbn13 = remove_whitespace(text)
+            edition.isbn13 = self.remove_whitespace(text)
         else:
             isbn = text
             if ' ' in text:
                 index = text.index(' ')
-                isbn = remove_whitespace(text[:index])
+                isbn = self.remove_whitespace(text[:index])
             edition.isbn = isbn
             if data_value.find('span'):
                 edition.isbn13 = self.get_isbn_13(data_value)
 
     def get_isbn_13(self, data_value):
-        text = remove_whitespace(data_value.find('span').text)
+        text = self.remove_whitespace(data_value.find('span').text)
         index = text.rfind(':')
-        return remove_whitespace(text[index + 2:len(text) - 1])
+        return self.remove_whitespace(text[index + 2:len(text) - 1])
 
     def get_authors(self, authorName_containers):
         '''
@@ -109,4 +107,4 @@ class EditionPageParser():
         Get both title and url (i.e. two return values)
         '''
         url = "https://goodreads.com{}".format(book_title['href'])
-        return remove_whitespace(book_title.text), url    
+        return self.remove_whitespace(book_title.text), url    

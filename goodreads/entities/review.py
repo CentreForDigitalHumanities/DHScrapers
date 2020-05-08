@@ -1,7 +1,9 @@
+from base_scraper.entities.book_review import BookReview
 
-class Review:
 
+class Review(BookReview):
     def __init__(self):
+        # The order of the fields below determines the order of the field in csv exports!
         self.id = None
         self.url = None
         self.edition_id = None
@@ -10,40 +12,20 @@ class Review:
         self.author = None
         self.language = None
         self.rating = None
+        self.rating_no = None
         self.text = None
-
-    def get_csv_header(self):
-        return list(self.to_dict().keys())
-
-    def from_csv(self, row):
-        self.id = row[0]
-        self.url = row[1]
-        self.edition_id = row[2]
-        self.edition_language = row[3]
-        self.date = row[4]
-        self.author = row[5]
-        self.language = row[6]
-        self.rating = row[7]
-        # ignore rating as number, i.e. row[8]
-        self.text = row[9]
 
     def to_dict(self):
         '''
         Get a dict representing the review.
         Ideal for writing to csv using a DictWriter.
         '''
-        return {
-            'id': self.id,
-            'url': self.url,
-            'edition_id': self.edition_id,
-            'edition_language': self.edition_language,
-            'date': self.date,
-            'author': self.author,
-            'language': self.language,
-            'rating': self.rating,
-            'rating_no': self.get_rating_as_number(),
-            'text': self.text
-        }
+
+        as_dict = super().to_dict()
+        as_dict.update(
+            {'rating_no': self.get_rating_as_number()}
+        )
+        return as_dict
 
     def get_rating_as_number(self):
         '''

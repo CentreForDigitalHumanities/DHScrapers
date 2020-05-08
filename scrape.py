@@ -1,14 +1,19 @@
 import os
 import sys
+import logging
 import argparse
-from edition_scraper import scraper as editions_scraper
-from review_scraper import scraper as review_scraper
-from utilities.utils import log
+from utilities.logging import init_logger
+from goodreads.edition_scraper import scraper as editions_scraper
+from goodreads.review_scraper import scraper as review_scraper
+
+logger = logging.getLogger()
 
 EDITION_LANGUAGES = ['English', 'German', 'Dutch', 'French', 'Spanish']
 
 
 def main(sys_args):
+    init_logger()
+
     args = parse_arguments(sys_args)
     if args.edition_languages == 'all':
         edition_languages = EDITION_LANGUAGES
@@ -20,7 +25,7 @@ def main(sys_args):
     editions = editions_scraper.scrape(
         args.editions_url, args.editions_export_path)
     review_scraper.scrape(editions, args.reviews_export_path, edition_languages)
-    log('Done')
+    logger.info('Done')
 
 
 def file_path(path):

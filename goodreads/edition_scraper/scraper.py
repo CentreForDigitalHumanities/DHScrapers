@@ -1,6 +1,8 @@
+import logging
 from .collector import collect as collect_editions
-from .exporter import to_csv
-from utilities.utils import log
+from base_scraper.exporter import EntityExporter
+
+logger = logging.getLogger()
 
 def scrape(url, export_file):
     '''
@@ -15,9 +17,10 @@ def scrape(url, export_file):
         raise ValueError('export file must be a \'.csv\' file')
 
     editions = collect_editions(url)
-    log("{} editions collected from '{}'".format(len(editions), url))
+    logger.info("{} editions collected from '{}'".format(len(editions), url))
 
     if export_file:
-        to_csv(export_file, editions)
+        exporter = EntityExporter(editions, 'editions', False)
+        exporter.to_csv(export_file)
 
     return editions

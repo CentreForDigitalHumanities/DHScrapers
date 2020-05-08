@@ -1,6 +1,6 @@
 import os
 from .parser import ReviewPageParser
-from utilities.edition import Edition
+from goodreads.entities.edition import Edition
 
 fake_edition = Edition()
 
