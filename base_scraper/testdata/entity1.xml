@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<root>
+	<prop1 type="str">hello</prop1>
+	<prop2 type="list">
+		<item type="str">foo</item>
+		<item type="str">bar</item>
+	</prop2>
+	<prop3 type="str">girls</prop3>
+</root>

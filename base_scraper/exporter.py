@@ -1,5 +1,8 @@
 
+import os
 import csv
+from xml.dom.minidom import parseString
+import dicttoxml
 import logging
 
 logger = logging.getLogger()
@@ -59,6 +62,25 @@ class EntityExporter:
             message = "{} (unique) {} exported to '{}'".format(len(exported_entities), self.entities_name, path)
         
         logger.info(message)
+
+
+    def to_xml(self, folder):
+        '''
+        Export an xml file for each entity to `folder`.
+        Filename will be created by calling __str__ on the entity and adding '.xml'.
+        '''
+        if self.unique:
+            exported_entities = []
+
+        for entity in self.entities:
+            if not self.unique or (self.unique and not self.already_exported(exported_entities, entity)):
+                filename = str(entity) + '.xml'
+                xml = parseString(dicttoxml.dicttoxml(entity.to_dict()))
+                
+                with open(os.path.join(folder, filename), 'w') as out_file:
+                    out_file.write(xml.toprettyxml())
+
+
 
     def already_exported(self, exported_entities, current_entity):
         '''
