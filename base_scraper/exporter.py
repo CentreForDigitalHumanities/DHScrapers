@@ -9,7 +9,7 @@ logger = logging.getLogger()
 
 class EntityExporter:
 
-    def __init__(self, entities, entities_name='entities', unique=True):
+    def __init__(self, output_folder, entities, entities_name='entities', unique=True):
         '''
         New instance of exporter.
 
@@ -21,12 +21,13 @@ class EntityExporter:
         if not entities or len(entities) == 0:
             raise ValueError("'entities' cannot be None or an empty list")
         
+        self.output_folder = output_folder
         self.entities = entities
         self.entities_name = entities_name
         self.unique = unique
 
 
-    def to_csv(self, path, delimiter=";"):
+    def to_csv(self, filename, delimiter=";"):
         '''
         Use a DictWriter and the entities' `to_dict()` to append the entities to the csv in path. 
         Write fieldnames as the first row / header. Note that the output of __str__ is used to obtain
@@ -36,13 +37,15 @@ class EntityExporter:
         the desired order in the ctor of the last child class (e.g. a child of 'BookReview`).
 
         Parameters
-            path -- the full path to the file to export to
+            filename -- the name (incl. extension) to export to.
             delimiter -- the delimiter to use in the csv. Defaults to a semicolon (';').
         '''
         if self.unique:
             exported_entities = []
 
-        with open(path, 'a', encoding='utf-8', newline='\n') as csv_file:
+        export_file = os.path.join(self.get_subfolder('CSV'), filename)
+
+        with open(export_file, 'a', encoding='utf-8', newline='\n') as csv_file:
             fieldnames = list(self.entities[0].to_dict().keys())
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames, delimiter=delimiter)
             writer.writeheader()
@@ -57,27 +60,32 @@ class EntityExporter:
                         exported_entities.pop()
 
 
-        message = "{} {} exported to '{}'".format(len(self.entities), self.entities_name, path)
+        message = "{} {} exported to '{}'".format(len(self.entities), self.entities_name, export_file)
         if self.unique:
-            message = "{} (unique) {} exported to '{}'".format(len(exported_entities), self.entities_name, path)
+            message = "{} (unique) {} exported to '{}'".format(len(exported_entities), self.entities_name, export_file)
         
         logger.info(message)
 
 
-    def to_xml(self, folder):
+    def to_xml(self, custom_root='root'):
         '''
-        Export an xml file for each entity to `folder`.
-        Filename will be created by calling __str__ on the entity and adding '.xml'.
+        Export an xml file for each entity.
+        Filename will be created by calling __str__ on the entity (and adding '.xml').
+
+        Parameters:
+            custom_root -- a custom tag for the root element. Defaults to 'root'
         '''
         if self.unique:
             exported_entities = []
 
+        export_folder = self.get_subfolder('XML')
+
         for entity in self.entities:
             if not self.unique or (self.unique and not self.already_exported(exported_entities, entity)):
                 filename = str(entity) + '.xml'
-                xml = parseString(dicttoxml.dicttoxml(entity.to_dict()))
+                xml = parseString(dicttoxml.dicttoxml(entity.to_dict(), custom_root=custom_root))
                 
-                with open(os.path.join(folder, filename), 'w') as out_file:
+                with open(os.path.join(export_folder, filename), 'w') as out_file:
                     out_file.write(xml.toprettyxml())
 
 
@@ -93,3 +101,14 @@ class EntityExporter:
         else:
             exported_entities.append(identifier)
             return False
+
+
+    def get_subfolder(self, subfoldername):
+        '''
+        Get full path to subfolder (of self.output_folder) with `subfoldername`.
+        Subfolder will be created if it doesn't exist.
+        '''
+        subfolder = os.path.join(self.output_folder, subfoldername)
+        if not (os.path.exists(subfolder)):
+            os.mkdir(subfolder)
+        return subfolder

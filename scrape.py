@@ -21,26 +21,31 @@ def main(sys_args):
         edition_languages = args.edition_languages
         if not isinstance(args.edition_languages, list):
             edition_languages = [args.edition_languages]
-
-    editions = editions_scraper.scrape(
-        args.editions_url, args.editions_export_path)
-    review_scraper.scrape(editions, args.reviews_export_path, edition_languages)
+       
+    editions = editions_scraper.scrape(args.editions_url,args.export_folder, args.editions_export_csv_filename)
+    review_scraper.scrape(editions, args.export_folder, args.reviews_export_csv_filename, edition_languages)
     logger.info('Done')
 
 
-def file_path(path):
+def csv_filename(filename):
     '''
     Helper function to validate user input.
-    Path should have .csv as extension.
-    Non-existing folder in path will be created.
+    csv_filename should have .csv as extension.
     '''
-    if not path.endswith('.csv'):
+    if not filename.endswith('.csv'):
         raise argparse.ArgumentTypeError(
-            'File \'{}\' should have .csv extension'.format(path))
-    dir_name = os.path.dirname(path)
-    if dir_name and not os.path.exists(dir_name):
-        os.makedirs(dir_name)
-    return path
+            'File \'{}\' should have .csv extension'.format(filename))    
+    return filename
+
+
+def folder_path(folder_path):
+    '''
+    Helper function to validate user input.
+    folder_path will be created if it doesn't exist
+    '''
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
+    return folder_path
 
 
 def editions_url(url):
@@ -70,13 +75,17 @@ def parse_arguments(sys_args):
                Example: 'https://www.goodreads.com/work/editions/6463092-het-diner'""")
 
     parser.add_argument(
-        '--reviews_export_path', '-rep', dest='reviews_export_path', type=file_path, required=True,
-        help='''Path to the file you want to export the reviews data to. Should be a .csv file''')
+        '--export_folder', '-ep', dest='export_folder', type=folder_path, required=True,
+        help='''Path to the folder where you want the exports to appear. Should be a path to a folder, not a file.''')
+    
+    parser.add_argument(
+        '--reviews_export_csv_filename', '-ref', dest='reviews_export_csv_filename', type=csv_filename, required=True,
+        help='''Filename for the csv you want to the reviews exported to. Should be a .csv file''')
 
     parser.add_argument(
-        '--editions_export_path', '-eep', dest='editions_export_path', type=file_path,
-        required=False, help='''Optional. Path to the file you want to export the editions data to.
-                Should be a .csv file. Editions will not be exported if you leave this empty''')
+        '--editions_export_csv_filename', '-eef', dest='editions_export_csv_filename', type=csv_filename,
+        required=False, help='''Optional. Filename for the csv you want the editions exported to.
+                Should be a .csv file. Editions will not be exported to csv if you leave this empty''')
 
     parser.add_argument(
         '--edition_languages', '-el', dest='edition_languages',

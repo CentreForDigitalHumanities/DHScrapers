@@ -5,11 +5,12 @@ from base_scraper.exporter import EntityExporter
 
 logger = logging.getLogger()
 
-def scrape(editions, output_path, edition_languages=['English', 'Dutch', 'German', 'Spanish', 'French']):
+def scrape(editions, output_folder, csv_filename, edition_languages=['English', 'Dutch', 'German', 'Spanish', 'French']):
     '''
     Parameters:
         editions -- List of Edition instances to collect reviews for
-        output_path -- a full path (incl. filename and extension) where you expect the output.
+        output_folder -- a full path to the folder where you expect the output. Subfolders (e.g. 'XML', 'CSV' will be created in this folder).
+        csv_filename -- name (incl. extension) of the file to export reviews to in CSV format.
         edition_languages -- specify the languages to include when collecting editions.
             Example: ['English', 'Dutch', 'German', 'Spanish', 'French']
             All other languages will be ignored. Defaults to ['English', 'Dutch', 'German', 'Spanish', 'French']
@@ -26,5 +27,6 @@ def scrape(editions, output_path, edition_languages=['English', 'Dutch', 'German
 
     logger.info("{} reviews collected from {} editions".format(len(reviews), used_editions))
 
-    exporter = EntityExporter(reviews, 'reviews')
-    exporter.to_csv(output_path)
+    exporter = EntityExporter(output_folder, reviews, 'reviews')
+    exporter.to_csv(csv_filename)
+    exporter.to_xml('review')
