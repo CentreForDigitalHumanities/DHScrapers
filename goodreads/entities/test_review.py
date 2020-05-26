@@ -11,11 +11,14 @@ def test_to_dict():
     review.url = "url"
     review.edition_id = "edition_id"
     review.edition_language = "edition_language"
+    review.edition_publisher = "edition_publisher"
+    review.edition_publishing_year = "2020"
     review.date = "date"
-    review.author = ['author1', 'author2']
+    review.author = 'José'
+    review.author_gender = 'mostly_female'
     review.language = 'language'
     review.rating = 'liked it'
-    review.rating_no = 3
+    # review.rating_no added automatically
     review.text = 'text'
 
     expected = {
@@ -23,8 +26,11 @@ def test_to_dict():
         'url': 'url',
         'edition_id': 'edition_id',
         'edition_language': 'edition_language',
+        'edition_publisher': 'edition_publisher',
+        'edition_publishing_year' : '2020',
         'date': 'date',
-        'author': ['author1', 'author2'],
+        'author': 'José',
+        'author_gender': 'mostly_female',
         'language': 'language',
         'rating': 'liked it',
         'rating_no': 3,
