@@ -8,6 +8,7 @@ attrs==19.3.0             # via pytest
 beautifulsoup4==4.8.2     # via -r requirements.in
 certifi==2019.11.28       # via requests
 chardet==3.0.4            # via requests
+gender-guesser==0.4.0     # via -r requirements.in
 idna==2.9                 # via requests
 importlib-metadata==1.5.0  # via pluggy, pytest
 langdetect==1.0.8         # via -r requirements.in
