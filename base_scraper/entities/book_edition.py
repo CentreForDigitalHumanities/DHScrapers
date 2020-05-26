@@ -9,7 +9,8 @@ class BookEdition(BaseEntity):
         self.title = ''
         self.url = ''
         self.authors = []
-        self.pub_details = ''
+        self.publishing_year = ''
+        self.publisher = ''
         self.edition_details = ''
         self.isbn = ''
         self.isbn13 = ''

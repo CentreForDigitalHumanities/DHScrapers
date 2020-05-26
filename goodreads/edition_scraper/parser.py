@@ -1,3 +1,4 @@
+import re
 from base_scraper.parser import Parser as BaseParser
 from goodreads.entities.edition import Edition
 
@@ -59,7 +60,7 @@ class EditionPageParser(BaseParser):
         else:
             text = row.text.strip()
             if 'published' in text.lower():
-                edition.pub_details = self.remove_whitespace(text)
+                self.set_publishing_details(self.remove_whitespace(text), edition)
             elif not text == 'more details' and not text == 'less detail':
                 edition.edition_details = self.remove_whitespace(text)
 
@@ -88,6 +89,15 @@ class EditionPageParser(BaseParser):
         text = self.remove_whitespace(data_value.find('span').text)
         index = text.rfind(':')
         return self.remove_whitespace(text[index + 2:len(text) - 1])
+
+    def set_publishing_details(self, text, edition):
+        if not text: return
+        years = re.search('[1-2]{1}[0-9]{3}', text)
+        if years:
+            edition.publishing_year = years[0]
+        index = text.rfind('by')
+        if not index == -1:
+            edition.publisher = text[index + 3:]
 
     def get_authors(self, authorName_containers):
         '''
