@@ -12,6 +12,7 @@ class Review(BookReview):
         self.edition_publishing_year = None
         self.date = None
         self.author = None
+        self.author_gender = None
         self.language = None
         self.rating = None
         self.rating_no = None

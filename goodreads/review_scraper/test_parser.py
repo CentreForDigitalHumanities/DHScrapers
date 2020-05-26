@@ -121,6 +121,7 @@ def test_get_reviews_parsing_short():
     assert r.url == 'https://www.goodreads.com/review/show/975219334'
     assert r.date == 'Jun 23, 2014'
     assert r.author == 'Jolieg G'
+    assert r.author_gender == 'unknown'
     assert r.rating == 'it was amazing'
     assert r.text == 'Met veel plezier gelezen. Vlot en boeiend geschreven en af en toe een humoristische noot. Ga vast en zeker meer van hem lezen.'
 
@@ -145,6 +146,7 @@ def test_get_reviews_parsing_long():
     assert r.url == 'https://www.goodreads.com/review/show/111297896'
     assert r.date == 'Jul 12, 2010'
     assert r.author == 'Erin'
+    assert r.author_gender == 'mostly_female'
     assert r.rating == 'it was amazing'
     assert r.text == expected_text
 
@@ -162,6 +164,7 @@ def test_get_reviews_field_content():
             assert r.url is not None
             assert r.date is not None
             assert r.author is not None
+            assert r.author_gender is not None
             assert r.language is not None
             # rating, surprisingly, can be None
             # text, even more surprisingly, can be None in rare cases, see #15

@@ -72,6 +72,7 @@ class ReviewPageParser(BaseParser):
             review.edition_publisher = self.edition.publisher
             review.edition_publishing_year = self.edition.publishing_year
             review.author = self.get_text_or_none(review_html.find('a', class_='user'))
+            review.author_gender = self.gender_detector.get_gender(review.author)
             review.date = self.get_text_or_none(review_html.find('a', class_='reviewDate'))
             review.text = self.extract_review(review_text)
             review.rating = self.get_text_or_none(review_html.find('span', class_='staticStar'))

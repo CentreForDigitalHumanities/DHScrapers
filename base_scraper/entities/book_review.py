@@ -9,6 +9,7 @@ class BookReview(BaseEntity):
         self.edition_language = None
         self.date = None
         self.author = None
+        self.author_gender = None
         self.language = None
         self.rating = None
         self.text = None
