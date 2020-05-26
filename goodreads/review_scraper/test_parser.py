@@ -107,12 +107,16 @@ def test_get_reviews_parsing_short():
     html = get_test_partial('review_short.html')
     fake_edition.url = '/parsed/for/edition_id'
     fake_edition.language = 'Klingon'
+    fake_edition.publisher = 'GoodReads'
+    fake_edition.publishing_year = '1983'
     p = ReviewPageParser(html, fake_edition)
     reviews = p.get_reviews()
     assert len(reviews) == 1
     r = reviews[0]
     assert r.edition_id == 'edition_id'
     assert r.edition_language == 'Klingon'
+    assert r.edition_publisher == 'GoodReads'
+    assert r.edition_publishing_year == '1983'
     assert r.id == 'review_975219334'
     assert r.url == 'https://www.goodreads.com/review/show/975219334'
     assert r.date == 'Jun 23, 2014'

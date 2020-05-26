@@ -69,6 +69,8 @@ class ReviewPageParser(BaseParser):
             review.url = review_html.find('link')['href']
             review.edition_language = self.edition.language
             review.edition_id = self.edition.get_id()
+            review.edition_publisher = self.edition.publisher
+            review.edition_publishing_year = self.edition.publishing_year
             review.author = self.get_text_or_none(review_html.find('a', class_='user'))
             review.date = self.get_text_or_none(review_html.find('a', class_='reviewDate'))
             review.text = self.extract_review(review_text)

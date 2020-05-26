@@ -8,6 +8,8 @@ class Review(BookReview):
         self.url = None
         self.edition_id = None
         self.edition_language = None
+        self.edition_publisher = None
+        self.edition_publishing_year = None
         self.date = None
         self.author = None
         self.language = None
