@@ -1,5 +1,6 @@
 from langdetect import detect
 from langdetect.lang_detect_exception import LangDetectException
+from iso639 import languages
 from base_scraper.parser import Parser as BaseParser
 from goodreads.entities.review import Review
 
@@ -78,7 +79,11 @@ class ReviewPageParser(BaseParser):
             review.rating = self.get_text_or_none(review_html.find('span', class_='staticStar'))
             if review.text:
                 try:
-                    review.language = detect(review.text)                        
+                    language = languages.get(alpha2=detect(review.text))
+                    if language:
+                        review.language = language.name
+                    else:
+                        review.language = 'UNKNOWN'                        
                 except LangDetectException:
                     # langdetect can't deal with texts that consist of only things like
                     # '3.5-4/5', or '(...) 6/10'
