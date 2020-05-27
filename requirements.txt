@@ -12,6 +12,7 @@ dicttoxml==1.7.4          # via -r requirements.in
 gender-guesser==0.4.0     # via -r requirements.in
 idna==2.9                 # via requests
 importlib-metadata==1.5.0  # via pluggy, pytest
+iso-639==0.4.5            # via -r requirements.in
 langdetect==1.0.8         # via -r requirements.in
 more-itertools==8.2.0     # via pytest
 packaging==20.3           # via pytest

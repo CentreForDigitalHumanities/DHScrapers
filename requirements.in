@@ -5,3 +5,4 @@ pytest
 langdetect
 gender_guesser
 dicttoxml
+iso-639
