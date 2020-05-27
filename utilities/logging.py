@@ -19,3 +19,5 @@ def init_logger(log_file='scrape.log'):
     ch.setFormatter(ch_formatter)
     logger.addHandler(fh)
     logger.addHandler(ch)
+
+    logging.getLogger("dicttoxml").setLevel(logging.WARNING)
