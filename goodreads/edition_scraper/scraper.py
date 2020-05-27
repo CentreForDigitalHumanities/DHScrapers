@@ -14,9 +14,9 @@ def scrape(url, export_folder, export_filename):
         export_folder -- Optional. The folder to create the export file in. If not None, export_filename must be supplied too.
         export_filename -- Optional. The name of the file to export to, must be a .csv file. If not None export_folder must be supplied to. 
     '''
-    if (export_folder and not export_filename) or (export_filename and not export_folder):
-        raise ValueError('export_folder and export_filename should both be set, or both be empty')
-    if not export_filename.lower().endswith('.csv'):
+    if export_filename and not export_folder:
+        raise ValueError('if export_filename is set, so should export_folder')
+    if export_filename and not export_filename.lower().endswith('.csv'):
         raise ValueError('export_filename must be a \'.csv\' file')
 
     editions = collect_editions(url)

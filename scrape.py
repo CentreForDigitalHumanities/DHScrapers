@@ -79,8 +79,8 @@ def parse_arguments(sys_args):
         help='''Path to the folder where you want the exports to appear. Should be a path to a folder, not a file.''')
     
     parser.add_argument(
-        '--reviews_export_csv_filename', '-ref', dest='reviews_export_csv_filename', type=csv_filename, required=True,
-        help='''Filename for the csv you want to the reviews exported to. Should be a .csv file''')
+        '--reviews_export_csv_filename', '-ref', dest='reviews_export_csv_filename', type=csv_filename, default='reviews.csv',
+        help="Filename for the csv you want to the reviews exported to. Should be a .csv file. Defaults to 'reviews.csv'")
 
     parser.add_argument(
         '--editions_export_csv_filename', '-eef', dest='editions_export_csv_filename', type=csv_filename,
