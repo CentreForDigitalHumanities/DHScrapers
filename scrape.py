@@ -88,7 +88,7 @@ def parse_arguments(sys_args):
                 Should be a .csv file. Editions will not be exported to csv if you leave this empty''')
 
     parser.add_argument(
-        '--export_xml', '-ex', dest='export_xml', action='store_true', default=False,
+        '--export_xml', '--xml', dest='export_xml', action='store_true', default=False,
         help='''If this flag is provided (no value needed), the reviews are exported to XML (in addition to CSV)''')
 
     parser.add_argument(
