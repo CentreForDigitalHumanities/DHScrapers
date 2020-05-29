@@ -88,6 +88,38 @@ class EntityExporter:
                 with open(os.path.join(export_folder, filename), 'w') as out_file:
                     out_file.write(xml.toprettyxml())
 
+        message = "{} {} exported to XML in '{}'".format(len(self.entities), self.entities_name, export_folder)
+        if self.unique:
+            message = "{} (unique) {} exported to XML in '{}'".format(len(exported_entities), self.entities_name, export_folder)
+        
+        logger.info(message)
+
+
+    def to_txt(self, field='text'):
+        '''
+        Export an txt file for each entity, with `field` as the content of the txt.
+        Filename will be created by calling __str__ on the entity (and adding '.txt').
+
+        Parameters:
+            field -- The field to print to the txt
+        '''
+        if self.unique:
+            exported_entities = []
+
+        export_folder = self.get_subfolder('TXT')
+
+        for entity in self.entities:
+            if not self.unique or (self.unique and not self.already_exported(exported_entities, entity)):
+                filename = str(entity) + '.txt'
+                content = getattr(entity, field)                
+                with open(os.path.join(export_folder, filename), 'w') as out_file:
+                    out_file.write(content)
+        
+        message = "{} {} exported to TXT in '{}'".format(len(self.entities), self.entities_name, export_folder)
+        if self.unique:
+            message = "{} (unique) {} exported to TXT in '{}'".format(len(exported_entities), self.entities_name, export_folder)
+        
+        logger.info(message)
 
 
     def already_exported(self, exported_entities, current_entity):

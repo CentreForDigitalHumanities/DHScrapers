@@ -23,7 +23,7 @@ def main(sys_args):
             edition_languages = [args.edition_languages]
        
     editions = editions_scraper.scrape(args.editions_url,args.export_folder, args.editions_export_csv_filename)
-    review_scraper.scrape(editions, args.export_folder, args.reviews_export_csv_filename, args.export_xml, edition_languages)
+    review_scraper.scrape(editions, args.export_folder, args.reviews_export_csv_filename, args.export_xml, args.export_txt, edition_languages)
     logger.info('Done')
 
 
@@ -90,6 +90,10 @@ def parse_arguments(sys_args):
     parser.add_argument(
         '--export_xml', '-ex', dest='export_xml', action='store_true', default=False,
         help='''If this flag is provided (no value needed), the reviews are exported to XML (in addition to CSV)''')
+
+    parser.add_argument(
+        '--export_txt', '--txt', dest='export_txt', action='store_true', default=False,
+        help='''If this flag is provided (no value needed), the reviews are exported to TXT (in addition to CSV)''')
 
     parser.add_argument(
         '--edition_languages', '-el', dest='edition_languages',
