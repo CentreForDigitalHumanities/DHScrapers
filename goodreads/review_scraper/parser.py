@@ -4,12 +4,13 @@ from iso639 import languages
 from base_scraper.parser import Parser as BaseParser
 from goodreads.entities.review import Review
 
+
 class ReviewPageParser(BaseParser):
     def __init__(self, html, edition):
         super().__init__(html)
         self.edition = edition
         self.reviews = self.soup.find_all('div', class_='review')
-    
+
     def contains_only_reviews(self):
         '''
         Establish if this is a page with only reviews or not.
@@ -72,30 +73,45 @@ class ReviewPageParser(BaseParser):
             review.edition_id = self.edition.get_id()
             review.edition_publisher = self.edition.publisher
             review.edition_publishing_year = self.edition.publishing_year
-            review.author = self.get_text_or_none(review_html.find('a', class_='user'))
-            review.author_gender = self.gender_detector.get_gender(review.author)
-            review.date = self.get_text_or_none(review_html.find('a', class_='reviewDate'))
+            review.author = self.get_text_or_none(
+                review_html.find('a', class_='user'))
+            review.author_gender = self.gender_detector.get_gender(
+                review.author)
+            review.date = self.get_text_or_none(
+                review_html.find('a', class_='reviewDate'))
             review.text = self.extract_review(review_text)
-            review.rating = self.get_text_or_none(review_html.find('span', class_='staticStar'))
-            if review.text:
-                try:
-                    language = languages.get(alpha2=detect(review.text))
-                    if language:
-                        review.language = language.name
-                    else:
-                        review.language = 'UNKNOWN'                        
-                except LangDetectException:
-                    # langdetect can't deal with texts that consist of only things like
-                    # '3.5-4/5', or '(...) 6/10'
-                    review.language = 'UNKNOWN'
-            else:
-                # handle the rare case where there is a reviewText element but no actual text
-                review.language = 'UNKNOWN'
+            review.rating = self.get_text_or_none(
+                review_html.find('span', class_='staticStar'))
+            review.language = self.get_review_language(review.text)            
             reviews.append(review)
-        return reviews        
+        return reviews
+
+    def get_review_language(self, review_text):
+        language = 'UNKNOWN'
+        
+        # handle the rare case where there is a reviewText element but no actual text
+        if not review_text:
+            return language
+
+        try:
+            language_code = detect(review_text)
+            if language_code.startswith('zh'):
+                # there are two language codes for Chinese ('zh-cn' and 'zh-tw') in langdetecct,
+                # both of which the iso639 module cannot deal with (it only knows zh)
+                language_code = 'zh'
+
+            iso639_language = languages.get(alpha2=language_code)
+            if iso639_language:
+                language = iso639_language.name
+        except LangDetectException:
+            # langdetect can't deal with texts that consist of only things like
+            # '3.5-4/5', or '(...) 6/10'
+            pass
+            
+        return language
 
     def extract_review(self, review_text_elem):
-        container = review_text_elem.find('span', class_='readable')        
+        container = review_text_elem.find('span', class_='readable')
         spans = container.find_all('span')
         # always extract the text from the last <span>.
         # There are rare cases when there is a <div> with 'reviewText' class in the HTML,
@@ -106,5 +122,6 @@ class ReviewPageParser(BaseParser):
             return None
 
     def get_text_or_none(self, field):
-        if field: return self.remove_whitespace(field.get_text(' '))
+        if field:
+            return self.remove_whitespace(field.get_text(' '))
         return None
