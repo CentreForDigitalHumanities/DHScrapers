@@ -1,0 +1,71 @@
+<response>
+	<lst name="responseHeader">
+		<int name="status">
+			0
+		</int>
+		<int name="QTime">
+			4
+		</int>
+		<lst name="params">
+			<str name="q">
+				*
+			</str>
+			<str name="fl">
+				inscription_id
+			</str>
+			<str name="type">
+				funerary
+			</str>
+			<str name="rows">
+				4347
+			</str>
+		</lst>
+	</lst>
+	<result name="response" numFound="4347" start="0">
+		<doc>
+			<str name="inscription_id">
+				ahma0001
+			</str>
+		</doc>
+		<doc>
+			<str name="inscription_id">
+				ahma0002
+			</str>
+		</doc>
+		<doc>
+			<str name="inscription_id">
+				akas0001
+			</str>
+		</doc>
+		<doc>
+			<str name="inscription_id">
+				jeru0420
+			</str>
+		</doc>
+		<doc>
+			<str name="inscription_id">
+				jeru0421
+			</str>
+		</doc>
+		<doc>
+			<str name="inscription_id">
+				jeru0422
+			</str>
+		</doc>
+        <doc>
+			<str name="inscription_id">
+				zoor0381
+			</str>
+		</doc>
+		<doc>
+			<str name="inscription_id">
+				zoor0390
+			</str>
+		</doc>
+		<doc>
+			<str name="inscription_id">
+				zoor0391
+			</str>
+		</doc>
+	</result>
+</response>
