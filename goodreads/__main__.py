@@ -1,19 +1,13 @@
 import os
 import sys
-import logging
 import argparse
 from utilities.logging import init_logger
-from goodreads.edition_scraper import scraper as editions_scraper
-from goodreads.review_scraper import scraper as review_scraper
-
-logger = logging.getLogger(__name__)
-
-EDITION_LANGUAGES = ['English', 'German', 'Dutch', 'French', 'Spanish']
+from goodreads.constants import EDITION_LANGUAGES
+from goodreads.goodreads import scrape
 
 
 def main(sys_args):
     init_logger()
-
     args = parse_arguments(sys_args)
     if args.edition_languages == 'all':
         edition_languages = EDITION_LANGUAGES
@@ -21,10 +15,16 @@ def main(sys_args):
         edition_languages = args.edition_languages
         if not isinstance(args.edition_languages, list):
             edition_languages = [args.edition_languages]
-       
-    editions = editions_scraper.scrape(args.editions_url,args.export_folder, args.editions_export_csv_filename)
-    review_scraper.scrape(editions, args.export_folder, args.reviews_export_csv_filename, args.export_xml, args.export_txt, edition_languages)
-    logger.info('Done')
+
+    scrape(
+        args.editions_url,
+        args.export_folder,
+        edition_languages,
+        args.editions_csv_filename,
+        args.reviews_csv_filename,
+        args.export_xml,
+        args.export_txt
+    )
 
 
 def csv_filename(filename):
@@ -34,7 +34,7 @@ def csv_filename(filename):
     '''
     if not filename.endswith('.csv'):
         raise argparse.ArgumentTypeError(
-            'File \'{}\' should have .csv extension'.format(filename))    
+            'File \'{}\' should have .csv extension'.format(filename))
     return filename
 
 
@@ -75,15 +75,15 @@ def parse_arguments(sys_args):
                Example: 'https://www.goodreads.com/work/editions/6463092-het-diner'""")
 
     parser.add_argument(
-        '--export_folder', '-ep', dest='export_folder', type=folder_path, required=True,
+        '--export_folder', '-ef', dest='export_folder', type=folder_path, required=True,
         help='''Path to the folder where you want the exports to appear. Should be a path to a folder, not a file.''')
-    
+
     parser.add_argument(
-        '--reviews_export_csv_filename', '-ref', dest='reviews_export_csv_filename', type=csv_filename, default='reviews.csv',
+        '--reviews_export_csv_filename', '-ref', dest='reviews_csv_filename', type=csv_filename, default='reviews.csv',
         help="Filename for the csv you want to the reviews exported to. Should be a .csv file. Defaults to 'reviews.csv'")
 
     parser.add_argument(
-        '--editions_export_csv_filename', '-eef', dest='editions_export_csv_filename', type=csv_filename,
+        '--editions_export_csv_filename', '-eef', dest='editions_csv_filename', type=csv_filename,
         required=False, help='''Optional. Filename for the csv you want the editions exported to.
                 Should be a .csv file. Editions will not be exported to csv if you leave this empty''')
 
