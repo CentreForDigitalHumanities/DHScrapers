@@ -2,14 +2,9 @@
 
 Our scrapers are basically some scripts that work together to extract as many reviews for a title as possible from GoodReads.com. Our solution to GoodReads' limitations (e.g. 300 reviews per title per language -- at least at first sight), combines the option to filter per rating with the option to filter reviews only for the edition currently viewed. Reviews are extracted per edition, and if more than 300 are found for the current edition, these are collected _per rating_. This means that a potential 1500 reviews are extracted for each edition! (Well, as long as that number of reviews exists for the edition of course.)
 
-## Installation
-
-Make sure you have Python3 installed (any version should do, tested with 3.6) and create a virtualenv.
-In this virtualenv, navigate to the 'scrapers' folder and simply run `pip install -r requirements.txt`. Once this is done, you're good to go!
-
 ## Introduction
 
-In this folder, you find two scrapers, some utilities shared between them, and a main entry point (the script `scrape.py`) you can use to do some scraping for you. As explained above, our scraper feeds off the fact that on GoodReads, a title exists in several editions. The first scraper collects all the editions for a title, while the second one collects as many reviews as possible for each editions. The output is combined into one (for now `.csv`) file.
+The GoodReads scraper actually consists of two scrapers. The main entry point to the module (the script `goodreads.py`) combines these into one action. As explained above, our scraper feeds off the fact that on GoodReads, a title exists in several editions. The first scraper collects all the editions for a title, while the second one collects as many reviews as possible for each editions. The output is always exported as a `.csv`) file, and can additionally be exported as `XML` and `TXT`.
 
 ### Edition scraper
 
@@ -49,9 +44,12 @@ A review looks like this:
 | url | GoodReads url for the review |
 | edition_id | The GoodReads id for the edition the review belongs to
 | edition_language | Language of the edition the review belongs to, as a full word (e.g. 'English') |
+| edition_publisher | Publisher of the edition the review was written for |
+| edition_publishing_year | Year of publication of the edition the review was written for |
 | date | Date the review was published on GoodReads |
 | author | User that wrote the review |
-| language | The language the review is written in, as a language code (i.e. 'en'). (Note that this is detected by the scraper, see below) |
+| author_gender | The gender of the author. (Note that this is detected by the scraper, see below) |
+| language | The language the review is written in. (Note that this is detected by the scraper, see below) |
 | rating | The rating that comes with the review. Isn't typically, but can be empty. |
 | text | The full text of the review |
 
@@ -59,33 +57,32 @@ A review looks like this:
 
 In its current form, the review scraper tries to establish the language of a review using the [langdetect](https://pypi.org/project/langdetect/) package. Be aware that this works really great for most reviews, but not those that consist of just one or two words. Just sayin'.
 
-### Scrape.py
+Also note that a `langdetect` returns language _codes_ ('nl'), so an addtional package [iso-639](https://pypi.org/project/iso-639/) is used to translate these into language _names_ ('Dutch').
+
+#### Gender guessing
+
+The scraper uses [gender-guesser](https://pypi.org/project/gender-guesser/) to guess an authors gender based on their username. (Note that first result do not look that promising, probably due to the use of username).
+
+### goodreads.py
 
 The main entry point, the script that makes life easy for the user by combining the two scrapers into one simple command. The options:
 
 | Option | Alternative form | Required? | Description |
 | ------- | ---- | --- | --- |
 | '--editions_url' | '--url', '-eu' | Required | The url of an editions page. May or may not include the page queryparam at the end. You can find the url by clicking 'All Editions' (under Other Editions') on a title's page. Just copy and paste from your browser's address bar. Example: `https://www.goodreads.com/work/editions/6463092-het-diner`. |
-| '--reviews_export_path' | '-rep' | Required | Path to the file you want to export the reviews data to. Should be a .csv file |
-| '--editions_export_path' | '-eep' | Optional | Path to the file you want to export the editions data to. Should be a .csv file. Editions will not be exported if you leave this empty |
+| '--export_folder' | '-ef' | Required | Path to the folder where you want the exports to appear. Should be a path to a folder, not a file. |
+| '--reviews_export_csv_filename' | '-ref' | Optional | Filename for the csv you want to the reviews exported to. Should be a .csv file. Defaults to 'reviews.csv' |
+| '--editions_export_csv_filename' | '-eef' | Optional | Filename for the csv you want the editions exported to.
+                Should be a .csv file. Editions will not be exported to csv if you leave this empty |
+| '--xml' | '--export_xml' | Optional | If this flag is present (no value needed), each review is exported to an XML file |
+| '--txt' | '--export_txt' | Optional | | If this flag is present (no value needed), each review is exported to a txt file |
 | '--edition_languages' | '-el' | Optional | Choose one or multiple from 'English', 'German', 'Dutch', 'French', 'Spanish' or 'all'. Example: `-el English German`. Defaults to 'all'.
 
-Example: `python scrape.py --editions_url "https://www.goodreads.com/work/editions/6463092-het-diner" -rep the_dinner_reviews.csv -eep the_dinner_editions.csv -el English Dutch`
+Example: `python -m goodreads --editions_url "https://www.goodreads.com/work/editions/6463092-het-diner" -ef ./TheDinner -el English Dutch --xml`
 
-IMPORTANT: it has occured, especially when scraping reviews for a large number of editions, that the GoodReads server takes too long to respond. If this happens, the scraping crashes. The best we currently have to offer is to simply start over: we have succesfully scraped 15530 reviews from 356 editions of _Harry Potter and the Sorcerer's Stone_.
+IMPORTANT: it has occured, especially when scraping reviews for a large number of editions, that the GoodReads server takes too long to respond. If this happens, the scraping crashes. The best we currently have to offer is to simply start over: we have succesfully scraped over 17000 reviews from 356 editions of _Harry Potter and the Sorcerer's Stone_.
 
 ## For developers
-
-### General setup of scrapers
-
-Each scraper consists of the same for parts: `scraper.py`, `collector.py`, `parser.py`, `exporter.py`.
-
-| part | function |
-| ---- | ----- |
-|`scraper.py` | Main entry point. Calls `collector.py` and exports the collected stuff |
-| `collector.py` | Handles the collection of HTML from the web. Passes HTML to `parser.py` and returns a list of instances (e.g. [Review], [Edition]) |
-| `parser.py` | Parses HTML into instances |
-| `exporter.py`  | Export the list of instances to a certain format. For now only csv is supported |
 
 ### Filtering reviews
 
