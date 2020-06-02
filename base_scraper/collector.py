@@ -4,7 +4,7 @@ from urllib.parse import urlparse, urljoin
 
 logger = logging.getLogger(__name__)
 
-class Collector():
+class Collector:
 
     def collect_html(self, url, remove_newlines=True):
         '''

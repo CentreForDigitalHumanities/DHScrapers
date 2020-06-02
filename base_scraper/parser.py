@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import gender_guesser.detector as gender_detector
 
 
-class Parser():
+class Parser:
     '''
     A base class for parsers.
     Gives you a BeautifulSoup instance in self.soup, with `html` parsed.
