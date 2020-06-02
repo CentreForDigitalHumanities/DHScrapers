@@ -6,7 +6,7 @@ logger = logging.getLogger(__name__)
 
 class Collector:
 
-    def collect_html(self, url, remove_newlines=True):
+    def collect_html(self, url, remove_newlines=True, response_encoding=None):
         '''
         Do the actual request and return the response.
         Raises an RunTimeError if the response status is not 200.
@@ -16,6 +16,10 @@ class Collector:
             url -- the url to make the request to.
             remove_newlines -- specify whether newline charachters ('\n') should be removed 
                 from response before returning it. Defaults to True.
+            response_encoding -- the encoding used to return the response as text. Per the docs 
+            (https://requests.readthedocs.io/en/master/user/quickstart/#response-content), request
+            tries to guess the encoding, but may be wrong. By providing a value here, you can overwrite
+            this default behaviour.
         '''
         r = requests.get(url)
         logger.debug('response status: {}'.format(r.status_code))
@@ -24,6 +28,8 @@ class Collector:
             logger.error(r.text)
             raise RuntimeError("Could not collect from url {}".format(url))
         
+        if response_encoding:
+            r.encoding = response_encoding
         if remove_newlines: return r.text.replace("\n", "")
         return r.text
 
