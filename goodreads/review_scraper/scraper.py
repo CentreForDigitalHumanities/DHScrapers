@@ -3,7 +3,7 @@ import logging
 from .collector import collect
 from base_scraper.exporter import EntityExporter
 
-logger = logging.getLogger()
+logger = logging.getLogger(__name__)
 
 
 def scrape(editions, output_folder, csv_filename, export_xml=False, export_txt=False, edition_languages=['English', 'Dutch', 'German', 'Spanish', 'French']):

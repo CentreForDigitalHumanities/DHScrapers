@@ -2,7 +2,7 @@ import requests
 import logging
 from urllib.parse import urlparse, urljoin
 
-logger = logging.getLogger()
+logger = logging.getLogger(__name__)
 
 class Collector():
 

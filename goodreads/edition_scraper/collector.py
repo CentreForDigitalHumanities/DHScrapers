@@ -3,7 +3,7 @@ from base_scraper.collector import Collector as BaseCollector
 from goodreads.entities.edition import Edition
 from .parser import EditionPageParser
 
-logger = logging.getLogger()
+logger = logging.getLogger(__name__)
 
 def collect(url):
     '''

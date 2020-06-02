@@ -6,7 +6,7 @@ import logging
 from base_scraper.collector import Collector as BaseCollector
 from .parser import ReviewPageParser
 
-logger = logging.getLogger()
+logger = logging.getLogger(__name__)
 # example_of_full_url: 'https://www.goodreads.com/book/reviews/15797938-the-dinner?edition_reviews=true&rating=5&text_only=true&page=10'
 
 

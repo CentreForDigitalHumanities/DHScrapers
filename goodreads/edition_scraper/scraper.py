@@ -2,7 +2,7 @@ import logging
 from .collector import collect as collect_editions
 from base_scraper.exporter import EntityExporter
 
-logger = logging.getLogger()
+logger = logging.getLogger(__name__)
 
 def scrape(url, export_folder, export_filename):
     '''

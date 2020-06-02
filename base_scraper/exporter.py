@@ -5,7 +5,7 @@ from xml.dom.minidom import parseString
 import dicttoxml
 import logging
 
-logger = logging.getLogger()
+logger = logging.getLogger(__name__)
 
 class EntityExporter:
 
