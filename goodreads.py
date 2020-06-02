@@ -6,7 +6,7 @@ from utilities.logging import init_logger
 from goodreads.edition_scraper import scraper as editions_scraper
 from goodreads.review_scraper import scraper as review_scraper
 
-logger = logging.getLogger()
+logger = logging.getLogger(__name__)
 
 EDITION_LANGUAGES = ['English', 'German', 'Dutch', 'French', 'Spanish']
 
