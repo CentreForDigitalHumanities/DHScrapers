@@ -24,47 +24,32 @@
 	<result name="response" numFound="4347" start="0">
 		<doc>
 			<str name="inscription_id">
-				ahma0001
+				akld0006
 			</str>
 		</doc>
 		<doc>
 			<str name="inscription_id">
-				ahma0002
+				beth0026
 			</str>
 		</doc>
 		<doc>
 			<str name="inscription_id">
-				akas0001
+				jeru0016
 			</str>
 		</doc>
 		<doc>
 			<str name="inscription_id">
-				jeru0420
+				jeru0089
 			</str>
 		</doc>
 		<doc>
 			<str name="inscription_id">
-				jeru0421
+				caes0332
 			</str>
 		</doc>
 		<doc>
 			<str name="inscription_id">
-				jeru0422
-			</str>
-		</doc>
-        <doc>
-			<str name="inscription_id">
-				zoor0381
-			</str>
-		</doc>
-		<doc>
-			<str name="inscription_id">
-				zoor0390
-			</str>
-		</doc>
-		<doc>
-			<str name="inscription_id">
-				zoor0391
+				hamm0061
 			</str>
 		</doc>
 	</result>
