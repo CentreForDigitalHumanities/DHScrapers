@@ -11,8 +11,8 @@ class Parser:
     add a space in between each word. For now, the rest is up to you.
     '''
 
-    def __init__(self, html):
-        self.soup = BeautifulSoup(html, 'html.parser')
+    def __init__(self, html, parser = 'html.parser'):
+        self.soup = BeautifulSoup(html, parser)
         self.gender_detector = gender_detector.Detector()
 
     def remove_whitespace(self, text):
