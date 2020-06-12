@@ -1,8 +1,9 @@
 import os
 import logging
-from base_scraper.parser import Parser
 from base_scraper.collector import Collector as BaseCollector
-from iis.constants import IIS_BASE_URL
+from iis.constants import IIS_BASE_URL, ZOTERO_BASE_URL
+from .parsers import TEIParser, ZoteroParser
+from .enricher import TEIEnricher
 
 logger = logging.getLogger(__name__)
 
@@ -21,11 +22,28 @@ class Collector(BaseCollector):
             logger.info("Collecting from '{}' [{}/{}]".format(url, index + 1, number_of_inscriptions))
             xml = self.collect_html(url, remove_newlines=False, response_encoding='utf-8')
             
-            # some extra actions to remove annoying whitespace in text nodes
-            # parser = Parser(" ".join(xml.split()))
-            # prettified_xml = parser.soup.prettify()
+            xml = self.enrich(inscription_id, xml)
 
             self.export(export_folder, inscription_id, xml)
+
+
+    def enrich(self, inscription_id, xml):
+        '''
+        Enrich the inscription XML with publication details (collected from Zotero) 
+        and return it.
+        '''
+        bibl_details = TEIParser(xml).get_bib_details()
+        for detail in bibl_details:
+            _id = detail['zotero_id']
+            url = ZOTERO_BASE_URL.format(_id)
+            logger.info('   Enriching inscription {} with data from {}'.format(inscription_id, url))
+            response = self.collect_json(url)            
+            if len(response) > 0:
+                detail['source'] = ZoteroParser(response[0]['bib']).get_source()
+            else:
+                detail['source'] = ''
+        
+        return str(TEIEnricher(xml).add_source_details(bibl_details))
 
     
     def get_inscription_url(self, inscription_id):

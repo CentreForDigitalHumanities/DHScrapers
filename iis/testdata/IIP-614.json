@@ -1,0 +1,44 @@
+[
+    {
+        "key": "HCMQI6TF",
+        "version": 331,
+        "library": {
+            "type": "group",
+            "id": 180188,
+            "name": "IIP",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/groups/iip",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/groups/180188/items/HCMQI6TF",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/groups/iip/items/HCMQI6TF",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "createdByUser": {
+                "id": 1604128,
+                "username": "IIP",
+                "name": "",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/iip",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "creatorSummary": "Fritz and Deines",
+            "parsedDate": "1999",
+            "numChildren": 0
+        },
+        "bib": "<div class=\"csl-bib-body\" style=\"line-height: 2; padding-left: 2em; text-indent:-2em;\">\n  <div class=\"csl-entry\">Fritz, V., &amp; Deines, R. (1999). Catalogue of the Jewish Ossuaries in the German Protestant Institute of Archaeology. <i>Israel Exploration Journal</i>, <i>49</i>(3/4), 222&#x2013;241.</div>\n</div>"
+    }
+]

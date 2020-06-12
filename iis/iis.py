@@ -1,4 +1,4 @@
-from iis.input_parser import Parser as InputParser
+from iis.parsers import InputParser
 from iis.collector import Collector
 
 def scrape(inscriptions_xml_path, export_folder):

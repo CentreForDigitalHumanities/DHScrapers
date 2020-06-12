@@ -1,0 +1,44 @@
+[
+    {
+        "key": "6AMF9CPT",
+        "version": 331,
+        "library": {
+            "type": "group",
+            "id": 180188,
+            "name": "IIP",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/groups/iip",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/groups/180188/items/6AMF9CPT",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/groups/iip/items/6AMF9CPT",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "createdByUser": {
+                "id": 1604128,
+                "username": "IIP",
+                "name": "",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/iip",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "creatorSummary": "Frey",
+            "parsedDate": "1975",
+            "numChildren": 0
+        },
+        "bib": "<div class=\"csl-bib-body\" style=\"line-height: 2; padding-left: 2em; text-indent:-2em;\">\n  <div class=\"csl-entry\">Frey, J. B. (1975). <i>Corpus of Jewish Inscriptions: Jewish Inscriptions from the Third Century B.C. to the Seventh Century A.D.</i> New York: Ktav Pub. House.</div>\n</div>"
+    }
+]
