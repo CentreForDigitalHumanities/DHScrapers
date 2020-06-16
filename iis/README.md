@@ -3,6 +3,11 @@
 This is a scraper for the funerary inscriptions (subset) of IIS data.
 It makes the second part of a two-part scraping process automatic. 
 
+## Requirements
+
+Note that the IIS module has its own `requirements.txt`. This imports the main requirements file, and adds a single dependency:
+'lxml'. This package is notorious for not installing on Windows machines. If you want to use the IIS scraper, please don't have a Windows machine, and go: `pip install -r iis/requirements.txt`.
+
 ## Manual part
 
 As you can see, there is a .xml file that should be fed into the scraper.
