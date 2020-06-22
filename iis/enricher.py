@@ -28,8 +28,11 @@ class TEIEnricher(BaseParser):
             
             sources.append(source)
 
-        new_element = self.soup.new_tag('publication')
-        new_element.string = "; ".join(sources)
+        new_element = self.soup.new_tag('publications')
+        for source in sources:
+            pub = self.soup.new_tag('publication')
+            pub.string = source
+            new_element.append(pub)
         self.soup.find('msIdentifier').append(new_element)
         return self.soup
 
