@@ -23,7 +23,8 @@ def main(sys_args):
         args.editions_csv_filename,
         args.reviews_csv_filename,
         args.export_xml,
-        args.export_txt
+        args.export_txt,
+        args.min_review_length
     )
 
 
@@ -99,6 +100,10 @@ def parse_arguments(sys_args):
         '--edition_languages', '-el', dest='edition_languages',
         choices=(EDITION_LANGUAGES.append('all')), default='all', nargs="+",
         help="Optional. Choose one or multiple from the choices. Example: '-el English German'. Defaults to 'all\'")
+
+    parser.add_argument(
+        '--min_review_length', '--min_length', '-mrl', dest='min_review_length', default=6, type=int,
+        help="Optional. the minimum length of a single review (in characters). Reviews shorter than this will be excluded. Defaults to 6.")
 
     parsedArgs = parser.parse_args()
     return parsedArgs

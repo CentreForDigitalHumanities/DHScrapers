@@ -6,7 +6,15 @@ from base_scraper.exporter import EntityExporter
 logger = logging.getLogger(__name__)
 
 
-def scrape(editions, output_folder, csv_filename, export_xml=False, export_txt=False, edition_languages=['English', 'Dutch', 'German', 'Spanish', 'French']):
+def scrape(
+        editions, 
+        output_folder, 
+        csv_filename, 
+        export_xml=False, 
+        export_txt=False, 
+        edition_languages=['English', 'Dutch', 'German', 'Spanish', 'French'],
+        min_review_length = 6
+    ):
     '''
     Parameters:
         editions -- List of Edition instances to collect reviews for
@@ -17,6 +25,8 @@ def scrape(editions, output_folder, csv_filename, export_xml=False, export_txt=F
         edition_languages -- specify the languages to include when collecting editions.
             Example: ['English', 'Dutch', 'German', 'Spanish', 'French']
             All other languages will be ignored. Defaults to ['English', 'Dutch', 'German', 'Spanish', 'French']
+        min_review_length - the minimum length of a single review (in characters). 
+            Reviews shorter than this will be excluded. Defaults to 6.
     '''
     reviews = []
     used_editions = 0
@@ -27,7 +37,7 @@ def scrape(editions, output_folder, csv_filename, export_xml=False, export_txt=F
             logger.info("Collecting reviews for edition '{}' [{}/{}]".format(
                 edition.get_id(), index + 1, editions_length))
             used_editions += 1
-            reviews.extend(collect(edition))
+            reviews.extend(collect(edition, min_review_length))
 
     logger.info("{} reviews collected from {} editions".format(
         len(reviews), used_editions))

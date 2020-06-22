@@ -10,17 +10,19 @@ logger = logging.getLogger(__name__)
 # example_of_full_url: 'https://www.goodreads.com/book/reviews/15797938-the-dinner?edition_reviews=true&rating=5&text_only=true&page=10'
 
 
-def collect(edition):
+def collect(edition, min_review_length = 6):
     '''
     Collect as many reviews as we can for edition.
 
     Parameters:
         edition -- An instance of Edition.
+        min_review_length -- the minimum length of a single review (in characters). 
+            Reviews shorter than this will be excluded. Defaults to 6.
     '''
     if not edition:
         raise ValueError('edition cannot be None or empty')
 
-    collector = GoodReadsReviewCollector(edition)
+    collector = GoodReadsReviewCollector(edition, min_review_length)
     reviews = []
     first_page_parser = collector.get_page_parser(1)
     number_of_reviews = first_page_parser.get_number_of_text_only_reviews()
@@ -35,9 +37,15 @@ def collect(edition):
 
 class GoodReadsReviewCollector(BaseCollector):
 
-    def __init__(self, edition):
+    def __init__(self, edition, min_review_length = 6):
+        '''
+        edition - the edition these reviews belong to
+        min_review_length - the minimum length of a single review (in characters). 
+            Reviews shorter than this will be excluded. Defaults to 6.
+        '''
         self.base_url = 'https://www.goodreads.com/book/reviews/'
         self.edition = edition
+        self.min_review_length = min_review_length
 
     def collect_per_rating(self):
         '''
@@ -84,7 +92,7 @@ class GoodReadsReviewCollector(BaseCollector):
         page_url = self.get_page_url(page_number, rating, text_only)
         self.log_collection_details(page_number, rating)
         html = self.parse_response(self.collect_html(page_url))
-        return ReviewPageParser(html, self.edition)
+        return ReviewPageParser(html, self.edition, self.min_review_length)
 
     def get_page_url(self, page_number, rating=None, text_only=False):
         '''

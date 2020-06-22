@@ -15,12 +15,13 @@ def scrape(
         editions_csv_filename = None, 
         reviews_csv_filename = 'reviews.csv', 
         export_xml = False, 
-        export_txt = False
+        export_txt = False,
+        min_review_length = 6
     ):
     '''
     Non-commandline entry point for the module. For full documentation of the parameters please refer to `__main__.py`,
     command line help, or the module's README.
     '''       
     editions = editions_scraper.scrape(editions_url, export_folder, editions_csv_filename)
-    review_scraper.scrape(editions, export_folder, reviews_csv_filename, export_xml, export_txt, edition_languages)
+    review_scraper.scrape(editions, export_folder, reviews_csv_filename, export_xml, export_txt, edition_languages, min_review_length)
     logger.info('Done')

@@ -72,11 +72,11 @@ The main entry point, the script that makes life easy for the user by combining 
 | '--editions_url' | '--url', '-eu' | Required | The url of an editions page. May or may not include the page queryparam at the end. You can find the url by clicking 'All Editions' (under Other Editions') on a title's page. Just copy and paste from your browser's address bar. Example: `https://www.goodreads.com/work/editions/6463092-het-diner`. |
 | '--export_folder' | '-ef' | Required | Path to the folder where you want the exports to appear. Should be a path to a folder, not a file. |
 | '--reviews_export_csv_filename' | '-ref' | Optional | Filename for the csv you want to the reviews exported to. Should be a .csv file. Defaults to 'reviews.csv' |
-| '--editions_export_csv_filename' | '-eef' | Optional | Filename for the csv you want the editions exported to.
-                Should be a .csv file. Editions will not be exported to csv if you leave this empty |
+| '--editions_export_csv_filename' | '-eef' | Optional | Filename for the csv you want the editions exported to. Should be a .csv file. Editions will not be exported to csv if you leave this empty |
 | '--xml' | '--export_xml' | Optional | If this flag is present (no value needed), each review is exported to an XML file |
 | '--txt' | '--export_txt' | Optional | | If this flag is present (no value needed), each review is exported to a txt file |
-| '--edition_languages' | '-el' | Optional | Choose one or multiple from 'English', 'German', 'Dutch', 'French', 'Spanish' or 'all'. Example: `-el English German`. Defaults to 'all'.
+| '--edition_languages' | '-el' | Optional | Choose one or multiple from 'English', 'German', 'Dutch', 'French', 'Spanish' or 'all'. Example: `-el English German`. Defaults to 'all'. |
+|  '--min_review_length' | '--min_length', '-mrl' | Optional | The minimum length of a single review (in characters). Reviews shorter than this will be excluded. Defaults to 6. |
 
 Example: `python -m goodreads --editions_url "https://www.goodreads.com/work/editions/6463092-het-diner" -ef ./TheDinner -el English Dutch --xml`
 
