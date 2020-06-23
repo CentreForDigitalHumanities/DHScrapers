@@ -13,7 +13,8 @@ def scrape(
         export_xml=False, 
         export_txt=False, 
         edition_languages=['English', 'Dutch', 'German', 'Spanish', 'French'],
-        min_review_length = 6
+        min_review_length = 6,
+        metadata={}
     ):
     '''
     Parameters:
@@ -25,8 +26,10 @@ def scrape(
         edition_languages -- specify the languages to include when collecting editions.
             Example: ['English', 'Dutch', 'German', 'Spanish', 'French']
             All other languages will be ignored. Defaults to ['English', 'Dutch', 'German', 'Spanish', 'French']
-        min_review_length - the minimum length of a single review (in characters). 
+        min_review_length -- the minimum length of a single review (in characters). 
             Reviews shorter than this will be excluded. Defaults to 6.
+        metadata -- a dict of pairs (i.e fieldname, value) to add to each review.
+            Is empty by default.
     '''
     reviews = []
     used_editions = 0
@@ -37,7 +40,7 @@ def scrape(
             logger.info("Collecting reviews for edition '{}' [{}/{}]".format(
                 edition.get_id(), index + 1, editions_length))
             used_editions += 1
-            reviews.extend(collect(edition, min_review_length))
+            reviews.extend(collect(edition, min_review_length, metadata))
 
     logger.info("{} reviews collected from {} editions".format(
         len(reviews), used_editions))

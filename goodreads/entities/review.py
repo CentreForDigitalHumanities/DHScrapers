@@ -2,7 +2,7 @@ from base_scraper.entities.book_review import BookReview
 
 
 class Review(BookReview):
-    def __init__(self):
+    def __init__(self, metadata):
         # The order of the fields below determines the order of the field in csv exports!
         self.id = None
         self.url = None
@@ -16,7 +16,10 @@ class Review(BookReview):
         self.language = None
         self.rating = None
         self.rating_no = None
+        for key, value in metadata.items():
+            self.__setattr__(key, value)
         self.text = None
+        
 
     def to_dict(self):
         '''

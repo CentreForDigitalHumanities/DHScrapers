@@ -6,17 +6,20 @@ from goodreads.entities.review import Review
 
 
 class ReviewPageParser(BaseParser):
-    def __init__(self, html, edition, min_review_length = 6):
+    def __init__(self, html, edition, min_review_length = 6, metadata = {}):
         '''
         html - the html of one page of reviews
         edition - the edition these reviews belong to
         min_review_length - the minimum length of a single review (in characters). 
             Reviews shorter than this will be excluded. Defaults to 6.
+        metadata - a dict of pairs (i.e fieldname, value) to add to each review.
+            Is empty by default.
         '''
         super().__init__(html)
         self.edition = edition
         self.reviews = self.soup.find_all('div', class_='review')
         self.min_review_length = min_review_length
+        self.metadata = metadata
 
     def contains_only_reviews(self):
         '''
@@ -76,7 +79,7 @@ class ReviewPageParser(BaseParser):
             review_text = self.extract_review(review_text_elem)
             if len(review_text) < self.min_review_length:
                 continue
-            review = Review()
+            review = Review(self.metadata)
             review.id = review_html['id']
             review.url = review_html.find('link')['href']
             review.edition_language = self.edition.language
