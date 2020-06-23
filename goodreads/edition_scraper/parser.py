@@ -9,7 +9,7 @@ class EditionPageParser(BaseParser):
         '''
         Extract the total number of editions from the HTML of a full editions page.
         '''
-        text = self.soup.find("div", class_="showingPages").find("span").text.strip()
+        text = self.soup.find("div", class_="showingPages").find("span").text.strip().replace(',', '')
         index = text.rfind(' ')
         return int(text[index + 1:])
 
