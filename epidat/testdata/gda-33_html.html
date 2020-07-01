@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="de" xml:lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Datenbank: Jüdische Grabsteinepigraphik</title>
+    <script type="text/javascript">
+        function FensterOeffnen(Adresse) {
+            MeinFenster = window.open(Adresse, "target=epidat",
+                "width=480,height=480,left=100,top=100,scrollbars=yes,dependent=yes,resizable=yes,location=yes");
+            MeinFenster.focus();
+        }
+    </script>
+    <meta name="description"
+        content="Die epigraphische Datenbank epidat ediert jüdische Grabinschriften in digitaler Form." />
+    <meta name="author" content="Salomon Ludwig Steinheim-Institut (Inhalt), Thomas Kollatz (Programmierung)" />
+    <meta name="keywords" lang="de" xml:lang="de"
+        content="epigraphische Datenbank, Epigraphik, Grabinschriften, jüdische Epigraphik, hebräische Epigraphik, jüdische Inschriften, Tustep, jüdische Friedhöfe, Steinheim-Institut" />
+    <meta name="keywords" lang="en" xml:lang="en"
+        content="epigraphy, funeral inscriptions, jewish inscriptions, hebrew inscriptions, jewish cemeteries, jewish tombstones, steinheim-institute" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="no-referrer" />
+    <!-- Anbindung an DARIAH AnnotationsManager -->
+    <script src="https://annotation.de.dariah.eu/annotatorjs/jquery-1.10.2.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://annotation.de.dariah.eu/annotatorjs/annotator.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://annotation.de.dariah.eu/annotatorjs/dariah-annotation.css" />
+    <script type="text/javascript" src="https://annotation.de.dariah.eu/annotatorjs/annotator-full.min.js"></script>
+    <script type="text/javascript" src="https://annotation.de.dariah.eu/annotatorjs/dariah-annotation.js"></script>
+    <script>
+        DariahAnnotation.anonymousViewing(false);
+        DariahAnnotation.setupAnnotator();
+        DariahAnnotation.addSidebar();
+    </script>
+    <!-- stc == + -->
+    <meta name="robots" content="index" />
+    <link rel="shortcut icon" href="/daten/picsepi/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="/daten/epi171109.css" />
+    <link rel="alternate" type="application/rss+xml" title="RSS"
+        href="http://www.steinheim-institut.de/daten/rss.xml" />
+    <!-- DC-HTML Prefixed Name as attribute value (xhtml) see: http://dublincore.org/documents/dc-html/ -->
+    <link rel="schema.DCTERMS" href="http://purl.org/dc/terms" />
+    <meta name='DC.title' xml:lang='de' lang='de'
+        content='Grabmal für Hendele &#x26ad; Awraham Schuster (Helena Schuster geb. Meyer), Jewish Cemetery Bonn, Bad Godesberg, Aenchenstrasse' />
+    <meta name='DC.publisher' content='http://www.steinheim-institut.de/' />
+    <meta name='DC.language' content='he' />
+    <meta name='DC.language' content='de' />
+    <meta name='DC.subject' xml:lang='en' lang='en' content='http://id.loc.gov/authorities/subjects/sh85066602.html' />
+    <meta name='DC.subject' xml:lang='en' lang='en' content='LCSH:Inscriptions, Jewish' />
+    <meta name='DC.subject' xml:lang='de' lang='de' content='http://d-nb.info/gnd/4131555-8' />
+    <meta name='DC.subject' xml:lang='de' lang='de' content='GND:Grabinschrift' />
+    <meta name='DC.subject' xml:lang='de' lang='de' content='http://d-nb.info/gnd/4331943-9' />
+    <meta name='DC.subject' xml:lang='de' lang='de' content='GND:Jüdischer Friedhof' />
+    <meta name='DC.subject' xml:lang='de' lang='de' content='http://d-nb.info/gnd/4021732-2' />
+    <meta name='DC.subject' xml:lang='de' lang='de' content='GND:Grabmal' />
+    <meta name='DC.type' content='Text' />
+    <meta name='DC.format' content='text/html' />
+    <meta name='DC.rights' xml:lang='de' lang='de' content='http://creativecommons.org/licenses/by/4.0/' />
+    <meta name='DC.rights' content='cc-by' />
+</head>
+
+<body>
+    <div class="header">
+        <img src="http://steinheim-institut.de/daten/picsepi/logo.gif" alt="logo epidat: epigraphische Datenbank"
+            style="width:100%" id="top" />
+    </div>
+    <nav>
+        <ul>
+            <li><a href="?">Navigation</a>
+                <ul>
+
+
+                    <li><a href="#">Geographischer Zugang</a>
+                        <ul>
+                            <li><a href="?id=XA-DE">Deutschland [198]</a>
+                                <ul>
+                                    <li><a href="?id=XA-DE-BW">Baden-Württemberg [7]</a></li>
+                                    <li><a href="?id=XA-DE-BY">Bayern [9]</a></li>
+                                    <li><a href="?id=XA-DE-BB">Brandenburg [2]</a></li>
+                                    <li><a href="?id=XA-DE-HH">Hamburg [2]</a></li>
+                                    <li><a href="?id=XA-DE-HE">Hessen [6]</a></li>
+                                    <li><a href="?id=XA-DE-NI">Niedersachsen [4]</a></li>
+                                    <li><a href="?id=XA-DE-NW">Nordrhein-Westfalen [123]</a></li>
+                                    <li><a href="?id=XA-DE-RP">Rheinland-Pfalz [15]</a></li>
+                                    <li><a href="?id=XA-DE-SL">Saarland [16]</a></li>
+                                    <li><a href="?id=XA-DE-SN">Sachsen [1]</a></li>
+                                    <li><a href="?id=XA-DE-ST">Sachsen-Anhalt [4]</a></li>
+                                    <li><a href="?id=XA-DE-SH">Schleswig-Holstein [2]</a></li>
+                                    <li><a href="?id=XA-DE-TH">Thüringen [7]</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="?id=XA-LV">Lettland [5]</a>
+                            </li>
+                            <li><a href="?id=XA-NL">Niederlande [7]</a>
+                            </li>
+                            <li><a href="?id=XA-CZ">Tschechische Republik [5]</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- chronologie -->
+                    <li><a href="#">Chronologischer Zugang</a>
+                        <ul>
+                            <li><a
+                                    href="?suche=*&amp;lang=de&amp;function=searchall&amp;lang=de&amp;check=2&amp;lang=de&amp;sm=AND&amp;lang=de&amp;wo=ed&amp;lang=de&amp;beg=1050&amp;lang=de&amp;end=1519">Mittelalter
+                                </a></li>
+                            <li><a
+                                    href="?suche=*&amp;lang=de&amp;function=searchall&amp;lang=de&amp;check=2&amp;lang=de&amp;sm=AND&amp;lang=de&amp;wo=ed&amp;lang=de&amp;beg=1520&amp;lang=de&amp;end=1788">Frühe
+                                    Neuzeit</a></li>
+                            <li><a
+                                    href="?suche=*&amp;lang=de&amp;function=searchall&amp;lang=de&amp;check=2&amp;lang=de&amp;sm=AND&amp;lang=de&amp;wo=ed&amp;lang=de&amp;beg=1789&amp;lang=de&amp;end=1945">Moderne</a>
+                            </li>
+                            <li><a
+                                    href="?suche=*&amp;lang=de&amp;function=searchall&amp;lang=de&amp;check=2&amp;lang=de&amp;sm=AND&amp;lang=de&amp;wo=ed&amp;lang=de&amp;beg=1945&amp;lang=de&amp;end=1949">Nachkriegszeit</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li><a href="?function=searchall">Volltextrecherche</a></li>
+                    <li><a href="?info=index">Indizes</a>
+                        <ul>
+                            <li><a href="?info=index&amp;lang=de&amp;anzeige=stm">Steinmetze und Künstler</a></li>
+                            <li><a href="?info=index&amp;lang=de&amp;anzeige=symbols">Symbole</a></li>
+                            <li><a href="?info=index&amp;lang=de&amp;anzeige=memorials">Gedenksteine</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="?info=images">Bildbasierter Zugang</a>
+                    </li>
+                    <li><a href="http://www.steinheim-institut.de:80/cgi-bin/epidat#karte">Kartenbasierter Zugang</a>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="?lang=de" title="deutsche Spracheinstellung">de</a></li>
+            <li><a href="?lang=en" title="english">en</a></li>
+            <!--
+       <li><a href="http://steinheim-institut.de">Steinheim-Institut</a></li>
+                    <li><a href="?info=kontakt">Kontakt</a>
+    <ul><li><a href="mailto:epidat@steinheim-institut.org">email</a></li></ul></li>
+    -->
+        </ul>
+        <p><sup><small style="color:silver"> . </small></sup></p>
+    </nav>
+    <div class="header">
+        <h1>Bonn, Bad Godesberg, Aenchenstrasse
+            <span class="inschriften">
+                33 Inschriften
+                <code>(1834-1901)</code></span>
+        </h1>
+    </div>
+    <div class="header">
+        <a href='http://www.steinheim-institut.de:80/cgi-bin/epidat?id=gda&amp;lang=de'
+            title='Information zum Korpus'>Information</a>
+        <a href='http://www.steinheim-institut.de:80/cgi-bin/epidat?id=gda-9&amp;lang=de'
+            title='Chronologische Präsentation des ausgewählten Korpus'>Inschriften</a>
+        <a href='http://www.steinheim-institut.de:80/cgi-bin/epidat?function=maplocal&amp;sel=gda&amp;lang=de'
+            title='Karte Bonn, Bad Godesberg, Aenchenstrasse'>Karte</a>
+        <a href='http://www.steinheim-institut.de:80/cgi-bin/epidat?function=Stat&amp;sel=gda&amp;lang=de'
+            title='Indizes Statistiken Listen'>Indizes</a>
+        <a href='?id=gda-download' title='Download files (beta)'>Download</a>
+        <form>
+            <input type="search" name="suche" value="" placeholder="suche z.B. ‎‏(אשת חיל) א״ח‏‎" />
+            <input type="hidden" name="function" value="Rec" />
+            <input type="hidden" name="sel" value="gda" />
+            <input type="hidden" name="anzeige" value="gda" />
+            <input type="hidden" name="lang" value="de" />
+            <input type="hidden" name="sm" value="OR" />
+            <input type="hidden" name="check" value="1" />
+            <input type="hidden" name="wo" value="ed" />
+            <input type="hidden" name="projekt" value="" />
+        </form>
+    </div>
+    <div class="header">
+        <table>
+            <tr>
+                <td>
+                    <a title="epidat-ID">
+                        Inv.-Nr.:
+                    </a>
+                </td>
+                <td>
+                    <form action="http://www.steinheim-institut.de:80/cgi-bin/epidat" method="get">
+                        <input type='text' value='gda-33' name='id' size='9' maxlength='9' title="ID" />
+                    </form>
+                </td>
+                <td>
+                    Jahr: </td>
+                <td>
+                    <form action="http://www.steinheim-institut.de:80/cgi-bin/epidat" method="get">
+                        <div>
+                            <select name="jahrv" size="1"
+                                onChange="window.location='?sel=gda&amp;function=Ins&amp;projekt=&amp;lang=de&amp;jahrv=' + this.value;return false;">
+                                <option selected="selected">1854</option>
+                                <option>1834</option>
+                                <option>1847</option>
+                                <option>1851</option>
+                                <option>1852</option>
+                                <option>1854</option>
+                                <option>1855</option>
+                                <option>1856</option>
+                                <option>1859</option>
+                                <option>1860</option>
+                                <option>1862</option>
+                                <option>1864/65</option>
+                                <option>1865</option>
+                                <option>1866</option>
+                                <option>1873</option>
+                                <option>1882</option>
+                                <option>1883</option>
+                                <option>1891</option>
+                                <option>1892</option>
+                                <option>1893</option>
+                                <option>1900</option>
+                                <option>1901</option>
+                            </select>
+                            <noscript>
+                                <div><input type='hidden' name='id' value='gda' /> <input type='hidden' value='Ins'
+                                        name='function' /><input type='submit' value='ok' /></div>
+                            </noscript>
+                        </div>
+                    </form>
+                </td>
+                <td style="align:right">
+                    <a href='?id=gda-9&amp;lang=de' title='Korpusanfang'><b>|«</b></a>
+                </td>
+                <td style="align:left">
+                    <a href='?id=gda-12&amp;lang=de' title='vorige Inschrift'><b>«</b></a>
+                    [7/33]
+                </td>
+                <td style="align:right">
+                    <a href='?id=gda-15&amp;lang=de' title='nächste Inschrift'><b>»</b></a>
+                </td>
+                <td style="align:left">
+                    <a href='?id=gda-32&amp;lang=de' title='Korpusende'><b>»|</b></a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="header">
+        <table>
+            <tr>
+                <td>
+                    <a href='http://www.steinheim-institut.de:80/cgi-bin/epidat?id=gda-33#e'>Edition </a>
+                    <a href='http://www.steinheim-institut.de:80/cgi-bin/epidat?id=gda-33#k'>Kommentar </a>
+                    <a href='http://www.steinheim-institut.de:80/cgi-bin/epidat?id=gda-33#p'>Personalia </a>
+                    <a href='http://www.steinheim-institut.de:80/cgi-bin/epidat?id=gda-33#q'>Quellen </a>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td><a
+                        title='Export der Inschrift mit der Inventarnummer 0033 aus dem Inschriftenkorpus Bonn, Bad Godesberg, Aenchenstrasse in verschiedene Fremdformate'>Export</a>:
+                </td>
+                <td> <a title='EpiDoc: Epigraphic Documents in TEI XML'
+                        href='http://www.steinheim-institut.de:80/cgi-bin/epidat?id=gda-0033-teip5'>TEI P5</a></td>
+                <td><a href='http://www.steinheim-institut.de:80/cgi-bin/epidat?id=gda-0033-plaintext'>plain text</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="print">
+        <h1>epidat - epigraphische Datenbank</h1>
+        <table style="width:100em">
+            <tr>
+                <td>ID</td>
+                <td>gda-33</td>
+            </tr>
+            <tr>
+                <td>Lizenz</td>
+                <td>Creative Commons Attribution-BY 4.0 International Licence [CC BY]</td>
+            </tr>
+            <tr>
+                <td>Zitation</td>
+                <td>
+                    Digitale Edition ─ Jüdischer Friedhof Bonn, Bad Godesberg, Aenchenstrasse, gda-33:
+                    http://steinheim-institut.de/cgi-bin/epidat?gda-33
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id='n'>
+        <div class="top"></div>
+        <div id='n'>
+            <div class="top"><a href="?id=gda-33&amp;lang=de#top">Seitenanfang</a></div>
+            <h1>Name</h1>
+            <p style="width:100%">
+                Hendele &#x26ad; Awraham Schuster (Helena Schuster geb. Meyer)
+
+                [15.11.1854]
+
+
+
+
+                &nbsp;
+
+                &nbsp;
+
+                &nbsp;
+
+                &nbsp;
+
+                &nbsp;
+            </p>
+        </div>
+        <div class="edition" id='e'>
+            <div class="top"><a href="?id=gda-33&amp;lang=de#top">Seitenanfang</a></div>
+            <form action='http://www.steinheim-institut.de:80/cgi-bin/epidat' method='get'>
+                <div class='top'><input type='hidden' name='id' value='gda-33' /> <input type='hidden' name='anzeige'
+                        value='classic' /><input type='hidden' name='inv' value='0033' /><input type='submit'
+                        value='Textansicht' /></div>
+            </form>
+            <form action='http://www.steinheim-institut.de:80/cgi-bin/epidat' method='get'>
+                <div class='top'><input type='hidden' name='id' value='gda-33' /> <input type='hidden' name='anzeige'
+                        value='mix' /><input type='hidden' name='inv' value='0033' /><input type='submit'
+                        value='Text/Zeilenansicht' /></div>
+            </form>
+            <h1>Diplomatische Transkription und Übersetzung</h1>
+            <table style="border-collapse:collapse">
+                <colgroup>
+                    <col width="200" />
+                    <col width="200" />
+                    <col width="30" />
+                    <col width="250" />
+                    <col width="250" />
+                </colgroup>
+                <tr class="screen">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class='inh' lang='he' dir='rtl' colspan='2'> ‎‏פ״נ‏‎ </td>
+                    <td class='zn'> </td>
+                    <td class='ueb' colspan='2'> Hier ist begraben </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class='inh' lang='he' dir='rtl' colspan='2'> ‎‏אשה ישרה ותמימה‏‎ </td>
+                    <td class='zn'> </td>
+                    <td class='ueb' colspan='2'> eine aufrechte und lautere Frau, </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class='inh' lang='he' dir='rtl' colspan='2'> ‎‏מ׳ הענדלע א׳ אברהם‏‎ </td>
+                    <td class='zn'> </td>
+                    <td class='ueb' colspan='2'> Frau Hendele, Gattin des Awraham </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class='inh' lang='he' dir='rtl' colspan='2'> ‎‏שוסטער מתה אור‏‎ </td>
+                    <td class='zn'> </td>
+                    <td class='ueb' colspan='2'> Schuster, gestorben zu Beginn </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class='inh' lang='he' dir='rtl' colspan='2'> ‎‏ליום ד׳ ונקברה ביום ד׳‏‎ </td>
+                    <td class='zn'>5</td>
+                    <td class='ueb' colspan='2'> des Tages 4, und begraben am Tag 4, </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class='inh' lang='he' dir='rtl' colspan='2'> ‎‏כ״ד מרחשון תרט״ו לפ״ק‏‎ </td>
+                    <td class='zn'> </td>
+                    <td class='ueb' colspan='2'> 24. Marcheschvan 615 der kleinen Zählung. </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class='inh' lang='he' dir='rtl' colspan='2'> ‎‏תנצב״ה‏‎ </td>
+                    <td class='zn'> </td>
+                    <td class='ueb' colspan='2'> Ihre Seele sei eingebunden in das Bündel des Lebens </td>
+                    <td></td>
+                </tr>
+                <tr class='pos'>
+                    <td colspan='3'>&nbsp;</td>
+                    <td colspan='2'>Rückseite</td>
+                </tr>
+                <tr>
+                    <td class='innohe' colspan='2'> Helena Schuster </td>
+                    <td class='zn'> </td>
+                    <td class='ueb' colspan='2'> </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class='innohe' colspan='2'> geb. Meyer </td>
+                    <td class='zn'> </td>
+                    <td class='ueb' colspan='2'> </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class='innohe' colspan='2'> von Kessenich </td>
+                    <td class='zn'>10</td>
+                    <td class='ueb' colspan='2'> </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class='innohe' colspan='2'> gest. den 15. Nov. 1854. </td>
+                    <td class='zn'> </td>
+                    <td class='ueb' colspan='2'> </td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <div id="k">
+            <div class="top"><a href="?id=gda-33&amp;lang=de#top">Seitenanfang</a></div>
+            <h1>Kommentar</h1>
+
+            <p>
+                <span style="color:gray; font-weight:bold">Datierung</span> Gestorben Dienstagnacht, 15.11.1854
+                ; begraben am nächsten Tag<br />
+            </p>
+        </div>
+        <div class="person" id="p">
+            <div class="top"><a href="?id=gda-33&amp;lang=de#top">Seitenanfang</a></div>
+            <h1>Zur Person</h1>
+            <p>
+                Helena Mayer (Godesberg ca. 1787 - - Kessenich 15.11.1854), Ehefrau des Abraham Schuster (<a
+                    href="?id=gda-0014">gda-0014</a>), Tochter von Jacob Meyer (gest. 1829 in Frechen) und Gudula
+                Leudesdorf.<br />
+            </p>
+        </div>
+        <div class="familie">
+            <div class="top"><a href="?id=gda-33&amp;lang=de#top">Seitenanfang</a></div>
+            <h1>Zur Familie</h1>
+            <p>
+                Die Mutter von Helena Mayer, Gudula Leudesdorf, war die Tochter von David Leudesdorf aus Leudesdorf. Sie
+                starb in Godesberg im Alter von 66 Jahren am 02.03.1822 (PStA Godesberg, Sterbeurkunde 16/1822).<br />
+            </p>
+        </div>
+        <div id="q">
+            <div class="top"><a href="?id=gda-33&amp;lang=de#top">Seitenanfang</a></div>
+            <h1>Quellen / Sekundärliteratur</h1>
+            <p>
+                Standesamt Poppelsdorf, Sterbeurkunde 133/1854.<br />
+                Dan Bondy, Die jüdischen Grabsteine am Fuße des Godesberges, Dokumentation der Inschriften, in:
+                Godesberger Heimatblätter 29, 1991, S. 5-39, hier S. 38.<br />
+                Klaus H. S. Schulte, Bonner Juden und ihre Nachkommen bis um 1930. Bonn 1976, S. 455, AAA und 456,
+                Anm.3.<br />
+            </p>
+        </div>
+        <div class="top"><a href="?id=gda-33&amp;lang=de#top">Seitenanfang</a></div>
+        <div>
+            <h1>Zitation der Inschrift</h1>
+            <p>
+                Digitale Edition ─ Jüdischer Friedhof Bonn, Bad Godesberg, Aenchenstrasse,
+                gda-33
+                <br />URL: http://www.steinheim-institut.de/cgi-bin/epidat?id=gda-33 <br />(letzte Änderungen - )
+            </p>
+        </div>
+        <div id="kontext">
+            <h1>Recherche im Gesamtbestand - Kontextualisierungen</h1>
+            <h2>Inschriften
+                des Jahres
+                1854 </h2>
+            <ul>
+                <li><a
+                        href="http://www.steinheim-institut.de:80/cgi-bin/epidat?suche=*&amp;function=suche&amp;sel=ad2'aha'l05'alt'ans'ar1'asc'bme'arl'bay'bee'c02'bng'blr'sb3'bom'gda'gdn'bnm'bns'br2'brk'bor'hrs'wal'e51'bri'alm'mad'e01'e99'e02'brh'che'c01'dtm'dds'din'e03'e04'ap2'ap1'dor'hoe'dld'dme'dwi'c03'du2'du3'du4'du1'du6'du5'elm'erc'erf'erk'wsw'ehu'ela'epa'seg'est'wrd'kuc'ffb'ffs'ffh'frd'fri'gan'gei'e05'e52'gsk'gif'gws'e10'e11'e12'e13'e14'hgl'hgw'hb2'hbs'hwf'hha'hht'hdh'hnn'hns'hei'blu'hen'her'hld'hos'hxf'c05'ils'imr'ihl'iis'irw'igw'e06'jen'e17'e18'e19'kal'e20'ket'hlh'kob'kwr'e21'e22'kre'e23'e42'e43'wnk'lag'lau'lin'mz1'e25'mmd'sb1'msn'min'e26'e31'e30'e29'e27'e28'mlh'mue'e32'e41'sb5'e33'c06'obh'obl'obw'oer'ora'sb0'pth'plb'l06'pro'que'rae'ran'reg'rex'bbr'e54'e53'e34'e35'rth'oes'sbs'sb2'sb9'sb6'l09'l08'srm'e09'e16'slb'smk'st1'st2'st3'e36'swb'sgb'e58'sdh'sts'spy'sb7'sb8'sto'sb4'mtz'roe'e37'e44'tr1'tri'e60'e61'l07'e38'e39'e40'wls'was'lom'ver'e07'e08'win'wrm'hdf&amp;check=2&amp;sm=AND&amp;wo=ed&amp;beg=1854&amp;end=1854&amp;anzeige=gda">1854</a>
+                </li>
+            </ul>
+            <h2>Orte jüdischer Geschichte im Umfeld des Friedhofs</h2>
+            <p> <a
+                    href="http://app-juedische-orte.de.dariah.eu/q?vlatitude=50.68619&amp;vlongitude=7.15072&amp;vpage=result&amp;iqwikipedia=w&amp;iqepidat=epidat&amp;iqbv=bv&amp;iqwst=wst&amp;vpage=result&amp;ianzahl=15">app-jüdische-orte.de.dariah.eu</a>
+            </p>
+            <!-- <h2>Inschriften mit ähnlichem Wortbestand</h2> <p>to be done ...</p> -->
+        </div>
+        <div class="code">
+            <h1> </h1>
+            <table style="margin-left:auto;margin-right:auto">
+                <tr>
+                    <td style="text-align:center; font-size:small;">
+                        <a href="http://steinheim-institut.de">Steinheim-Institut</a>
+                        <br />
+                        <span>http://www.steinheim-institut.de:80/cgi-bin/epidat?id=gda-33</span>
+                        <br />letztes update: |
+                        <span class="Z3988"
+                            title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info:ofi/fmt:kev:mtx:journal&amp;rft.title=epidat&amp;rft.atitle=Grabmal%20fuer%20Hendele%20&#x26ad;%20Awraham%20Schuster%20(Helena%20Schuster%20geb.%20Meyer)+Jewish%20Cemetery%20Bonn,%20Bad%20Godesberg,%20Aenchenstrasse&amp;rft_id=http://www.steinheim-institut.de:80/cgi-bin/epidat?id%3Dgda-33"></span>
+                        lizenziert unter einer
+                        <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img
+                                alt="Creative Commons Lizenzvertrag" style="border-width:0"
+                                src="/daten/picsepi/cc_by.png" /></a>
+                        <br /><a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                            Creative Commons Namensnennung 4.0 International Lizenz
+                        </a>
+                        <br />
+                        <a href="http://validator.w3.org/check?uri=referer"> Valid XHTML 1.0 Strict</a> |
+                        <a href="http://www.tustep.uni-tuebingen.de" title="TUSTEP">Powered by TUSCRIPT</a>
+                        <br />concept, code and design created by <a href="http://orcid.org/0000-0003-1904-1841">Thomas
+                            Kollatz</a>
+                        <br />epidat stable release <a href="?lang=de&amp;release=beta">switch to beta</a>
+                        <br /><a href="?info=datenschutz">Datenschutzhinweis</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+</body>
+
+</html>

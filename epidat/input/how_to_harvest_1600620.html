@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="de" xml:lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Datenbank: Jüdische Grabsteinepigraphik</title>
+    <script type="text/javascript">
+        function FensterOeffnen(Adresse) {
+            MeinFenster = window.open(Adresse, "target=epidat",
+                "width=480,height=480,left=100,top=100,scrollbars=yes,dependent=yes,resizable=yes,location=yes");
+            MeinFenster.focus();
+        }
+    </script>
+    <meta name="description"
+        content="Die epigraphische Datenbank epidat ediert jüdische Grabinschriften in digitaler Form." />
+    <meta name="author" content="Salomon Ludwig Steinheim-Institut (Inhalt), Thomas Kollatz (Programmierung)" />
+    <meta name="keywords" lang="de" xml:lang="de"
+        content="epigraphische Datenbank, Epigraphik, Grabinschriften, jüdische Epigraphik, hebräische Epigraphik, jüdische Inschriften, Tustep, jüdische Friedhöfe, Steinheim-Institut" />
+    <meta name="keywords" lang="en" xml:lang="en"
+        content="epigraphy, funeral inscriptions, jewish inscriptions, hebrew inscriptions, jewish cemeteries, jewish tombstones, steinheim-institute" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="no-referrer" />
+    <meta name='robots' content='noindex, nofollow' />
+    <link rel="shortcut icon" href="/daten/picsepi/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="/daten/epi171109.css" />
+    <link rel="alternate" type="application/rss+xml" title="RSS"
+        href="http://www.steinheim-institut.de/daten/rss.xml" />
+</head>
+
+<body>
+    <div class="header">
+        <img src="http://steinheim-institut.de/daten/picsepi/logo.gif" alt="logo epidat: epigraphische Datenbank"
+            style="width:100%" id="top" />
+    </div>
+    <nav>
+        <ul>
+            <li><a href="?">Navigation</a>
+                <ul>
+
+
+                    <li><a href="#">Geographischer Zugang</a>
+                        <ul>
+                            <li><a href="?id=XA-DE">Deutschland [198]</a>
+                                <ul>
+                                    <li><a href="?id=XA-DE-BW">Baden-Württemberg [7]</a></li>
+                                    <li><a href="?id=XA-DE-BY">Bayern [9]</a></li>
+                                    <li><a href="?id=XA-DE-BB">Brandenburg [2]</a></li>
+                                    <li><a href="?id=XA-DE-HH">Hamburg [2]</a></li>
+                                    <li><a href="?id=XA-DE-HE">Hessen [6]</a></li>
+                                    <li><a href="?id=XA-DE-NI">Niedersachsen [4]</a></li>
+                                    <li><a href="?id=XA-DE-NW">Nordrhein-Westfalen [123]</a></li>
+                                    <li><a href="?id=XA-DE-RP">Rheinland-Pfalz [15]</a></li>
+                                    <li><a href="?id=XA-DE-SL">Saarland [16]</a></li>
+                                    <li><a href="?id=XA-DE-SN">Sachsen [1]</a></li>
+                                    <li><a href="?id=XA-DE-ST">Sachsen-Anhalt [4]</a></li>
+                                    <li><a href="?id=XA-DE-SH">Schleswig-Holstein [2]</a></li>
+                                    <li><a href="?id=XA-DE-TH">Thüringen [7]</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="?id=XA-LV">Lettland [5]</a>
+                            </li>
+                            <li><a href="?id=XA-NL">Niederlande [7]</a>
+                            </li>
+                            <li><a href="?id=XA-CZ">Tschechische Republik [5]</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- chronologie -->
+                    <li><a href="#">Chronologischer Zugang</a>
+                        <ul>
+                            <li><a
+                                    href="?suche=*&amp;lang=de&amp;function=searchall&amp;lang=de&amp;check=2&amp;lang=de&amp;sm=AND&amp;lang=de&amp;wo=ed&amp;lang=de&amp;beg=1050&amp;lang=de&amp;end=1519">Mittelalter
+                                </a></li>
+                            <li><a
+                                    href="?suche=*&amp;lang=de&amp;function=searchall&amp;lang=de&amp;check=2&amp;lang=de&amp;sm=AND&amp;lang=de&amp;wo=ed&amp;lang=de&amp;beg=1520&amp;lang=de&amp;end=1788">Frühe
+                                    Neuzeit</a></li>
+                            <li><a
+                                    href="?suche=*&amp;lang=de&amp;function=searchall&amp;lang=de&amp;check=2&amp;lang=de&amp;sm=AND&amp;lang=de&amp;wo=ed&amp;lang=de&amp;beg=1789&amp;lang=de&amp;end=1945">Moderne</a>
+                            </li>
+                            <li><a
+                                    href="?suche=*&amp;lang=de&amp;function=searchall&amp;lang=de&amp;check=2&amp;lang=de&amp;sm=AND&amp;lang=de&amp;wo=ed&amp;lang=de&amp;beg=1945&amp;lang=de&amp;end=1949">Nachkriegszeit</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li><a href="?function=searchall">Volltextrecherche</a></li>
+                    <li><a href="?info=index">Indizes</a>
+                        <ul>
+                            <li><a href="?info=index&amp;lang=de&amp;anzeige=stm">Steinmetze und Künstler</a></li>
+                            <li><a href="?info=index&amp;lang=de&amp;anzeige=symbols">Symbole</a></li>
+                            <li><a href="?info=index&amp;lang=de&amp;anzeige=memorials">Gedenksteine</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="?info=images">Bildbasierter Zugang</a>
+                    </li>
+                    <li><a href="http://www.steinheim-institut.de:80/cgi-bin/epidat#karte">Kartenbasierter Zugang</a>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="?lang=de" title="deutsche Spracheinstellung">de</a></li>
+            <li><a href="?lang=en" title="english">en</a></li>
+            <!--
+       <li><a href="http://steinheim-institut.de">Steinheim-Institut</a></li>
+                    <li><a href="?info=kontakt">Kontakt</a>
+    <ul><li><a href="mailto:epidat@steinheim-institut.org">email</a></li></ul></li>
+    -->
+        </ul>
+        <p><sup><small style="color:silver"> . </small></sup></p>
+    </nav>
+    <div style="clear:left">
+        <h1>How to harvest epidat records</h1>
+        <h2>epidat-syntax</h2>
+        <p>
+            <dl>
+                <dt>baseurl</dt>
+                <dd><a
+                        href="http://steinheim-institut.de/cgi-bin/epidat?">http://steinheim-institut.de/cgi-bin/epidat?</a>
+                </dd>
+            </dl>
+        </p>
+        <p>Each epidat record ID consists of three elements
+            <ol>
+                <li>a unique code for the location ─ mandatory (consisting of three characters)
+                    <br /> followed by separator: "-"</li>
+                <li>an unique ID ─ mandatory (consisting of digits)
+                    <br /> followed by separator: "-"</li>
+                <li>format ─ optional
+                    <ul>
+                        <li>t | teip5</li>
+                        <li>txt | plaintext</li>
+                    </ul>
+                </li>
+            </ol>
+        </p>
+        <p>
+            <dl>
+                <dt><strong>example: TEI XML</strong></dt>
+                <dd><a
+                        href="http://steinheim-institut.de/cgi-bin/epidat?id=hha-2338-t">http://steinheim-institut.de/cgi-bin/epidat?id=hha-2338-t</a>
+                </dd>
+            </dl>
+        </p>
+        <p>If the format is not explicitly specified, then the default output format is html<dl>
+                <dt><strong>example: HTML</strong></dt>
+                <dd><a
+                        href="http://steinheim-institut.de/cgi-bin/epidat?id=hha-2338">http://steinheim-institut.de/cgi-bin/epidat?id=hha-2338</a>
+                </dd>
+            </dl>
+        </p>
+    </div>
+    <div>
+        <h2>harvesting methods</h2>
+        <ol>
+            <li>
+                <a href="?info=collections">Method #1</a> provides access to all collections and their resources of the
+                epidat collection.<br />
+                Each &lt;resource&gt; is part of a &lt;collection&gt; which is part of all epidat-&lt;collections&gt;.
+            </li>
+            <li>Method #2 allows more specific harvesting.<br />
+                It is also possible to harvest epidat records from a certain modification date</li>
+            <ol>
+                <dl>
+                    <dt><strong>example: Modification Date</strong></dt>
+                    <dd><a
+                            href="http://steinheim-institut.de/cgi-bin/epidat?sel=hha&amp;format=x&amp;function=changelog&amp;changesSince=20141115">http://steinheim-institut.de/cgi-bin/epidat?sel=hha&amp;format=x&amp;function=changelog&amp;changesSince=20141115</a>
+                    </dd>
+    </div>
+    <div>
+        <h1>list of epidat files</h1>
+        <dl>
+            <dt><b>code</b></dt>
+            <dd><b>fullname</b></dd>
+            <dt>ad2</dt>
+            <dd>Adelebsen, Im Steilhang</dd>
+            <dd><a href="?id=ad2-info">general information</a></dd>
+            <dd><a href="?id=ad2-192">first record</a></dd>
+            <dd><a href="?info=resources-ad2">list of records </a></dd>
+            <dt>aha</dt>
+            <dd>Ahaus</dd>
+            <dd><a href="?id=aha-info">general information</a></dd>
+            <dd><a href="?id=aha-1">first record</a></dd>
+            <dd><a href="?info=resources-aha">list of records </a></dd>
+            <dt>l05</dt>
+            <dd>Aizpute</dd>
+            <dd><a href="?id=l05-info">general information</a></dd>
+            <dd><a href="?id=l05-33">first record</a></dd>
+            <dd><a href="?info=resources-l05">list of records </a></dd>
+            <dt>alt</dt>
+            <dd>Altena</dd>
+            <dd><a href="?id=alt-info">general information</a></dd>
+            <dd><a href="?id=alt-5">first record</a></dd>
+            <dd><a href="?info=resources-alt">list of records </a></dd>
+            <dt>ans</dt>
+            <dd>Ansbach</dd>
+            <dd><a href="?id=ans-info">general information</a></dd>
+            <dd><a href="?id=ans-404">first record</a></dd>
+            <dd><a href="?info=resources-ans">list of records </a></dd>
+            <dt>ar1</dt>
+            <dd>Arolsen</dd>
+            <dd><a href="?id=ar1-info">general information</a></dd>
+            <dd><a href="?id=ar1-44">first record</a></dd>
+            <dd><a href="?info=resources-ar1">list of records </a></dd>
+            <dt>asc</dt>
+            <dd>Aschersleben, Schmidtmannstr. 35</dd>
+            <dd><a href="?id=asc-info">general information</a></dd>
+            <dd><a href="?id=asc-1">first record</a></dd>
+            <dd><a href="?info=resources-asc">list of records </a></dd>
+            <dt>bme</dt>
+            <dd>Bad Münstereifel</dd>
+            <dd><a href="?id=bme-info">general information</a></dd>
+            <dd><a href="?id=bme-83">first record</a></dd>
+            <dd><a href="?info=resources-bme">list of records </a></dd>
+            <dt>arl</dt>
+            <dd>Bad Münstereifel-Arloff</dd>
+            <dd><a href="?id=arl-info">general information</a></dd>
+            <dd><a href="?id=arl-1">first record</a></dd>
+            <dd><a href="?info=resources-arl">list of records </a></dd>
+            <dt>bay</dt>
+            <dd>Bayreuth</dd>
+            <dd><a href="?id=bay-info">general information</a></dd>
+            <dd><a href="?id=bay-1">first record</a></dd>
+            <dd><a href="?info=resources-bay">list of records </a></dd>
+            <dt>bee</dt>
+            <dd>Beelitz</dd>
+            <dd><a href="?id=bee-info">general information</a></dd>
+            <dd><a href="?id=bee-6">first record</a></dd>
+            <dd><a href="?info=resources-bee">list of records </a></dd>
+            <dt>c02</dt>
+            <dd>Bezdruzice (Weseritz)</dd>
+            <dd><a href="?id=c02-info">general information</a></dd>
+            <dd><a href="?id=c02-1050">first record</a></dd>
+            <dd><a href="?info=resources-c02">list of records </a></dd>
+            <dt>bng</dt>
+            <dd>Bingen</dd>
+            <dd><a href="?id=bng-info">general information</a></dd>
+            <dd><a href="?id=bng-515">first record</a></dd>
+            <dd><a href="?info=resources-bng">list of records </a></dd>
+            <dt>blr</dt>
+            <dd>Bleicherode</dd>
+            <dd><a href="?id=blr-info">general information</a></dd>
+            <dd><a href="?id=blr-1">first record</a></dd>
+            <dd><a href="?info=resources-blr">list of records </a></dd>
+            <dt>sb3</dt>
+            <dd>Blieskastel</dd>
+            <dd><a href="?id=sb3-info">general information</a></dd>
+            <dd><a href="?id=sb3-44">first record</a></dd>
+            <dd><a href="?info=resources-sb3">list of records </a></dd>
+            <dt>bom</dt>
+            <dd>Bommersheim</dd>
+            <dd><a href="?id=bom-info">general information</a></dd>
+            <dd><a href="?id=bom-14">first record</a></dd>
+            <dd><a href="?info=resources-bom">list of records </a></dd>
+            <dt>gda</dt>
+            <dd>Bonn, Bad Godesberg, Aenchenstrasse</dd>
+            <dd><a href="?id=gda-info">general information</a></dd>
+            <dd><a href="?id=gda-9">first record</a></dd>
+            <dd><a href="?info=resources-gda">list of records </a></dd>
+            <dt>gdn</dt>
+            <dd>Bonn, Bad-Godesberg, (neuer Friedhof)</dd>
+            <dd><a href="?id=gdn-info">general information</a></dd>
+            <dd><a href="?id=gdn-10">first record</a></dd>
+            <dd><a href="?info=resources-gdn">list of records </a></dd>
+            <dt>bnm</dt>
+            <dd>Bonn, Bad-Godesberg, Mehlem</dd>
+            <dd><a href="?id=bnm-info">general information</a></dd>
+            <dd><a href="?id=bnm-1">first record</a></dd>
+            <dd><a href="?info=resources-bnm">list of records </a></dd>
+            <dt>bns</dt>
+            <dd>Bonn-Schwarzrheindorf</dd>
+            <dd><a href="?id=bns-info">general information</a></dd>
+            <dd><a href="?id=bns-5303">first record</a></dd>
+            <dd><a href="?info=resources-bns">list of records </a></dd>
+            <dt>br2</dt>
+            <dd>Borken (Westfalen), Am Kuhm</dd>
+            <dd><a href="?id=br2-info">general information</a></dd>
+            <dd><a href="?id=br2-9000">first record</a></dd>
+            <dd><a href="?info=resources-br2">list of records </a></dd>
+            <dt>brk</dt>
+            <dd>Borken (Westfalen), Am Replingsfunder</dd>
+            <dd><a href="?id=brk-info">general information</a></dd>
+            <dd><a href="?id=brk-39">first record</a></dd>
+            <dd><a href="?info=resources-brk">list of records </a></dd>
+            <dt>bor</dt>
+            <dd>Bornheim</dd>
+            <dd><a href="?id=bor-info">general information</a></dd>
+            <dd><a href="?id=bor-99">first record</a></dd>
+            <dd><a href="?info=resources-bor">list of records </a></dd>
+            <dt>hrs</dt>
+            <dd>Bornheim-Hersel</dd>
+            <dd><a href="?id=hrs-info">general information</a></dd>
+            <dd><a href="?id=hrs-34">first record</a></dd>
+            <dd><a href="?info=resources-hrs">list of records </a></dd>
+            <dt>wal</dt>
+            <dd>Bornheim-Walberberg</dd>
+            <dd><a href="?id=wal-info">general information</a></dd>
+            <dd><a href="?id=wal-1">first record</a></dd>
+            <dd><a href="?info=resources-wal">list of records </a></dd>
+            <dt>e51</dt>
+            <dd>Boxmeer/Vierlingsbeek</dd>
+            <dd><a href="?id=e51-info">general information</a></dd>
+            <dd><a href="?id=e51-2">first record</a></dd>
+            <dd><a href="?info=resources-e51">list of records </a></dd>
+            <dt>bri</dt>
+            <dd>Brilon</dd>
+            <dd><a href="?id=bri-info">general information</a></dd>
+            <dd><a href="?id=bri-15">first record</a></dd>
+            <dd><a href="?info=resources-bri">list of records </a></dd>
+            <dt>alm</dt>
+            <dd>Brilon-Alme</dd>
+            <dd><a href="?id=alm-info">general information</a></dd>
+            <dd><a href="?id=alm-3">first record</a></dd>
+            <dd><a href="?info=resources-alm">list of records </a></dd>
+            <dt>mad</dt>
+            <dd>Brilon-Madfeld</dd>
+            <dd><a href="?id=mad-info">general information</a></dd>
+            <dd><a href="?id=mad-1">first record</a></dd>
+            <dd><a href="?info=resources-mad">list of records </a></dd>
+            <dt>e01</dt>
+            <dd>Brüggen, Herrenlandstraße</dd>
+            <dd><a href="?id=e01-info">general information</a></dd>
+            <dd><a href="?id=e01-1">first record</a></dd>
+            <dd><a href="?info=resources-e01">list of records </a></dd>
+            <dt>e99</dt>
+            <dd>Brüggen, Hochstraße</dd>
+            <dd><a href="?id=e99-info">general information</a></dd>
+            <dd><a href="?id=e99-5">first record</a></dd>
+            <dd><a href="?info=resources-e99">list of records </a></dd>
+            <dt>e02</dt>
+            <dd>Brüggen-Bracht</dd>
+            <dd><a href="?id=e02-info">general information</a></dd>
+            <dd><a href="?id=e02-8">first record</a></dd>
+            <dd><a href="?info=resources-e02">list of records </a></dd>
+            <dt>brh</dt>
+            <dd>Brühl</dd>
+            <dd><a href="?id=brh-info">general information</a></dd>
+            <dd><a href="?id=brh-10">first record</a></dd>
+            <dd><a href="?info=resources-brh">list of records </a></dd>
+            <dt>che</dt>
+            <dd>Chemnitz</dd>
+            <dd><a href="?id=che-info">general information</a></dd>
+            <dd><a href="?id=che-675">first record</a></dd>
+            <dd><a href="?info=resources-che">list of records </a></dd>
+            <dt>c01</dt>
+            <dd>Chodova Plana (Kuttenplan)</dd>
+            <dd><a href="?id=c01-info">general information</a></dd>
+            <dd><a href="?id=c01-79">first record</a></dd>
+            <dd><a href="?info=resources-c01">list of records </a></dd>
+            <dt>dtm</dt>
+            <dd>Detmold</dd>
+            <dd><a href="?id=dtm-info">general information</a></dd>
+            <dd><a href="?id=dtm-2002">first record</a></dd>
+            <dd><a href="?info=resources-dtm">list of records </a></dd>
+            <dt>dds</dt>
+            <dd>Dillingen-Diefflen</dd>
+            <dd><a href="?id=dds-info">general information</a></dd>
+            <dd><a href="?id=dds-248">first record</a></dd>
+            <dd><a href="?info=resources-dds">list of records </a></dd>
+            <dt>din</dt>
+            <dd>Dinslaken</dd>
+            <dd><a href="?id=din-info">general information</a></dd>
+            <dd><a href="?id=din-41">first record</a></dd>
+            <dd><a href="?info=resources-din">list of records </a></dd>
+            <dt>e03</dt>
+            <dd>Dormagen</dd>
+            <dd><a href="?id=e03-info">general information</a></dd>
+            <dd><a href="?id=e03-23">first record</a></dd>
+            <dd><a href="?info=resources-e03">list of records </a></dd>
+            <dt>e04</dt>
+            <dd>Dormagen-Zons</dd>
+            <dd><a href="?id=e04-info">general information</a></dd>
+            <dd><a href="?id=e04-3">first record</a></dd>
+            <dd><a href="?info=resources-e04">list of records </a></dd>
+            <dt>ap2</dt>
+            <dd>Dortmund-Aplerbeck, Kommunalfriedhof</dd>
+            <dd><a href="?id=ap2-info">general information</a></dd>
+            <dd><a href="?id=ap2-20">first record</a></dd>
+            <dd><a href="?info=resources-ap2">list of records </a></dd>
+            <dt>ap1</dt>
+            <dd>Dortmund-Aplerbeck, Schweizer Allee</dd>
+            <dd><a href="?id=ap1-info">general information</a></dd>
+            <dd><a href="?id=ap1-2">first record</a></dd>
+            <dd><a href="?info=resources-ap1">list of records </a></dd>
+            <dt>dor</dt>
+            <dd>Dortmund-Dorstfeld</dd>
+            <dd><a href="?id=dor-info">general information</a></dd>
+            <dd><a href="?id=dor-301">first record</a></dd>
+            <dd><a href="?info=resources-dor">list of records </a></dd>
+            <dt>hoe</dt>
+            <dd>Dortmund-Hörde, Hörder Kampweg</dd>
+            <dd><a href="?id=hoe-info">general information</a></dd>
+            <dd><a href="?id=hoe-80">first record</a></dd>
+            <dd><a href="?info=resources-hoe">list of records </a></dd>
+            <dt>dld</dt>
+            <dd>Dortmund-Lütgendortmund</dd>
+            <dd><a href="?id=dld-info">general information</a></dd>
+            <dd><a href="?id=dld-4">first record</a></dd>
+            <dd><a href="?info=resources-dld">list of records </a></dd>
+            <dt>dme</dt>
+            <dd>Dortmund-Mengede</dd>
+            <dd><a href="?id=dme-info">general information</a></dd>
+            <dd><a href="?id=dme-24">first record</a></dd>
+            <dd><a href="?info=resources-dme">list of records </a></dd>
+            <dt>dwi</dt>
+            <dd>Dortmund-Wickede, Bockumweg</dd>
+            <dd><a href="?id=dwi-info">general information</a></dd>
+            <dd><a href="?id=dwi-2">first record</a></dd>
+            <dd><a href="?info=resources-dwi">list of records </a></dd>
+            <dt>c03</dt>
+            <dd>Drmoul (Dürrmaul)</dd>
+            <dd><a href="?id=c03-info">general information</a></dd>
+            <dd><a href="?id=c03-6">first record</a></dd>
+            <dd><a href="?info=resources-c03">list of records </a></dd>
+            <dt>du2</dt>
+            <dd>Duisburg, Sternbuschweg (Feld 22)</dd>
+            <dd><a href="?id=du2-info">general information</a></dd>
+            <dd><a href="?id=du2-7001">first record</a></dd>
+            <dd><a href="?info=resources-du2">list of records </a></dd>
+            <dt>du3</dt>
+            <dd>Duisburg, Sternbuschweg (Feld 37a)</dd>
+            <dd><a href="?id=du3-info">general information</a></dd>
+            <dd><a href="?id=du3-30">first record</a></dd>
+            <dd><a href="?info=resources-du3">list of records </a></dd>
+            <dt>du4</dt>
+            <dd>Duisburg, Waldfriedhof</dd>
+            <dd><a href="?id=du4-info">general information</a></dd>
+            <dd><a href="?id=du4-2">first record</a></dd>
+            <dd><a href="?info=resources-du4">list of records </a></dd>
+            <dt>du1</dt>
+            <dd>Duisburg-Beeck</dd>
+            <dd><a href="?id=du1-info">general information</a></dd>
+            <dd><a href="?id=du1-18">first record</a></dd>
+            <dd><a href="?info=resources-du1">list of records </a></dd>
+            <dt>du6</dt>
+            <dd>Duisburg-Mattlerbusch</dd>
+            <dd><a href="?id=du6-info">general information</a></dd>
+            <dd><a href="?id=du6-7002">first record</a></dd>
+            <dd><a href="?info=resources-du6">list of records </a></dd>
+            <dt>du5</dt>
+            <dd>Duisburg-Ruhrort</dd>
+            <dd><a href="?id=du5-info">general information</a></dd>
+            <dd><a href="?id=du5-">first record</a></dd>
+            <dd><a href="?info=resources-du5">list of records </a></dd>
+            <dt>elm</dt>
+            <dd>Elmshorn</dd>
+            <dd><a href="?id=elm-info">general information</a></dd>
+            <dd><a href="?id=elm-25">first record</a></dd>
+            <dd><a href="?info=resources-elm">list of records </a></dd>
+            <dt>erc</dt>
+            <dd>Erfurt, Cyriakstraße</dd>
+            <dd><a href="?id=erc-info">general information</a></dd>
+            <dd><a href="?id=erc-122">first record</a></dd>
+            <dd><a href="?info=resources-erc">list of records </a></dd>
+            <dt>erf</dt>
+            <dd>Erfurt, Neuer Friedhof, Werner-Seelenbinder-Straße</dd>
+            <dd><a href="?id=erf-info">general information</a></dd>
+            <dd><a href="?id=erf-113">first record</a></dd>
+            <dd><a href="?info=resources-erf">list of records </a></dd>
+            <dt>erk</dt>
+            <dd>Erkelenz</dd>
+            <dd><a href="?id=erk-info">general information</a></dd>
+            <dd><a href="?id=erk-3">first record</a></dd>
+            <dd><a href="?info=resources-erk">list of records </a></dd>
+            <dt>wsw</dt>
+            <dd>Eschweiler-Weisweiler (Alter Teil)</dd>
+            <dd><a href="?id=wsw-info">general information</a></dd>
+            <dd><a href="?id=wsw-9">first record</a></dd>
+            <dd><a href="?info=resources-wsw">list of records </a></dd>
+            <dt>ehu</dt>
+            <dd>Essen, Lanterstraße</dd>
+            <dd><a href="?id=ehu-info">general information</a></dd>
+            <dd><a href="?id=ehu-2">first record</a></dd>
+            <dd><a href="?info=resources-ehu">list of records </a></dd>
+            <dt>ela</dt>
+            <dd>Essen, Lazarettstraße</dd>
+            <dd><a href="?id=ela-info">general information</a></dd>
+            <dd><a href="?id=ela-2">first record</a></dd>
+            <dd><a href="?info=resources-ela">list of records </a></dd>
+            <dt>epa</dt>
+            <dd>Essen, Parkfriedhof</dd>
+            <dd><a href="?id=epa-info">general information</a></dd>
+            <dd><a href="?id=epa-3018">first record</a></dd>
+            <dd><a href="?info=resources-epa">list of records </a></dd>
+            <dt>seg</dt>
+            <dd>Essen, Segerothfriedhof</dd>
+            <dd><a href="?id=seg-info">general information</a></dd>
+            <dd><a href="?id=seg-286">first record</a></dd>
+            <dd><a href="?info=resources-seg">list of records </a></dd>
+            <dt>est</dt>
+            <dd>Essen-Steele</dd>
+            <dd><a href="?id=est-info">general information</a></dd>
+            <dd><a href="?id=est-101">first record</a></dd>
+            <dd><a href="?info=resources-est">list of records </a></dd>
+            <dt>wrd</dt>
+            <dd>Essen-Werden</dd>
+            <dd><a href="?id=wrd-info">general information</a></dd>
+            <dd><a href="?id=wrd-101">first record</a></dd>
+            <dd><a href="?info=resources-wrd">list of records </a></dd>
+            <dt>kuc</dt>
+            <dd>Euskirchen-Kuchenheim</dd>
+            <dd><a href="?id=kuc-info">general information</a></dd>
+            <dd><a href="?id=kuc-13">first record</a></dd>
+            <dd><a href="?info=resources-kuc">list of records </a></dd>
+            <dt>ffb</dt>
+            <dd>Frankfurt am Main, Battonnstraße</dd>
+            <dd><a href="?id=ffb-info">general information</a></dd>
+            <dd><a href="?id=ffb-97">first record</a></dd>
+            <dd><a href="?info=resources-ffb">list of records </a></dd>
+            <dt>ffs</dt>
+            <dd>Frankfurt am Main, Sophienstraße</dd>
+            <dd><a href="?id=ffs-info">general information</a></dd>
+            <dd><a href="?id=ffs-168">first record</a></dd>
+            <dd><a href="?info=resources-ffs">list of records </a></dd>
+            <dt>ffh</dt>
+            <dd>Frankfurt am Main-Heddernheim</dd>
+            <dd><a href="?id=ffh-info">general information</a></dd>
+            <dd><a href="?id=ffh-224">first record</a></dd>
+            <dd><a href="?info=resources-ffh">list of records </a></dd>
+            <dt>frd</dt>
+            <dd>Frankfurt am Main-Rödelheim (Alter Friedhof)</dd>
+            <dd><a href="?id=frd-info">general information</a></dd>
+            <dd><a href="?id=frd-15">first record</a></dd>
+            <dd><a href="?info=resources-frd">list of records </a></dd>
+            <dt>fri</dt>
+            <dd>Frille</dd>
+            <dd><a href="?id=fri-info">general information</a></dd>
+            <dd><a href="?id=fri-1">first record</a></dd>
+            <dd><a href="?info=resources-fri">list of records </a></dd>
+            <dt>gan</dt>
+            <dd>Gangelt</dd>
+            <dd><a href="?id=gan-info">general information</a></dd>
+            <dd><a href="?id=gan-1">first record</a></dd>
+            <dd><a href="?info=resources-gan">list of records </a></dd>
+            <dt>gei</dt>
+            <dd>Geilenkirchen</dd>
+            <dd><a href="?id=gei-info">general information</a></dd>
+            <dd><a href="?id=gei-99">first record</a></dd>
+            <dd><a href="?info=resources-gei">list of records </a></dd>
+            <dt>e05</dt>
+            <dd>Geldern</dd>
+            <dd><a href="?id=e05-info">general information</a></dd>
+            <dd><a href="?id=e05-6">first record</a></dd>
+            <dd><a href="?info=resources-e05">list of records </a></dd>
+            <dt>e52</dt>
+            <dd>Gennep</dd>
+            <dd><a href="?id=e52-info">general information</a></dd>
+            <dd><a href="?id=e52-8">first record</a></dd>
+            <dd><a href="?info=resources-e52">list of records </a></dd>
+            <dt>gsk</dt>
+            <dd>Geseke</dd>
+            <dd><a href="?id=gsk-info">general information</a></dd>
+            <dd><a href="?id=gsk-4">first record</a></dd>
+            <dd><a href="?info=resources-gsk">list of records </a></dd>
+            <dt>gif</dt>
+            <dd>Gifhorn</dd>
+            <dd><a href="?id=gif-info">general information</a></dd>
+            <dd><a href="?id=gif-9">first record</a></dd>
+            <dd><a href="?info=resources-gif">list of records </a></dd>
+            <dt>gws</dt>
+            <dd>Gonnesweiler</dd>
+            <dd><a href="?id=gws-info">general information</a></dd>
+            <dd><a href="?id=gws-21">first record</a></dd>
+            <dd><a href="?info=resources-gws">list of records </a></dd>
+            <dt>e10</dt>
+            <dd>Grevenbroich</dd>
+            <dd><a href="?id=e10-info">general information</a></dd>
+            <dd><a href="?id=e10-1">first record</a></dd>
+            <dd><a href="?info=resources-e10">list of records </a></dd>
+            <dt>e11</dt>
+            <dd>Grevenbroich-Hemmerden</dd>
+            <dd><a href="?id=e11-info">general information</a></dd>
+            <dd><a href="?id=e11-1">first record</a></dd>
+            <dd><a href="?info=resources-e11">list of records </a></dd>
+            <dt>e12</dt>
+            <dd>Grevenbroich-Hülchrath</dd>
+            <dd><a href="?id=e12-info">general information</a></dd>
+            <dd><a href="?id=e12-1">first record</a></dd>
+            <dd><a href="?info=resources-e12">list of records </a></dd>
+            <dt>e13</dt>
+            <dd>Grevenbroich-Wevelinghoven</dd>
+            <dd><a href="?id=e13-info">general information</a></dd>
+            <dd><a href="?id=e13-39">first record</a></dd>
+            <dd><a href="?info=resources-e13">list of records </a></dd>
+            <dt>e14</dt>
+            <dd>Grimlinghausen</dd>
+            <dd><a href="?id=e14-info">general information</a></dd>
+            <dd><a href="?id=e14-4">first record</a></dd>
+            <dd><a href="?info=resources-e14">list of records </a></dd>
+            <dt>hgl</dt>
+            <dd>Haigerloch</dd>
+            <dd><a href="?id=hgl-info">general information</a></dd>
+            <dd><a href="?id=hgl-1140">first record</a></dd>
+            <dd><a href="?info=resources-hgl">list of records </a></dd>
+            <dt>hgw</dt>
+            <dd>Haigerloch-Weildorf</dd>
+            <dd><a href="?id=hgw-info">general information</a></dd>
+            <dd><a href="?id=hgw-5">first record</a></dd>
+            <dd><a href="?info=resources-hgw">list of records </a></dd>
+            <dt>hb2</dt>
+            <dd>Halberstadt, Am Berge</dd>
+            <dd><a href="?id=hb2-info">general information</a></dd>
+            <dd><a href="?id=hb2-115">first record</a></dd>
+            <dd><a href="?info=resources-hb2">list of records </a></dd>
+            <dt>hbs</dt>
+            <dd>Halberstadt: Im Roten Strumpf</dd>
+            <dd><a href="?id=hbs-info">general information</a></dd>
+            <dd><a href="?id=hbs-1">first record</a></dd>
+            <dd><a href="?info=resources-hbs">list of records </a></dd>
+            <dt>hwf</dt>
+            <dd>Halle (Westfalen)</dd>
+            <dd><a href="?id=hwf-info">general information</a></dd>
+            <dd><a href="?id=hwf-4">first record</a></dd>
+            <dd><a href="?info=resources-hwf">list of records </a></dd>
+            <dt>hha</dt>
+            <dd>Hamburg-Altona, Königstraße</dd>
+            <dd><a href="?id=hha-info">general information</a></dd>
+            <dd><a href="?id=hha-3361">first record</a></dd>
+            <dd><a href="?info=resources-hha">list of records </a></dd>
+            <dt>hht</dt>
+            <dd>Hamburg-Altona, Königstraße (Hamburger Teil)</dd>
+            <dd><a href="?id=hht-info">general information</a></dd>
+            <dd><a href="?id=hht-1000">first record</a></dd>
+            <dd><a href="?info=resources-hht">list of records </a></dd>
+            <dt>hdh</dt>
+            <dd>Heidesheim am Rhein</dd>
+            <dd><a href="?id=hdh-info">general information</a></dd>
+            <dd><a href="?id=hdh-10">first record</a></dd>
+            <dd><a href="?info=resources-hdh">list of records </a></dd>
+            <dt>hnn</dt>
+            <dd>Heilbronn</dd>
+            <dd><a href="?id=hnn-info">general information</a></dd>
+            <dd><a href="?id=hnn-30">first record</a></dd>
+            <dd><a href="?info=resources-hnn">list of records </a></dd>
+            <dt>hns</dt>
+            <dd>Heilbronn-Sontheim</dd>
+            <dd><a href="?id=hns-info">general information</a></dd>
+            <dd><a href="?id=hns-262">first record</a></dd>
+            <dd><a href="?info=resources-hns">list of records </a></dd>
+            <dt>hei</dt>
+            <dd>Heinsberg</dd>
+            <dd><a href="?id=hei-info">general information</a></dd>
+            <dd><a href="?id=hei-8">first record</a></dd>
+            <dd><a href="?info=resources-hei">list of records </a></dd>
+            <dt>blu</dt>
+            <dd>Hellenthal-Blumenthal</dd>
+            <dd><a href="?id=blu-info">general information</a></dd>
+            <dd><a href="?id=blu-19">first record</a></dd>
+            <dd><a href="?info=resources-blu">list of records </a></dd>
+            <dt>hen</dt>
+            <dd>Hennef</dd>
+            <dd><a href="?id=hen-info">general information</a></dd>
+            <dd><a href="?id=hen-1">first record</a></dd>
+            <dd><a href="?info=resources-hen">list of records </a></dd>
+            <dt>her</dt>
+            <dd>Herford</dd>
+            <dd><a href="?id=her-info">general information</a></dd>
+            <dd><a href="?id=her-1001">first record</a></dd>
+            <dd><a href="?info=resources-her">list of records </a></dd>
+            <dt>hld</dt>
+            <dd>Hildesheim, Jüdischer Friedhof Teichstraße</dd>
+            <dd><a href="?id=hld-info">general information</a></dd>
+            <dd><a href="?id=hld-7">first record</a></dd>
+            <dd><a href="?info=resources-hld">list of records </a></dd>
+            <dt>hos</dt>
+            <dd>Homburg</dd>
+            <dd><a href="?id=hos-info">general information</a></dd>
+            <dd><a href="?id=hos-152">first record</a></dd>
+            <dd><a href="?info=resources-hos">list of records </a></dd>
+            <dt>hxf</dt>
+            <dd>Höxter-Fürstenau</dd>
+            <dd><a href="?id=hxf-info">general information</a></dd>
+            <dd><a href="?id=hxf-16">first record</a></dd>
+            <dd><a href="?info=resources-hxf">list of records </a></dd>
+            <dt>c05</dt>
+            <dd>Hroznetin (Lichtenstadt)</dd>
+            <dd><a href="?id=c05-info">general information</a></dd>
+            <dd><a href="?id=c05-40">first record</a></dd>
+            <dd><a href="?info=resources-c05">list of records </a></dd>
+            <dt>ils</dt>
+            <dd>Illingen</dd>
+            <dd><a href="?id=ils-info">general information</a></dd>
+            <dd><a href="?id=ils-1">first record</a></dd>
+            <dd><a href="?info=resources-ils">list of records </a></dd>
+            <dt>imr</dt>
+            <dd>Immenrode</dd>
+            <dd><a href="?id=imr-info">general information</a></dd>
+            <dd><a href="?id=imr-11">first record</a></dd>
+            <dd><a href="?info=resources-imr">list of records </a></dd>
+            <dt>ihl</dt>
+            <dd>Ingelheim, Friedhof Hugo-Loersch-Straße</dd>
+            <dd><a href="?id=ihl-info">general information</a></dd>
+            <dd><a href="?id=ihl-2">first record</a></dd>
+            <dd><a href="?info=resources-ihl">list of records </a></dd>
+            <dt>iis</dt>
+            <dd>Ingelheim, Friedhof Im Saal</dd>
+            <dd><a href="?id=iis-info">general information</a></dd>
+            <dd><a href="?id=iis-20">first record</a></dd>
+            <dd><a href="?info=resources-iis">list of records </a></dd>
+            <dt>irw</dt>
+            <dd>Ingelheim, Friedhof Rotweinstraße</dd>
+            <dd><a href="?id=irw-info">general information</a></dd>
+            <dd><a href="?id=irw-2">first record</a></dd>
+            <dd><a href="?info=resources-irw">list of records </a></dd>
+            <dt>igw</dt>
+            <dd>Ingelheim-Großwinternheim</dd>
+            <dd><a href="?id=igw-info">general information</a></dd>
+            <dd><a href="?id=igw-16">first record</a></dd>
+            <dd><a href="?info=resources-igw">list of records </a></dd>
+            <dt>e06</dt>
+            <dd>Issum</dd>
+            <dd><a href="?id=e06-info">general information</a></dd>
+            <dd><a href="?id=e06-15">first record</a></dd>
+            <dd><a href="?info=resources-e06">list of records </a></dd>
+            <dt>jen</dt>
+            <dd>Jena, Johannisfriedhof (ev.-luth.)</dd>
+            <dd><a href="?id=jen-info">general information</a></dd>
+            <dd><a href="?id=jen-1">first record</a></dd>
+            <dd><a href="?info=resources-jen">list of records </a></dd>
+            <dt>e17</dt>
+            <dd>Jüchen</dd>
+            <dd><a href="?id=e17-info">general information</a></dd>
+            <dd><a href="?id=e17-14">first record</a></dd>
+            <dd><a href="?info=resources-e17">list of records </a></dd>
+            <dt>e18</dt>
+            <dd>Jüchen-Garzweiler</dd>
+            <dd><a href="?id=e18-info">general information</a></dd>
+            <dd><a href="?id=e18-28">first record</a></dd>
+            <dd><a href="?info=resources-e18">list of records </a></dd>
+            <dt>e19</dt>
+            <dd>Jüchen-Hochneukirch</dd>
+            <dd><a href="?id=e19-info">general information</a></dd>
+            <dd><a href="?id=e19-1">first record</a></dd>
+            <dd><a href="?info=resources-e19">list of records </a></dd>
+            <dt>kal</dt>
+            <dd>Kalkar</dd>
+            <dd><a href="?id=kal-info">general information</a></dd>
+            <dd><a href="?id=kal-1">first record</a></dd>
+            <dd><a href="?info=resources-kal">list of records </a></dd>
+            <dt>e20</dt>
+            <dd>Kempen</dd>
+            <dd><a href="?id=e20-info">general information</a></dd>
+            <dd><a href="?id=e20-88">first record</a></dd>
+            <dd><a href="?info=resources-e20">list of records </a></dd>
+            <dt>ket</dt>
+            <dd>Kettwig (Alter Friedhof in Ratingen)</dd>
+            <dd><a href="?id=ket-info">general information</a></dd>
+            <dd><a href="?id=ket-35">first record</a></dd>
+            <dd><a href="?info=resources-ket">list of records </a></dd>
+            <dt>hlh</dt>
+            <dd>Kettwig (Neuer Friedhof in Heiligenhaus)</dd>
+            <dd><a href="?id=hlh-info">general information</a></dd>
+            <dd><a href="?id=hlh-12">first record</a></dd>
+            <dd><a href="?info=resources-hlh">list of records </a></dd>
+            <dt>kob</dt>
+            <dd>Koblenz</dd>
+            <dd><a href="?id=kob-info">general information</a></dd>
+            <dd><a href="?id=kob-6">first record</a></dd>
+            <dd><a href="?info=resources-kob">list of records </a></dd>
+            <dt>kwr</dt>
+            <dd>Königswinter</dd>
+            <dd><a href="?id=kwr-info">general information</a></dd>
+            <dd><a href="?id=kwr-21">first record</a></dd>
+            <dd><a href="?info=resources-kwr">list of records </a></dd>
+            <dt>e21</dt>
+            <dd>Korschenbroich</dd>
+            <dd><a href="?id=e21-info">general information</a></dd>
+            <dd><a href="?id=e21-22">first record</a></dd>
+            <dd><a href="?info=resources-e21">list of records </a></dd>
+            <dt>e22</dt>
+            <dd>Korschenbroich-Glehn</dd>
+            <dd><a href="?id=e22-info">general information</a></dd>
+            <dd><a href="?id=e22-1">first record</a></dd>
+            <dd><a href="?info=resources-e22">list of records </a></dd>
+            <dt>kre</dt>
+            <dd>Krefeld (alter Friedhof)</dd>
+            <dd><a href="?id=kre-info">general information</a></dd>
+            <dd><a href="?id=kre-1">first record</a></dd>
+            <dd><a href="?info=resources-kre">list of records </a></dd>
+            <dt>e23</dt>
+            <dd>Krefeld (neuer Friedhof)</dd>
+            <dd><a href="?id=e23-info">general information</a></dd>
+            <dd><a href="?id=e23-478">first record</a></dd>
+            <dd><a href="?info=resources-e23">list of records </a></dd>
+            <dt>e42</dt>
+            <dd>Krefeld-Hüls</dd>
+            <dd><a href="?id=e42-info">general information</a></dd>
+            <dd><a href="?id=e42-13">first record</a></dd>
+            <dd><a href="?info=resources-e42">list of records </a></dd>
+            <dt>e43</dt>
+            <dd>Krefeld-Linn</dd>
+            <dd><a href="?id=e43-info">general information</a></dd>
+            <dd><a href="?id=e43-1">first record</a></dd>
+            <dd><a href="?info=resources-e43">list of records </a></dd>
+            <dt>wnk</dt>
+            <dd>Kusterdingen-Wankheim</dd>
+            <dd><a href="?id=wnk-info">general information</a></dd>
+            <dd><a href="?id=wnk-1">first record</a></dd>
+            <dd><a href="?info=resources-wnk">list of records </a></dd>
+            <dt>lag</dt>
+            <dd>Lage</dd>
+            <dd><a href="?id=lag-info">general information</a></dd>
+            <dd><a href="?id=lag-1001">first record</a></dd>
+            <dd><a href="?info=resources-lag">list of records </a></dd>
+            <dt>lau</dt>
+            <dd>Laupheim</dd>
+            <dd><a href="?id=lau-info">general information</a></dd>
+            <dd><a href="?id=lau-859">first record</a></dd>
+            <dd><a href="?info=resources-lau">list of records </a></dd>
+            <dt>lin</dt>
+            <dd>Linnich</dd>
+            <dd><a href="?id=lin-info">general information</a></dd>
+            <dd><a href="?id=lin-1">first record</a></dd>
+            <dd><a href="?info=resources-lin">list of records </a></dd>
+            <dt>mz1</dt>
+            <dd>Mainz</dd>
+            <dd><a href="?id=mz1-info">general information</a></dd>
+            <dd><a href="?id=mz1-2302">first record</a></dd>
+            <dd><a href="?info=resources-mz1">list of records </a></dd>
+            <dt>e25</dt>
+            <dd>Meerbusch-Lank-Latum</dd>
+            <dd><a href="?id=e25-info">general information</a></dd>
+            <dd><a href="?id=e25-2">first record</a></dd>
+            <dd><a href="?info=resources-e25">list of records </a></dd>
+            <dt>mmd</dt>
+            <dd>Memmelsdorf / Unterfranken</dd>
+            <dd><a href="?id=mmd-info">general information</a></dd>
+            <dd><a href="?id=mmd-2">first record</a></dd>
+            <dd><a href="?info=resources-mmd">list of records </a></dd>
+            <dt>sb1</dt>
+            <dd>Merzig</dd>
+            <dd><a href="?id=sb1-info">general information</a></dd>
+            <dd><a href="?id=sb1-3026">first record</a></dd>
+            <dd><a href="?info=resources-sb1">list of records </a></dd>
+            <dt>msn</dt>
+            <dd>Miesenheim</dd>
+            <dd><a href="?id=msn-info">general information</a></dd>
+            <dd><a href="?id=msn-36">first record</a></dd>
+            <dd><a href="?info=resources-msn">list of records </a></dd>
+            <dt>min</dt>
+            <dd>Minden</dd>
+            <dd><a href="?id=min-info">general information</a></dd>
+            <dd><a href="?id=min-1">first record</a></dd>
+            <dd><a href="?info=resources-min">list of records </a></dd>
+            <dt>e26</dt>
+            <dd>Mönchengladbach</dd>
+            <dd><a href="?id=e26-info">general information</a></dd>
+            <dd><a href="?id=e26-1002">first record</a></dd>
+            <dd><a href="?info=resources-e26">list of records </a></dd>
+            <dt>e31</dt>
+            <dd>Mönchengladbach-Giesenkirchen</dd>
+            <dd><a href="?id=e31-info">general information</a></dd>
+            <dd><a href="?id=e31-5">first record</a></dd>
+            <dd><a href="?info=resources-e31">list of records </a></dd>
+            <dt>e30</dt>
+            <dd>Mönchengladbach-Odenkirchen</dd>
+            <dd><a href="?id=e30-info">general information</a></dd>
+            <dd><a href="?id=e30-16">first record</a></dd>
+            <dd><a href="?info=resources-e30">list of records </a></dd>
+            <dt>e29</dt>
+            <dd>Mönchengladbach-Rheindahlen</dd>
+            <dd><a href="?id=e29-info">general information</a></dd>
+            <dd><a href="?id=e29-5">first record</a></dd>
+            <dd><a href="?info=resources-e29">list of records </a></dd>
+            <dt>e27</dt>
+            <dd>Mönchengladbach-Rheydt</dd>
+            <dd><a href="?id=e27-info">general information</a></dd>
+            <dd><a href="?id=e27-84">first record</a></dd>
+            <dd><a href="?info=resources-e27">list of records </a></dd>
+            <dt>e28</dt>
+            <dd>Mönchengladbach-Wickrath</dd>
+            <dd><a href="?id=e28-info">general information</a></dd>
+            <dd><a href="?id=e28-39">first record</a></dd>
+            <dd><a href="?info=resources-e28">list of records </a></dd>
+            <dt>mlh</dt>
+            <dd>Mülheim an der Ruhr</dd>
+            <dd><a href="?id=mlh-info">general information</a></dd>
+            <dd><a href="?id=mlh-5004">first record</a></dd>
+            <dd><a href="?info=resources-mlh">list of records </a></dd>
+            <dt>mue</dt>
+            <dd>Mülheim an der Ruhr</dd>
+            <dd><a href="?id=mue-info">general information</a></dd>
+            <dd><a href="?id=mue-4">first record</a></dd>
+            <dd><a href="?info=resources-mue">list of records </a></dd>
+            <dt>e32</dt>
+            <dd>Nettetal-Kaldenkirchen, Akazienweg</dd>
+            <dd><a href="?id=e32-info">general information</a></dd>
+            <dd><a href="?id=e32-6">first record</a></dd>
+            <dd><a href="?info=resources-e32">list of records </a></dd>
+            <dt>e41</dt>
+            <dd>Nettetal-Kaldenkirchen, Jahnstraße</dd>
+            <dd><a href="?id=e41-info">general information</a></dd>
+            <dd><a href="?id=e41-9000">first record</a></dd>
+            <dd><a href="?info=resources-e41">list of records </a></dd>
+            <dt>sb5</dt>
+            <dd>Neunkirchen</dd>
+            <dd><a href="?id=sb5-info">general information</a></dd>
+            <dd><a href="?id=sb5-63">first record</a></dd>
+            <dd><a href="?info=resources-sb5">list of records </a></dd>
+            <dt>e33</dt>
+            <dd>Neuss</dd>
+            <dd><a href="?id=e33-info">general information</a></dd>
+            <dd><a href="?id=e33-163">first record</a></dd>
+            <dd><a href="?info=resources-e33">list of records </a></dd>
+            <dt>c06</dt>
+            <dd>Nove Sedliste (Neu Zedlich)</dd>
+            <dd><a href="?id=c06-info">general information</a></dd>
+            <dd><a href="?id=c06-19">first record</a></dd>
+            <dd><a href="?info=resources-c06">list of records </a></dd>
+            <dt>obh</dt>
+            <dd>Oberhausen-Holten</dd>
+            <dd><a href="?id=obh-info">general information</a></dd>
+            <dd><a href="?id=obh-4">first record</a></dd>
+            <dd><a href="?info=resources-obh">list of records </a></dd>
+            <dt>obl</dt>
+            <dd>Oberhausen-Lirich</dd>
+            <dd><a href="?id=obl-info">general information</a></dd>
+            <dd><a href="?id=obl-219">first record</a></dd>
+            <dd><a href="?info=resources-obl">list of records </a></dd>
+            <dt>obw</dt>
+            <dd>Oberwinter</dd>
+            <dd><a href="?id=obw-info">general information</a></dd>
+            <dd><a href="?id=obw-1">first record</a></dd>
+            <dd><a href="?info=resources-obw">list of records </a></dd>
+            <dt>oer</dt>
+            <dd>Oerlinghausen</dd>
+            <dd><a href="?id=oer-info">general information</a></dd>
+            <dd><a href="?id=oer-1">first record</a></dd>
+            <dd><a href="?info=resources-oer">list of records </a></dd>
+            <dt>ora</dt>
+            <dd>Oranienburg</dd>
+            <dd><a href="?id=ora-info">general information</a></dd>
+            <dd><a href="?id=ora-108">first record</a></dd>
+            <dd><a href="?info=resources-ora">list of records </a></dd>
+            <dt>sb0</dt>
+            <dd>Ottweiler</dd>
+            <dd><a href="?id=sb0-info">general information</a></dd>
+            <dd><a href="?id=sb0-79">first record</a></dd>
+            <dd><a href="?info=resources-sb0">list of records </a></dd>
+            <dt>pth</dt>
+            <dd>Petershagen</dd>
+            <dd><a href="?id=pth-info">general information</a></dd>
+            <dd><a href="?id=pth-1">first record</a></dd>
+            <dd><a href="?info=resources-pth">list of records </a></dd>
+            <dt>plb</dt>
+            <dd>Plettenberg</dd>
+            <dd><a href="?id=plb-info">general information</a></dd>
+            <dd><a href="?id=plb-20">first record</a></dd>
+            <dd><a href="?info=resources-plb">list of records </a></dd>
+            <dt>l06</dt>
+            <dd>Preili</dd>
+            <dd><a href="?id=l06-info">general information</a></dd>
+            <dd><a href="?id=l06-325">first record</a></dd>
+            <dd><a href="?info=resources-l06">list of records </a></dd>
+            <dt>pro</dt>
+            <dd>Preußisch Oldendorf</dd>
+            <dd><a href="?id=pro-info">general information</a></dd>
+            <dd><a href="?id=pro-40">first record</a></dd>
+            <dd><a href="?info=resources-pro">list of records </a></dd>
+            <dt>que</dt>
+            <dd>Quedlinburg</dd>
+            <dd><a href="?id=que-info">general information</a></dd>
+            <dd><a href="?id=que-29">first record</a></dd>
+            <dd><a href="?info=resources-que">list of records </a></dd>
+            <dt>rae</dt>
+            <dd>Raesfeld</dd>
+            <dd><a href="?id=rae-info">general information</a></dd>
+            <dd><a href="?id=rae-10">first record</a></dd>
+            <dd><a href="?info=resources-rae">list of records </a></dd>
+            <dt>ran</dt>
+            <dd>Randerath</dd>
+            <dd><a href="?id=ran-info">general information</a></dd>
+            <dd><a href="?id=ran-3">first record</a></dd>
+            <dd><a href="?info=resources-ran">list of records </a></dd>
+            <dt>reg</dt>
+            <dd>Regensburg, Neuer Friedhof</dd>
+            <dd><a href="?id=reg-info">general information</a></dd>
+            <dd><a href="?id=reg-110">first record</a></dd>
+            <dd><a href="?info=resources-reg">list of records </a></dd>
+            <dt>rex</dt>
+            <dd>Rexingen</dd>
+            <dd><a href="?id=rex-info">general information</a></dd>
+            <dd><a href="?id=rex-276">first record</a></dd>
+            <dd><a href="?info=resources-rex">list of records </a></dd>
+            <dt>bbr</dt>
+            <dd>Rheineck-Bad Breisig, Alter Friedhof</dd>
+            <dd><a href="?id=bbr-info">general information</a></dd>
+            <dd><a href="?id=bbr-1">first record</a></dd>
+            <dd><a href="?info=resources-bbr">list of records </a></dd>
+            <dt>e54</dt>
+            <dd>Roermond, Oude kerkhof (nieuwe deel)</dd>
+            <dd><a href="?id=e54-info">general information</a></dd>
+            <dd><a href="?id=e54-2030">first record</a></dd>
+            <dd><a href="?info=resources-e54">list of records </a></dd>
+            <dt>e53</dt>
+            <dd>Roermond, Oude kerkhof (oude deel)</dd>
+            <dd><a href="?id=e53-info">general information</a></dd>
+            <dd><a href="?id=e53-6">first record</a></dd>
+            <dd><a href="?info=resources-e53">list of records </a></dd>
+            <dt>e34</dt>
+            <dd>Rommerskirchen</dd>
+            <dd><a href="?id=e34-info">general information</a></dd>
+            <dd><a href="?id=e34-6">first record</a></dd>
+            <dd><a href="?info=resources-e34">list of records </a></dd>
+            <dt>e35</dt>
+            <dd>Rommerskirchen-Butzheim</dd>
+            <dd><a href="?id=e35-info">general information</a></dd>
+            <dd><a href="?id=e35-2">first record</a></dd>
+            <dd><a href="?info=resources-e35">list of records </a></dd>
+            <dt>rth</dt>
+            <dd>Rüthen</dd>
+            <dd><a href="?id=rth-info">general information</a></dd>
+            <dd><a href="?id=rth-2">first record</a></dd>
+            <dd><a href="?info=resources-rth">list of records </a></dd>
+            <dt>oes</dt>
+            <dd>Rüthen-Oestereiden</dd>
+            <dd><a href="?id=oes-info">general information</a></dd>
+            <dd><a href="?id=oes-2">first record</a></dd>
+            <dd><a href="?info=resources-oes">list of records </a></dd>
+            <dt>sbs</dt>
+            <dd>Saarbrücken, alt</dd>
+            <dd><a href="?id=sbs-info">general information</a></dd>
+            <dd><a href="?id=sbs-31">first record</a></dd>
+            <dd><a href="?info=resources-sbs">list of records </a></dd>
+            <dt>sb2</dt>
+            <dd>Saarbrücken, neu</dd>
+            <dd><a href="?id=sb2-info">general information</a></dd>
+            <dd><a href="?id=sb2-32">first record</a></dd>
+            <dd><a href="?info=resources-sb2">list of records </a></dd>
+            <dt>sb9</dt>
+            <dd>Saarlouis</dd>
+            <dd><a href="?id=sb9-info">general information</a></dd>
+            <dd><a href="?id=sb9-13">first record</a></dd>
+            <dd><a href="?info=resources-sb9">list of records </a></dd>
+            <dt>sb6</dt>
+            <dd>Saarwellingen</dd>
+            <dd><a href="?id=sb6-info">general information</a></dd>
+            <dd><a href="?id=sb6-31">first record</a></dd>
+            <dd><a href="?info=resources-sb6">list of records </a></dd>
+            <dt>l09</dt>
+            <dd>Sabile</dd>
+            <dd><a href="?id=l09-info">general information</a></dd>
+            <dd><a href="?id=l09-12">first record</a></dd>
+            <dd><a href="?info=resources-l09">list of records </a></dd>
+            <dt>l08</dt>
+            <dd>Saldus</dd>
+            <dd><a href="?id=l08-info">general information</a></dd>
+            <dd><a href="?id=l08-42">first record</a></dd>
+            <dd><a href="?info=resources-l08">list of records </a></dd>
+            <dt>srm</dt>
+            <dd>Schermbeck</dd>
+            <dd><a href="?id=srm-info">general information</a></dd>
+            <dd><a href="?id=srm-30">first record</a></dd>
+            <dd><a href="?info=resources-srm">list of records </a></dd>
+            <dt>e09</dt>
+            <dd>Schiefbahn, Bertzweg</dd>
+            <dd><a href="?id=e09-info">general information</a></dd>
+            <dd><a href="?id=e09-17">first record</a></dd>
+            <dd><a href="?info=resources-e09">list of records </a></dd>
+            <dt>e16</dt>
+            <dd>Schiefbahn-Knickelsdorf</dd>
+            <dd><a href="?id=e16-info">general information</a></dd>
+            <dd><a href="?id=e16-8">first record</a></dd>
+            <dd><a href="?info=resources-e16">list of records </a></dd>
+            <dt>slb</dt>
+            <dd>Schlüsselburg</dd>
+            <dd><a href="?id=slb-info">general information</a></dd>
+            <dd><a href="?id=slb-26">first record</a></dd>
+            <dd><a href="?info=resources-slb">list of records </a></dd>
+            <dt>smk</dt>
+            <dd>Schmalkalden</dd>
+            <dd><a href="?id=smk-info">general information</a></dd>
+            <dd><a href="?id=smk-1">first record</a></dd>
+            <dd><a href="?info=resources-smk">list of records </a></dd>
+            <dt>st1</dt>
+            <dd>Schnaittach, Friedhof I</dd>
+            <dd><a href="?id=st1-info">general information</a></dd>
+            <dd><a href="?id=st1-1211">first record</a></dd>
+            <dd><a href="?info=resources-st1">list of records </a></dd>
+            <dt>st2</dt>
+            <dd>Schnaittach, Friedhof II</dd>
+            <dd><a href="?id=st2-info">general information</a></dd>
+            <dd><a href="?id=st2-2028">first record</a></dd>
+            <dd><a href="?info=resources-st2">list of records </a></dd>
+            <dt>st3</dt>
+            <dd>Schnaittach, Friedhof III</dd>
+            <dd><a href="?id=st3-info">general information</a></dd>
+            <dd><a href="?id=st3-3102">first record</a></dd>
+            <dd><a href="?info=resources-st3">list of records </a></dd>
+            <dt>e36</dt>
+            <dd>Schwalmtal-Waldniel</dd>
+            <dd><a href="?id=e36-info">general information</a></dd>
+            <dd><a href="?id=e36-8">first record</a></dd>
+            <dd><a href="?info=resources-e36">list of records </a></dd>
+            <dt>swb</dt>
+            <dd>Schwanenberg-Lentholt</dd>
+            <dd><a href="?id=swb-info">general information</a></dd>
+            <dd><a href="?id=swb-9000">first record</a></dd>
+            <dd><a href="?info=resources-swb">list of records </a></dd>
+            <dt>sgb</dt>
+            <dd>Siegburg</dd>
+            <dd><a href="?id=sgb-info">general information</a></dd>
+            <dd><a href="?id=sgb-232">first record</a></dd>
+            <dd><a href="?info=resources-sgb">list of records </a></dd>
+            <dt>e58</dt>
+            <dd>Sittard</dd>
+            <dd><a href="?id=e58-info">general information</a></dd>
+            <dd><a href="?id=e58-24">first record</a></dd>
+            <dd><a href="?info=resources-e58">list of records </a></dd>
+            <dt>sdh</dt>
+            <dd>Sondershausen</dd>
+            <dd><a href="?id=sdh-info">general information</a></dd>
+            <dd><a href="?id=sdh-50">first record</a></dd>
+            <dd><a href="?info=resources-sdh">list of records </a></dd>
+            <dt>sts</dt>
+            <dd>Sötern</dd>
+            <dd><a href="?id=sts-info">general information</a></dd>
+            <dd><a href="?id=sts-201">first record</a></dd>
+            <dd><a href="?info=resources-sts">list of records </a></dd>
+            <dt>spy</dt>
+            <dd>Speyer</dd>
+            <dd><a href="?id=spy-info">general information</a></dd>
+            <dd><a href="?id=spy-4">first record</a></dd>
+            <dd><a href="?info=resources-spy">list of records </a></dd>
+            <dt>sb7</dt>
+            <dd>St. Ingbert</dd>
+            <dd><a href="?id=sb7-info">general information</a></dd>
+            <dd><a href="?id=sb7-24">first record</a></dd>
+            <dd><a href="?info=resources-sb7">list of records </a></dd>
+            <dt>sb8</dt>
+            <dd>St. Wendel</dd>
+            <dd><a href="?id=sb8-info">general information</a></dd>
+            <dd><a href="?id=sb8-43">first record</a></dd>
+            <dd><a href="?info=resources-sb8">list of records </a></dd>
+            <dt>sto</dt>
+            <dd>Stockelsdorf</dd>
+            <dd><a href="?id=sto-info">general information</a></dd>
+            <dd><a href="?id=sto-14">first record</a></dd>
+            <dd><a href="?info=resources-sto">list of records </a></dd>
+            <dt>sb4</dt>
+            <dd>Tholey</dd>
+            <dd><a href="?id=sb4-info">general information</a></dd>
+            <dd><a href="?id=sb4-37">first record</a></dd>
+            <dd><a href="?info=resources-sb4">list of records </a></dd>
+            <dt>mtz</dt>
+            <dd>Titz-Müntz</dd>
+            <dd><a href="?id=mtz-info">general information</a></dd>
+            <dd><a href="?id=mtz-15">first record</a></dd>
+            <dd><a href="?info=resources-mtz">list of records </a></dd>
+            <dt>roe</dt>
+            <dd>Titz-Rödingen</dd>
+            <dd><a href="?id=roe-info">general information</a></dd>
+            <dd><a href="?id=roe-16">first record</a></dd>
+            <dd><a href="?info=resources-roe">list of records </a></dd>
+            <dt>e37</dt>
+            <dd>Tönisvorst, St. Tönis</dd>
+            <dd><a href="?id=e37-info">general information</a></dd>
+            <dd><a href="?id=e37-9000">first record</a></dd>
+            <dd><a href="?info=resources-e37">list of records </a></dd>
+            <dt>e44</dt>
+            <dd>Tönisvorst, Vorst</dd>
+            <dd><a href="?id=e44-info">general information</a></dd>
+            <dd><a href="?id=e44-1">first record</a></dd>
+            <dd><a href="?info=resources-e44">list of records </a></dd>
+            <dt>tr1</dt>
+            <dd>Trier</dd>
+            <dd><a href="?id=tr1-info">general information</a></dd>
+            <dd><a href="?id=tr1-2">first record</a></dd>
+            <dd><a href="?info=resources-tr1">list of records </a></dd>
+            <dt>tri</dt>
+            <dd>Trier, An der Weidegasse</dd>
+            <dd><a href="?id=tri-info">general information</a></dd>
+            <dd><a href="?id=tri-346">first record</a></dd>
+            <dd><a href="?info=resources-tri">list of records </a></dd>
+            <dt>e60</dt>
+            <dd>Venlo, (alter Friedhof) Broekhofpad</dd>
+            <dd><a href="?id=e60-info">general information</a></dd>
+            <dd><a href="?id=e60-6">first record</a></dd>
+            <dd><a href="?info=resources-e60">list of records </a></dd>
+            <dt>e61</dt>
+            <dd>Venlo, (neuer Friedhof) Ganzenstraat</dd>
+            <dd><a href="?id=e61-info">general information</a></dd>
+            <dd><a href="?id=e61-4">first record</a></dd>
+            <dd><a href="?info=resources-e61">list of records </a></dd>
+            <dt>l07</dt>
+            <dd>Ventspils</dd>
+            <dd><a href="?id=l07-info">general information</a></dd>
+            <dd><a href="?id=l07-124">first record</a></dd>
+            <dd><a href="?info=resources-l07">list of records </a></dd>
+            <dt>e38</dt>
+            <dd>Viersen</dd>
+            <dd><a href="?id=e38-info">general information</a></dd>
+            <dd><a href="?id=e38-1">first record</a></dd>
+            <dd><a href="?info=resources-e38">list of records </a></dd>
+            <dt>e39</dt>
+            <dd>Viersen-Dülken</dd>
+            <dd><a href="?id=e39-info">general information</a></dd>
+            <dd><a href="?id=e39-42">first record</a></dd>
+            <dd><a href="?info=resources-e39">list of records </a></dd>
+            <dt>e40</dt>
+            <dd>Viersen-Süchteln</dd>
+            <dd><a href="?id=e40-info">general information</a></dd>
+            <dd><a href="?id=e40-5">first record</a></dd>
+            <dd><a href="?info=resources-e40">list of records </a></dd>
+            <dt>wls</dt>
+            <dd>Wallerstein</dd>
+            <dd><a href="?id=wls-info">general information</a></dd>
+            <dd><a href="?id=wls-1245">first record</a></dd>
+            <dd><a href="?info=resources-wls">list of records </a></dd>
+            <dt>was</dt>
+            <dd>Wassenberg</dd>
+            <dd><a href="?id=was-info">general information</a></dd>
+            <dd><a href="?id=was-2">first record</a></dd>
+            <dd><a href="?info=resources-was">list of records </a></dd>
+            <dt>lom</dt>
+            <dd>Weilerswist-Lommersum</dd>
+            <dd><a href="?id=lom-info">general information</a></dd>
+            <dd><a href="?id=lom-1">first record</a></dd>
+            <dd><a href="?info=resources-lom">list of records </a></dd>
+            <dt>ver</dt>
+            <dd>Weilerswist-Vernich</dd>
+            <dd><a href="?id=ver-info">general information</a></dd>
+            <dd><a href="?id=ver-1">first record</a></dd>
+            <dd><a href="?info=resources-ver">list of records </a></dd>
+            <dt>e07</dt>
+            <dd>Willich</dd>
+            <dd><a href="?id=e07-info">general information</a></dd>
+            <dd><a href="?id=e07-2">first record</a></dd>
+            <dd><a href="?info=resources-e07">list of records </a></dd>
+            <dt>e08</dt>
+            <dd>Willich-Anrath</dd>
+            <dd><a href="?id=e08-info">general information</a></dd>
+            <dd><a href="?id=e08-4">first record</a></dd>
+            <dd><a href="?info=resources-e08">list of records </a></dd>
+            <dt>win</dt>
+            <dd>Winsen an der Luhe</dd>
+            <dd><a href="?id=win-info">general information</a></dd>
+            <dd><a href="?id=win-2">first record</a></dd>
+            <dd><a href="?info=resources-win">list of records </a></dd>
+            <dt>wrm</dt>
+            <dd>Worms</dd>
+            <dd><a href="?id=wrm-info">general information</a></dd>
+            <dd><a href="?id=wrm-8208">first record</a></dd>
+            <dd><a href="?info=resources-wrm">list of records </a></dd>
+            <dt>hdf</dt>
+            <dd>Würzburg - Heidingsfeld</dd>
+            <dd><a href="?id=hdf-info">general information</a></dd>
+            <dd><a href="?id=hdf-2011">first record</a></dd>
+            <dd><a href="?info=resources-hdf">list of records </a></dd>
+        </dl>
+    </div>
+
+    <div class="code">
+        <h1> </h1>
+        <table style="margin-left:auto;margin-right:auto">
+            <tr>
+                <td style="text-align:center; font-size:small;">
+                    <a href="http://steinheim-institut.de">Steinheim-Institut</a>
+                    <br />
+                    <span>http://www.steinheim-institut.de:80/cgi-bin/epidat?id=hdf</span>
+                    lizenziert unter einer
+                    <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img
+                            alt="Creative Commons Lizenzvertrag" style="border-width:0"
+                            src="/daten/picsepi/cc_by.png" /></a>
+                    <br /><a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                        Creative Commons Namensnennung 4.0 International Lizenz
+                    </a>
+                    <br />
+                    <a href="http://validator.w3.org/check?uri=referer"> Valid XHTML 1.0 Strict</a> |
+                    <a href="http://www.tustep.uni-tuebingen.de" title="TUSTEP">Powered by TUSCRIPT</a>
+                    <br />concept, code and design created by <a href="http://orcid.org/0000-0003-1904-1841">Thomas
+                        Kollatz</a>
+                    <br />epidat stable release <a href="?lang=de&amp;release=beta">switch to beta</a>
+                    <br /><a href="?info=datenschutz">Datenschutzhinweis</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
