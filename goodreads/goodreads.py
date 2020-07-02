@@ -24,7 +24,9 @@ def scrape(
     command line help, or the module's README.
     '''
     editions = editions_scraper.scrape(
-        editions_url, export_folder, editions_csv_filename)
+        editions_url, export_folder, editions_csv_filename
+    )
+    
     review_scraper.scrape(
         editions,
         export_folder,
