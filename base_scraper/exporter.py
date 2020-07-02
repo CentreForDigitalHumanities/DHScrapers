@@ -17,10 +17,7 @@ class EntityExporter:
             entities -- the entities to export.
             entities_name -- the term used to refer to the entities in logging. Defaults to 'entities'.
             unique -- export only unique reviews, i.e. no duplicates. Defaults to True.
-        '''
-        if not entities or len(entities) == 0:
-            raise ValueError("'entities' cannot be None or an empty list")
-        
+        '''        
         self.output_folder = output_folder
         self.entities = entities
         self.entities_name = entities_name
@@ -40,6 +37,8 @@ class EntityExporter:
             filename -- the name (incl. extension) to export to.
             delimiter -- the delimiter to use in the csv. Defaults to a semicolon (';').
         '''
+        if not self.entities_exist(): return
+        
         if self.unique:
             exported_entities = []
 
@@ -75,6 +74,8 @@ class EntityExporter:
         Parameters:
             custom_root -- a custom tag for the root element. Defaults to 'root'
         '''
+        if not self.entities_exist(): return
+
         if self.unique:
             exported_entities = []
 
@@ -103,6 +104,8 @@ class EntityExporter:
         Parameters:
             field -- The field to print to the txt
         '''
+        if not self.entities_exist(): return
+
         if self.unique:
             exported_entities = []
 
@@ -144,3 +147,7 @@ class EntityExporter:
         if not (os.path.exists(subfolder)):
             os.mkdir(subfolder)
         return subfolder
+
+    def entities_exist(self):
+        if not self.entities: return False
+        return len(self.entities) > 0
