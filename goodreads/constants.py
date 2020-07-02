@@ -1,1 +1,1 @@
-EDITION_LANGUAGES = ['English', 'German', 'Dutch', 'French', 'Spanish']
+EDITION_LANGUAGES = ['English', 'Afrikaans', 'Italian', 'German', 'French', 'Spanish', 'Dutch', 'Portuguese']
