@@ -77,7 +77,7 @@ class ReviewPageParser(BaseParser):
             if not review_text_elem:
                 continue
             review_text = self.extract_review(review_text_elem)
-            if len(review_text) < self.min_review_length:
+            if review_text and len(review_text) < self.min_review_length:
                 continue
             review = Review(self.metadata)
             review.id = review_html['id']
