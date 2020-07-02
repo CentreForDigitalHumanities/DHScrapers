@@ -3,9 +3,12 @@ import sys
 import csv
 import re
 import argparse
+import logging
 from utilities.logging import init_logger
 from goodreads.constants import EDITION_LANGUAGES
 from goodreads.goodreads import scrape
+
+logger = logging.getLogger(__name__)
 
 
 def main(sys_args):
@@ -26,6 +29,8 @@ def main(sys_args):
             editions_url(title_info['editions_url'])
 
         for title_info in title_infos:
+            logger.info('Starting scrape for {}'.format(title_info['title']))
+
             sub_folder_name = get_valid_filename(title_info['title'])
             export_folder = os.path.join(args.export_folder, sub_folder_name)
             if not os.path.exists(export_folder):
@@ -110,12 +115,12 @@ def folder_path(folder_path):
 def editions_url(url):
     '''
     Helper function to validate user input.
-    Url must contain 
+    Url must contain '/work/editions/'
     '''
     required_bit = '/work/editions/'
     if not required_bit in url:
         raise argparse.ArgumentTypeError(
-            'editions_url should contain {}'.format(required_bit)
+            'editions_url `{}` should contain {}'.format(url, required_bit)
         )
     return url
 
