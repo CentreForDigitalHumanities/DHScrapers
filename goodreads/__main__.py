@@ -20,6 +20,11 @@ def main(sys_args):
 
     if args.title_file:
         title_infos = get_title_infos(args.title_file)
+        
+        # first validate the url input
+        for title_info in title_infos:
+            editions_url(title_info['editions_url'])
+
         for title_info in title_infos:
             sub_folder_name = get_valid_filename(title_info['title'])
             export_folder = os.path.join(args.export_folder, sub_folder_name)
