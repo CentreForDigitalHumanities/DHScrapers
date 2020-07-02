@@ -1,6 +1,6 @@
 # GoodReads scraper(s)
 
-Our scrapers are basically some scripts that work together to extract as many reviews for a title as possible from GoodReads.com. Our solution to GoodReads' limitations (e.g. 300 reviews per title per language -- at least at first sight), combines the option to filter per rating with the option to filter reviews only for the edition currently viewed. Reviews are extracted per edition, and if more than 300 are found for the current edition, these are collected _per rating_. This means that a potential 1500 reviews are extracted for each edition! (Well, as long as that number of reviews exists for the edition of course.)
+Our scrapers are basically some scripts that work together to extract as many reviews for a title as possible from GoodReads.com. Our solution to GoodReads' limitations (e.g. 300 reviews per title per language -- at least at first sight), combines the option to filter per rating with the option to filter reviews only for the edition currently viewed. Reviews are extracted per edition, and if more than 300 are found for the current edition, these are collected _per rating_. This means that a potential 1500 reviews are extracted for each edition! (Well, as long as that number of reviews exists for the edition of course.) Please do note that GoodReads contains editions for which the language is unknown (i.e. empty). These editions will always be excluded, for obvious reasons.
 
 ## Introduction
 
@@ -8,7 +8,7 @@ The GoodReads scraper actually consists of two scrapers. The main entry point to
 
 ### Edition scraper
 
-The starting point of each sraping session will be a list of editions for a title. This list can be found by clicking 'All Editions' (just above the tiny pictures of the other editions).
+The starting point of each scraping session will be a list of editions for a title. This list can be found by clicking 'All Editions' (just above the tiny pictures of the other editions).
 
 ![ss_title](https://user-images.githubusercontent.com/30618796/79224990-55cfe380-7e5c-11ea-8460-ec27528b8900.png)
 
@@ -51,7 +51,20 @@ A review looks like this:
 | author_gender | The gender of the author. (Note that this is detected by the scraper, see below) |
 | language | The language the review is written in. (Note that this is detected by the scraper, see below) |
 | rating | The rating that comes with the review. Isn't typically, but can be empty. |
+| metadata | Optionally: any fields you add in the `title_file` (see below) |
 | text | The full text of the review |
+
+### Scraping in bulk / `title_file` / adding metadata
+
+The scraper offers the option to provide a csv file containing the details of the titles you want to scrape, the so-called `title_file`.
+Here is an example of what it might look like (with just one line, but you get the idea):
+
+```csv
+title;editions_url;edition_genre;edition_age_category;original_language
+Harry Potter and the Sorcerer's Stone;https://www.goodreads.com/work/editions/4640799-harry-potter-and-the-philosopher-s-stone;Popular fiction - fantasy;Children;English
+```
+
+Note that the delimiter has to be a semicolon (`;`). More importantly, note that the columns beyond the first two are optional. I.e. `title` and `editions_url` are mandatory fields, the other fields are optional. The latter will be added as fields _to each individual review_. This gives you great power to enable group titles together based on genre, original language, etc. Whatever proves useful to you.
 
 #### Language Detection
 
@@ -61,7 +74,7 @@ Also note that a `langdetect` returns language _codes_ ('nl'), so an addtional p
 
 #### Gender guessing
 
-The scraper uses [gender-guesser](https://pypi.org/project/gender-guesser/) to guess an authors gender based on their username. (Note that first result do not look that promising, probably due to the use of username).
+The scraper uses [gender-guesser](https://pypi.org/project/gender-guesser/) to guess an authors gender based on their username. In fact, it uses the first word in a username (i.e. hopefully a firstname). (Note that first results do not look that promising, probably due to the use of username).
 
 ### goodreads.py
 
@@ -69,18 +82,23 @@ The main entry point, the script that makes life easy for the user by combining 
 
 | Option | Alternative form | Required? | Description |
 | ------- | ---- | --- | --- |
-| '--editions_url' | '--url', '-eu' | Required | The url of an editions page. May or may not include the page queryparam at the end. You can find the url by clicking 'All Editions' (under Other Editions') on a title's page. Just copy and paste from your browser's address bar. Example: `https://www.goodreads.com/work/editions/6463092-het-diner`. |
+| '--editions_url' | '--url', '-eu' | Either this or `--title_file` is required | The url of an editions page. May or may not include the page queryparam at the end. You can find the url by clicking 'All Editions' (under Other Editions') on a title's page. Just copy and paste from your browser's address bar. Example: `https://www.goodreads.com/work/editions/6463092-het-diner`. |
+| --title_file | | Either this or `--editions_url is required | Path to a csv file containing at least two columns: title, editions_url. Any columns after that will be added as metadata to each review. |
 | '--export_folder' | '-ef' | Required | Path to the folder where you want the exports to appear. Should be a path to a folder, not a file. |
 | '--reviews_export_csv_filename' | '-ref' | Optional | Filename for the csv you want to the reviews exported to. Should be a .csv file. Defaults to 'reviews.csv' |
 | '--editions_export_csv_filename' | '-eef' | Optional | Filename for the csv you want the editions exported to. Should be a .csv file. Editions will not be exported to csv if you leave this empty |
 | '--xml' | '--export_xml' | Optional | If this flag is present (no value needed), each review is exported to an XML file |
-| '--txt' | '--export_txt' | Optional | | If this flag is present (no value needed), each review is exported to a txt file |
-| '--edition_languages' | '-el' | Optional | Choose one or multiple from 'English', 'German', 'Dutch', 'French', 'Spanish' or 'all'. Example: `-el English German`. Defaults to 'all'. |
+| '--txt' | '--export_txt' | Optional | If this flag is present (no value needed), each review is exported to a txt file |
+| '--edition_languages' | '-el' | Optional | Choose one or multiple from 'English', 'Afrikaans', 'Italian', 'German', 'French', 'Spanish', 'Dutch', 'Portuguese'  or 'all'. Example: `-el English German`. Defaults to 'all'. |
 |  '--min_review_length' | '--min_length', '-mrl' | Optional | The minimum length of a single review (in characters). Reviews shorter than this will be excluded. Defaults to 6. |
 
-Example: `python -m goodreads --editions_url "https://www.goodreads.com/work/editions/6463092-het-diner" -ef ./TheDinner -el English Dutch --xml`
+Examples:
 
-IMPORTANT: it has occured, especially when scraping reviews for a large number of editions, that the GoodReads server takes too long to respond. If this happens, the scraping crashes. The best we currently have to offer is to simply start over: we have succesfully scraped over 17000 reviews from 356 editions of _Harry Potter and the Sorcerer's Stone_.
+`python -m goodreads --editions_url "https://www.goodreads.com/work/editions/6463092-het-diner" -ef ./TheDinner -el English Dutch --xml`
+
+`python -m goodreads --title_file ./my_title_file.csv -ef ./output/ -el English Dutch --xml --txt --min_length 10`
+
+IMPORTANT: it has occured, especially when scraping reviews for a large number of editions, that the GoodReads server takes too long to respond. If this happens, the scraping crashes. The best we currently have to offer is to simply start over: we have succesfully scraped over over 18000 reviews from 360+ editions of _Harry Potter and the Sorcerer's Stone_.
 
 ## For developers
 
@@ -109,3 +127,7 @@ Even more interesting is when no reviews(-with-text) of a particular rating exis
 The reviews scraper can handle all these cases, and should never extract any reviews that do not fit the actual query, regardless of the results in the response. Keep that in mind during future development.
 
 Note that these different outcomes of the mentioned queries can be found in the 'testdata' folder of the review_scraper, including more details on what exactly is in these files in `testdata_details.md`.
+
+#### Scraping editions in other languages
+
+If you need to scrape editions in languages that are not currently in the list, you can update the default list in `constants.py`. Be aware that editions might not include languages, and these will be skipped automatically (consider comparing 'English' to '').
