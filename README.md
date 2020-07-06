@@ -4,7 +4,7 @@ This repo attempts to collect various scrapers developed by the Digital Humaniti
 
 ## Installation
 
-Make sure you have Python3 installed (any version should do, tested with 3.6) and create a virtualenv. There are two ways to install, and it depend on which scraper you intend to use which option you need. If the scraper you want to use does not have a `requirements.txt` in the module, the general dependencies will do. In this case, just run `pip install -r requirements.txt` from the prioject root folder.
+Make sure you have Python3 installed (any version should do, tested with 3.6) and create a virtualenv. There are two ways to install, and it depend on which scraper you intend to use which option you need. If the scraper you want to use does not have a `requirements.txt` in the module, the general dependencies will do. In this case, just run `pip install -r requirements.txt` from the project root folder.
 
 In the other case, do the equivalent of `pip install -r iis/requirement.txt`, where `iis` is the name of the module (i.e. scraper) you want to use.
 
