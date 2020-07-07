@@ -86,7 +86,7 @@ class EntityExporter:
                 filename = str(entity) + '.xml'
                 xml = parseString(dicttoxml.dicttoxml(entity.to_dict(), custom_root=custom_root))
                 
-                with open(os.path.join(export_folder, filename), 'w') as out_file:
+                with open(os.path.join(export_folder, filename), 'w', encoding='utf-8', newline='\n') as out_file:
                     out_file.write(xml.toprettyxml())
 
         message = "{} {} exported to XML in '{}'".format(len(self.entities), self.entities_name, export_folder)
@@ -115,7 +115,7 @@ class EntityExporter:
             if not self.unique or (self.unique and not self.already_exported(exported_entities, entity)):
                 filename = str(entity) + '.txt'
                 content = getattr(entity, field)                
-                with open(os.path.join(export_folder, filename), 'w') as out_file:
+                with open(os.path.join(export_folder, filename), 'w', encoding='utf-8', newline='\n') as out_file:
                     out_file.write(content)
         
         message = "{} {} exported to TXT in '{}'".format(len(self.entities), self.entities_name, export_folder)
