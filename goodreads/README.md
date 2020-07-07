@@ -98,6 +98,8 @@ Examples:
 
 `python -m goodreads --title_file ./my_title_file.csv -ef ./output/ -el English Dutch --xml --txt --min_length 10`
 
+Note that these commands should be run from the `dhlab-scrapers` root folder, i.e. not the `goodreads` subfolder!
+
 IMPORTANT: it has occured, especially when scraping reviews for a large number of editions, that the GoodReads server takes too long to respond. If this happens, the scraping crashes. The best we currently have to offer is to simply start over: we have succesfully scraped over over 18000 reviews from 360+ editions of _Harry Potter and the Sorcerer's Stone_.
 
 ## For developers
