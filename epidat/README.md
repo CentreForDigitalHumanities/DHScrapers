@@ -13,7 +13,7 @@ Note that this module has its own `requirements.txt`. This imports the main requ
 
 Getting the scraper in action is easy as pie. There is only one parameter: `--export_folder`, i.e. the folder where you need the results to end up.
 
-However, when scraping the corpus in June 2020, the epidat server didn't always respond as friendly, i.e. the scraper grinded to a halt every few hours. Therefore, the scraper keeps track of which 'groups' (see above) were already completed in a file in `export_folder`. You don't have to do anything with this, but when scraping you could use to exclude or skip particular groups.
+However, when scraping the corpus in June 2020, the epidat server didn't always respond as friendly, i.e. the scraper grinded to a halt every few hours. Therefore, the scraper keeps track of which 'groups' (see above) were already completed in a file in `export_folder`. You don't have to do anything with this, but when scraping you could use to exclude or skip particular groups. For completeness sake, an example of this file is included (`example_lists_collected.txt`), that includes all groups: this might be useful if a partial (re)scrape has to be performed.
 
 ## `epidat_post_processor.py`
 
