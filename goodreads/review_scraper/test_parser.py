@@ -176,10 +176,10 @@ def test_contains_only_reviews():
         assert p.contains_only_reviews() == page['only_reviews']
 
 
-def test_is_top_100():
+def test_is_top_X():
     for page in test_pages:
         p = ReviewPageParser(get_test_page(page['file']), fake_edition)        
-        assert p.is_top_100() == page['top_100']
+        assert p.is_top_X() == page['top_100']
 
 
 def test_get_number_of_text_only_reviews():

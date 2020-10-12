@@ -6,7 +6,7 @@ from goodreads.entities.review import Review
 
 
 class ReviewPageParser(BaseParser):
-    def __init__(self, html, edition, min_review_length = 6, metadata = {}):
+    def __init__(self, html, edition, min_review_length = 6, metadata = {}, max_reviews = 100):
         '''
         html - the html of one page of reviews
         edition - the edition these reviews belong to
@@ -20,6 +20,7 @@ class ReviewPageParser(BaseParser):
         self.reviews = self.soup.find_all('div', class_='review')
         self.min_review_length = min_review_length
         self.metadata = metadata
+        self.max_reviews = max_reviews
 
     def contains_only_reviews(self):
         '''
@@ -29,14 +30,14 @@ class ReviewPageParser(BaseParser):
         review_texts = self.get_reviews_texts()
         return len(review_texts) == len(self.reviews)
 
-    def is_top_100(self):
+    def is_top_X(self):
         '''
         Establish if the current page is part of a Top 100.
         Ideal for checking if a text_only request returns all results,
         or if collecting per rating is necessary.
         '''
         count_elem = self.get_count_element()
-        return 'top 100' in count_elem.text.lower()
+        return 'top ' + str(self.max_reviews) in count_elem.text.lower()
 
     def get_number_of_text_only_reviews(self):
         '''
@@ -46,8 +47,8 @@ class ReviewPageParser(BaseParser):
         for the edition. Note that the current page contains only a subselection of this total.
         Returns 100 if current page is part of a top 100.
         '''
-        if (self.is_top_100()):
-            return 100
+        if (self.is_top_X()):
+            return self.max_reviews
         count_elem = self.get_count_element()
         if not ' of ' in count_elem.text:
             return 0
