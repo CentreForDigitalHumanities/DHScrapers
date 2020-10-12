@@ -29,11 +29,11 @@ def collect(edition, min_review_length = 6, metadata = {}):
     first_page_parser = collector.get_page_parser(1)
     number_of_reviews = first_page_parser.get_number_of_text_only_reviews()
 
-    if number_of_reviews == 300:
-        logger.info("More than 300 reviews found, collecting per rating.")
+    if number_of_reviews == 100:
+        logger.info("More than 100 reviews found, collecting per rating.")
         reviews = collector.collect_per_rating()
     else:
-        reviews = collector.collect_non_top_300(first_page_parser)
+        reviews = collector.collect_non_top_100(first_page_parser)
     return reviews
 
 
@@ -60,15 +60,15 @@ class GoodReadsReviewCollector(BaseCollector):
         for rating in range(1, 6):
             first_page_parser = self.get_page_parser(1, rating)
             number_of_reviews = first_page_parser.get_number_of_text_only_reviews()
-            if number_of_reviews == 300:
-                reviews.extend(self.collect_top_300(first_page_parser, rating))
+            if number_of_reviews == 100:
+                reviews.extend(self.collect_top_100(first_page_parser, rating))
             else:
-                reviews.extend(self.collect_non_top_300(first_page_parser, rating))
+                reviews.extend(self.collect_non_top_100(first_page_parser, rating))
         return reviews
 
-    def collect_non_top_300(self, first_page_parser, rating=None):
+    def collect_non_top_100(self, first_page_parser, rating=None):
         '''
-        Collect all pages of reviews for a limited (i.e. not top 300) set.
+        Collect all pages of reviews for a limited (i.e. not top 100) set.
         '''
         reviews = []
         number_of_reviews = first_page_parser.get_number_of_text_only_reviews()
@@ -80,7 +80,7 @@ class GoodReadsReviewCollector(BaseCollector):
                 reviews.extend(parser.get_reviews())
         return reviews
 
-    def collect_top_300(self, first_page_parser, rating):
+    def collect_top_100(self, first_page_parser, rating):
         '''
         (Naively) Collect 10 pages of 30 text_only reviews.
         '''

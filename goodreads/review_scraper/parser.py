@@ -29,14 +29,14 @@ class ReviewPageParser(BaseParser):
         review_texts = self.get_reviews_texts()
         return len(review_texts) == len(self.reviews)
 
-    def is_top_300(self):
+    def is_top_100(self):
         '''
-        Establish if the current page is part of a Top 300.
+        Establish if the current page is part of a Top 100.
         Ideal for checking if a text_only request returns all results,
         or if collecting per rating is necessary.
         '''
         count_elem = self.get_count_element()
-        return 'top 300' in count_elem.text.lower()
+        return 'top 100' in count_elem.text.lower()
 
     def get_number_of_text_only_reviews(self):
         '''
@@ -44,10 +44,10 @@ class ReviewPageParser(BaseParser):
         This number is based on the 'Displaying X of Y' field. Therefore, if the current page
         is based on a rating, the number returned represent the total number of text-only reviews
         for the edition. Note that the current page contains only a subselection of this total.
-        Returns 300 if current page is part of a top 300.
+        Returns 100 if current page is part of a top 100.
         '''
-        if (self.is_top_300()):
-            return 300
+        if (self.is_top_100()):
+            return 100
         count_elem = self.get_count_element()
         if not ' of ' in count_elem.text:
             return 0
