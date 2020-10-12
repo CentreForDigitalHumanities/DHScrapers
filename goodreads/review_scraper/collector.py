@@ -61,7 +61,7 @@ class GoodReadsReviewCollector(BaseCollector):
         for rating in range(1, 6):
             first_page_parser = self.get_page_parser(1, rating)
             number_of_reviews = first_page_parser.get_number_of_text_only_reviews()
-            if number_of_reviews == 100:
+            if number_of_reviews == self.max_reviews:
                 reviews.extend(self.collect_top_X(first_page_parser, rating))
             else:
                 reviews.extend(self.collect_non_top_X(first_page_parser, rating))
