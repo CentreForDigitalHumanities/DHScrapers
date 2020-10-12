@@ -34,7 +34,7 @@ The main thing these scripts do, is extract reviews. Note that there is a differ
 
 Interestingly, the reviews that one sees on any title's page are supplied to the GoodReads website by an API / webservice that returns a bunch of HTML and Javascript to be displayed in the page (i.e. a sort of subpage). The review scraper addresses this API directy, bypassing the website entirely.
 
-Upon collecting the first page of reviews, the review scraper establishes how many reviews exist for the current edition. If this is more than 100 (i.e. a Top 100 is presented), it will collect on a _per rating_ basis, i.e. it will first collect up to 300 reviews with rating 1, then rating 2, etc. If less than 100 reviews for a rating exist, it simply collects whatever number of reviews is available. (Note that this is non-trivial because GoodReads filtering system can respond with surprising results. More about this in the 'For Developers' section.)
+Upon collecting the first page of reviews, the review scraper establishes how many reviews exist for the current edition. If this is more than 100 (i.e. a Top 100 is presented), it will collect on a _per rating_ basis, i.e. it will first collect up to 100 reviews with rating 1, then rating 2, etc. If less than 100 reviews for a rating exist, it simply collects whatever number of reviews is available. (Note that this is non-trivial because GoodReads filtering system can respond with surprising results. More about this in the 'For Developers' section.)
 
 A review looks like this:
 
