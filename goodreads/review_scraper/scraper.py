@@ -14,7 +14,8 @@ def scrape(
         export_txt=False, 
         edition_languages=['English', 'Dutch', 'German', 'Spanish', 'French'],
         min_review_length = 6,
-        metadata={}
+        metadata={},
+        max_reviews=100
     ):
     '''
     Parameters:
@@ -40,7 +41,7 @@ def scrape(
             logger.info("Collecting reviews for edition '{}' [{}/{}]".format(
                 edition.get_id(), index + 1, editions_length))
             used_editions += 1
-            reviews.extend(collect(edition, min_review_length, metadata))
+            reviews.extend(collect(edition, min_review_length, metadata,max_reviews))
 
     logger.info("{} reviews collected from {} editions".format(
         len(reviews), used_editions))
