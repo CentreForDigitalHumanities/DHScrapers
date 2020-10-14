@@ -1,7 +1,7 @@
 import os
 import sys
 import logging
-from goodreads.constants import EDITION_LANGUAGES
+from goodreads.constants import EDITION_LANGUAGES, MAX_REVIEWS
 from goodreads.edition_scraper import scraper as editions_scraper
 from goodreads.review_scraper import scraper as review_scraper
 
@@ -17,7 +17,8 @@ def scrape(
     export_xml=False,
     export_txt=False,
     min_review_length=6,
-    metadata={}
+    metadata={},
+    max_reviews = MAX_REVIEWS
 ):
     '''
     Non-commandline entry point for the module. For full documentation of the parameters please refer to `__main__.py`,
@@ -34,6 +35,7 @@ def scrape(
         export_xml, export_txt,
         edition_languages,
         min_review_length,
-        metadata
+        metadata,
+        max_reviews
     )
     logger.info('Done')
