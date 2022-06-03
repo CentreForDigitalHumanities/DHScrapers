@@ -20,6 +20,8 @@ class Collector(BaseCollector):
         for index, inscription_id in enumerate(inscription_ids):
             url = self.get_inscription_url(inscription_id)
             logger.info("Collecting from '{}' [{}/{}]".format(url, index + 1, number_of_inscriptions))
+            if os.path.isfile(os.path.join(export_folder, '{}.xml'.format(inscription_id))):
+                continue
             xml = self.collect_html(url, remove_newlines=False, response_encoding='utf-8')
             
             xml = self.enrich(inscription_id, xml)

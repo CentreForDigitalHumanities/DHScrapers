@@ -36,8 +36,11 @@ class TEIParser(BaseParser):
         details = []
         existing_ids = []
         bibls = self.soup.find_all('bibl')
-        for bibl in bibls:            
-            zotero_id = bibl.ptr['target'][:-4]
+        for bibl in bibls:
+            try:            
+                zotero_id = bibl.ptr['target'][:-4]
+            except:
+                continue
             if 'unit' in bibl.biblScope.attrs:
                 unit = bibl.biblScope['unit']
             else: unit = None
