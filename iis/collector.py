@@ -39,8 +39,8 @@ class Collector(BaseCollector):
             _id = detail['zotero_id']
             url = ZOTERO_BASE_URL.format(_id)
             logger.info('   Enriching inscription {} with data from {}'.format(inscription_id, url))
-            response = self.collect_json(url)            
-            if len(response) > 0:
+            response = self.collect_json(url, ignore_failed_request=True)            
+            if response and len(response) > 0:
                 detail['source'] = ZoteroParser(response[0]['bib']).get_source()
             else:
                 detail['source'] = ''

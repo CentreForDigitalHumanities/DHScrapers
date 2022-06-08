@@ -6,7 +6,7 @@ logger = logging.getLogger(__name__)
 
 class Collector:
 
-    def collect_html(self, url, remove_newlines=True, response_encoding=None):
+    def collect_html(self, url, remove_newlines=True, response_encoding=None, ignore_failed_request=False):
         '''
         Do the actual request and return the response.
         Raises an RunTimeError if the response status is not 200.
@@ -21,14 +21,14 @@ class Collector:
             tries to guess the encoding, but may be wrong. By providing a value here, you can overwrite
             this default behaviour.
         '''
-        r = self.make_request(url)
+        r = self.make_request(url, ignore_failed_request)
         if response_encoding:
             r.encoding = response_encoding
         if remove_newlines: return r.text.replace("\n", "")
         return r.text
 
 
-    def collect_json(self, url):
+    def collect_json(self, url, ignore_failed_request=False):
         '''
         Do the actual request and return the response, i.e. response.json().
         Raises an RunTimeError if the response status is not 200.
@@ -37,16 +37,18 @@ class Collector:
         Parameters:
             url -- the url to make the request to.
         '''
-        r = self.make_request(url)
+        r = self.make_request(url, ignore_failed_request)
         return r.json()
 
 
-    def make_request(self, url):
+    def make_request(self, url, ignore_failed_request):
         r = requests.get(url)
         logger.debug('response status: {}'.format(r.status_code))
 
         if r.status_code != 200:
             logger.error(r.text)
+            if ignore_failed_request:
+                return None
             raise RuntimeError("Could not collect from url {}".format(url))
         return r
     
