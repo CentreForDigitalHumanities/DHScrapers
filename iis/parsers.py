@@ -50,8 +50,9 @@ class TEIParser(BaseParser):
 
             if zotero_id in existing_ids:
                 result = next((x for x in details if x['zotero_id'] == zotero_id))
-                result['numbers'].append(number) 
-                result['numbers'].sort()
+                if number:
+                    result['numbers'].append(number)
+                    result['numbers'].sort()
             else:
                 result = {
                     'zotero_id': zotero_id,
