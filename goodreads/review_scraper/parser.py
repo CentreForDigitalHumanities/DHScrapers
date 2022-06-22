@@ -53,7 +53,10 @@ class ReviewPageParser(BaseParser):
         if not ' of ' in count_elem.text:
             return 0
         words = self.remove_whitespace(count_elem.text).strip().split(' ')
-        return int(words[3])
+        try:
+            return int(words[3])
+        except:
+            return int(words[4])
 
     def get_count_element(self):
         '''
