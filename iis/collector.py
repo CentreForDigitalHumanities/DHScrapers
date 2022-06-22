@@ -23,6 +23,8 @@ class Collector(BaseCollector):
             if os.path.isfile(os.path.join(export_folder, '{}.xml'.format(inscription_id))):
                 continue
             xml = self.collect_html(url, remove_newlines=False, response_encoding='utf-8', ignore_failed_request=True)
+            if not xml:
+                continue
             
             xml = self.enrich(inscription_id, xml)
 

@@ -22,6 +22,8 @@ class Collector:
             this default behaviour.
         '''
         r = self.make_request(url, ignore_failed_request)
+        if not r:
+            return None
         if response_encoding:
             r.encoding = response_encoding
         if remove_newlines: return r.text.replace("\n", "")
