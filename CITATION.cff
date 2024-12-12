@@ -1,0 +1,29 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: DHScrapers
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - name: >-
+      Research Software Lab, Centre for Digital Humanities,
+      Utrecht University
+    city: Utrecht
+    country: NL
+    website: >-
+      https://cdh.uu.nl/centre-for-digital-humanities/research-software-lab/
+repository-code: 'https://github.com/CentreForDigitalHumanities/DHScrapers'
+abstract: >-
+  This software provides an interface to facilitate and
+  unify scrapers for Digital Humanities research.
+keywords:
+  - scraping
+  - digital humanities
+  - python
+  - parsing
+license: MIT
+version: 0.1.0
+date-released: '2024-12-12'
