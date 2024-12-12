@@ -1,4 +1,4 @@
-# DHScraper
+# DHScrapers
 
 This repo attempts to collect various scrapers into one place, and create some re-usable base code in the process. As such, it is an attempt to make life easier for future developers that need to do some scraping (quickly). The idea is that each specific scraper becomes its own module, with classes in it that inherit from the base classes.
 
