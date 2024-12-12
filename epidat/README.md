@@ -7,7 +7,7 @@ Note that the epidat corpus is grouped based on a (geographically based) code, e
 ## Requirements
 
 Note that this module has its own `requirements.txt`. This imports the main requirements file, and adds a single dependency:
-'lxml'. This package is notorious for not installing on Windows machines. If you want to use the IIS scraper, please don't have a Windows machine, and go: `pip install -r epidat/requirements.txt`.
+'lxml'. This package is notorious for not installing on Windows machines. If you want to use the Epidat scraper, please don't have a Windows machine, and go: `pip install -r epidat/requirements.txt`.
 
 ## Scraping
 

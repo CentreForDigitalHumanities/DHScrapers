@@ -1,6 +1,6 @@
 # dhlab-scrapers
 
-This repo attempts to collect various scrapers developed by the Digital Humanities Lab into one place, and create some re-usable base code in the process. As such, it is an attempt to make life easier for future developers that need to do some scraping (quickly). The idea is that each specific scraper becomes its own module, with classes in it that inherit from the base classes.
+This repo attempts to collect various scrapers into one place, and create some re-usable base code in the process. As such, it is an attempt to make life easier for future developers that need to do some scraping (quickly). The idea is that each specific scraper becomes its own module, with classes in it that inherit from the base classes.
 
 ## Installation
 
@@ -44,4 +44,4 @@ Tip: the order of fields in the export(s) can be influenced by listing the field
 
 ## Utilities / Logging
 
-There is currently one utility in the utilities module: an initializer for a logger. Calling this function will give you a logger that will log INFO (and above) to the console, and DEBUG and above a file. Simply call this function before doing anything else, and you can import the logger (`logger = logging.getLogger(__name__)`) in each script (`parser`, `collector`, etc) and start logging.
+There is currently one utility in the utilities module: an initializer for a logger. Calling this function will give you a logger that will log INFO (and above) to the console, and DEBUG and above to a file. Simply call this function before doing anything else, and you can import the logger (`logger = logging.getLogger(__name__)`) in each script (`parser`, `collector`, etc) and start logging.
