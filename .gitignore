@@ -1,6 +1,6 @@
 *.log
-/.env
 /.vscode
+*.env
 *.pyc
 /.pytest*
 /check_all_scrapes

@@ -1,0 +1,52 @@
+services:
+  harvest:
+    build:
+      context: .
+    volumes:
+      - iis-files:/iis-files
+      - epidoc-stylesheets:/epidoc-stylesheets
+      - type: bind
+        source: ./output
+        target: /output
+    command: sh /scripts/export-newest.sh
+  dh-scraper:
+    build:
+      context: ../
+    image: dh-scraper:latest
+  parse:
+    image: dh-scraper:latest
+    depends_on:
+      dh-scraper:
+        condition: service_completed_successfully
+      harvest:
+        condition: service_completed_successfully
+    volumes:
+      - iis-files:/iis-files
+      - type: bind
+        source: $OUTPUT_FOLDER
+        target: /output
+      - type: bind
+        source: .
+        target: /dh-scrapers/iis
+    stdin_open: true
+    tty: true
+    command: python -m iis --import_folder /iis-files --export_folder /output
+  postprocess:
+    image: atomgraph/saxon
+    platform: linux/amd64
+    depends_on:
+      parse:
+        condition: service_completed_successfully
+    volumes:
+      - epidoc-stylesheets:/xsl
+      - type: bind
+        source: $OUTPUT_FOLDER
+        target: /output
+      - type: bind
+        source: $OUTPUT_POSTPROCESSED
+        target: /postprocessed
+    command: -s:/output -xsl:/xsl/start-txt.xsl -o:/postprocessed
+
+volumes:
+  iis-files:
+  epidoc-stylesheets:

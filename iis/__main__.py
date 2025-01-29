@@ -2,12 +2,12 @@ import os
 import sys
 import argparse
 from utilities.logging import init_logger
-from iis.iis import scrape 
+from iis.iis import parse
 
 def main(sys_args):
     init_logger()
     args = parse_arguments(sys_args)
-    scrape(args.inscriptions_xml_path, args.export_folder)
+    parse(args.import_folder, args.export_folder)
 
 
 def folder_path(folder_path):
@@ -28,8 +28,13 @@ def parse_arguments(sys_args):
         description='Scrape inscriptions from the IIP API.')
 
     parser.add_argument(
-        '--inscriptions_xml_path', '-in', dest='inscriptions_xml_path', required=True,
-        help="""Required. Path of the inscription id xml file. Typically in the input folder of this module.""")
+        '--import_folder',
+        '-if',
+        dest='import_folder',
+        type=folder_path,
+        required=True,
+        help='''Path to the folder where the import files are located. Should be a path to a folder, not a file.''',
+    )
 
     parser.add_argument(
         '--export_folder', '-ef', dest='export_folder', type=folder_path, required=True,
