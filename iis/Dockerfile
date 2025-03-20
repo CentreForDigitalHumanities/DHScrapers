@@ -3,7 +3,8 @@ FROM docker.io/library/alpine:3
 RUN apk add --no-cache git
 
 WORKDIR /epidoc-stylesheets
-RUN git clone https://github.com/EpiDoc/Stylesheets .
+# the most recent version of Epidoc stylesheets fails with the saxon image
+RUN git clone -b v9.5 --single-branch https://github.com/EpiDoc/Stylesheets .
 
 WORKDIR /iis-files 
 RUN git clone -n --depth=1 --filter=tree:0 \

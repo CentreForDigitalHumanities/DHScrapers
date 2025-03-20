@@ -17,16 +17,19 @@ class Collector(BaseCollector):
         Collect all Epidoc xml files which have changed since last harvest
         Enrich them with bibliographic data from Zotero and export to output folder
         '''
-        with open(os.path.join('iis', 'output', 'changed.txt'), 'r') as change_file:
-            for line in change_file:
+        change_file = os.path.join('iis', 'harvest-metadata', 'harvested-files.txt')
+        with open(change_file, 'r') as changed:
+            for line in changed:
                 filename = line.split("  ")[1].rstrip()
                 inscription_id = os.path.splitext(filename)[0]
                 with open(os.path.join(import_folder, filename), 'r') as xml_file:
                     xml = xml_file.read()
-                    # xml = self.enrich(inscription_id, xml)
+                    xml = self.enrich(inscription_id, xml)
                     self.export(
-                        os.path.join(export_folder, os.path.basename(filename)), xml
+                        os.path.join(export_folder, os.path.basename(filename)),
+                        xml,
                     )
+        os.remove(change_file)
 
     def enrich(self, inscription_id: str, xml: BeautifulSoup):
         '''
