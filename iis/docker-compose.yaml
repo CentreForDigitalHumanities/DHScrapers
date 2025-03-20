@@ -37,9 +37,9 @@ services:
   postprocess:
     image: atomgraph/saxon
     platform: linux/amd64
-    # depends_on:
-    #   parse:
-    #     condition: service_completed_successfully
+    depends_on:
+      parse:
+        condition: service_completed_successfully
     volumes:
       - epidoc-stylesheets:/xsl
       - type: bind
