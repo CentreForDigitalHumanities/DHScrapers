@@ -1,7 +1,7 @@
 services:
   harvest:
-    build:
-      context: .
+    image: ghcr.io/centrefordigitalhumanities/dh-scrapers-iis:latest
+    restart: unless-stopped
     volumes:
       - iis-files:/iis-files
       - epidoc-stylesheets:/epidoc-stylesheets
@@ -12,12 +12,9 @@ services:
         source: harvest-metadata
         target: /harvest-metadata
     command: sh /scripts/export-newest.sh
-  dh-scraper:
-    build:
-      context: ../
-    image: dh-scraper:latest
   parse:
-    image: dh-scraper:latest
+    image: ghcr.io/centrefordigitalhumanities/dh-scrapers:latest
+    restart: unless-stopped
     depends_on:
       dh-scraper:
         condition: service_completed_successfully
@@ -36,6 +33,7 @@ services:
     command: python -m iis --import_folder /iis-files --export_folder /output
   postprocess:
     image: atomgraph/saxon
+    restart: unless-stopped
     platform: linux/amd64
     depends_on:
       parse:
