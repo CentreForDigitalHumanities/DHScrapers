@@ -9,7 +9,7 @@ on:
         - 'Dockerfile'
         - 'docker-compose.yaml'
         - 'requirements.txt'
-        - '.github'
+        - '.github/*'
     schedule:
         - cron: "0 0 1 * *"
 
