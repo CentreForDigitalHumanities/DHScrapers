@@ -16,8 +16,6 @@ services:
     image: ghcr.io/centrefordigitalhumanities/dh-scrapers:latest
     restart: unless-stopped
     depends_on:
-      dh-scraper:
-        condition: service_completed_successfully
       harvest:
         condition: service_completed_successfully
     volumes:
