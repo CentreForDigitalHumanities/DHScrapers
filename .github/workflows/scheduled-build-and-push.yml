@@ -6,9 +6,10 @@ on:
     workflow_dispatch:
     push:
       paths:
-        - Dockerfile
-        - docker-compose.yaml
-        - requirements.txt
+        - 'Dockerfile'
+        - 'docker-compose.yaml'
+        - 'requirements.txt'
+        - '.github'
     schedule:
         - cron: "0 0 1 * *"
 
