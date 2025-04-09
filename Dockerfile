@@ -1,5 +1,5 @@
-FROM docker.io/library/python:3.10
-ENV PYTHONUNBUFFERED 1
+FROM docker.io/library/python:3.12-slim
+ENV PYTHONUNBUFFERED=1
 
 COPY base_scraper /dh-scrapers/base_scraper
 COPY utilities /dh-scrapers/utilities
