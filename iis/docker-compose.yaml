@@ -1,7 +1,7 @@
 services:
   harvest:
     image: ghcr.io/centrefordigitalhumanities/dh-scrapers-iis:latest
-    restart: unless-stopped
+    restart: on-failure:3
     volumes:
       - iis-files:/iis-files
       - epidoc-stylesheets:/epidoc-stylesheets
@@ -14,7 +14,7 @@ services:
     command: sh /scripts/export-newest.sh
   parse:
     image: ghcr.io/centrefordigitalhumanities/dh-scrapers:latest
-    restart: unless-stopped
+    restart: on-failure:3
     depends_on:
       harvest:
         condition: service_completed_successfully
@@ -31,7 +31,7 @@ services:
     command: python -m iis --import_folder /iis-files --export_folder /output
   postprocess:
     image: atomgraph/saxon
-    restart: unless-stopped
+    restart: on-failure:3
     platform: linux/amd64
     depends_on:
       parse:
