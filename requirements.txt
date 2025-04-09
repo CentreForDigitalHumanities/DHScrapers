@@ -36,15 +36,11 @@ pytest==5.4.1
     # via -r requirements.in
 requests==2.23.0
     # via -r requirements.in
-selenium==3.141.0
-    # via -r requirements.in
 six==1.14.0
     # via packaging
 soupsieve==2.0
     # via beautifulsoup4
 urllib3==1.25.8
-    # via
-    #   requests
-    #   selenium
+    # via requests
 wcwidth==0.1.8
     # via pytest

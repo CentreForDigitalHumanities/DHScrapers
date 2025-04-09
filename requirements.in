@@ -1,8 +1,7 @@
-selenium
 beautifulsoup4
-requests
-pytest
-lxml
-gender_guesser
 dicttoxml
+gender_guesser
 iso-639
+lxml
+pytest
+requests
