@@ -2,7 +2,6 @@ selenium
 beautifulsoup4
 requests
 pytest
-langdetect
 lxml
 gender_guesser
 dicttoxml
