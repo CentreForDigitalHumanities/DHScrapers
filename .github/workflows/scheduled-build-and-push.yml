@@ -4,6 +4,11 @@ name: Build and push of all images
 
 on:
     workflow_dispatch:
+    push:
+      paths:
+        - Dockerfile
+        - docker-compose.yaml
+        - requirements.txt
     schedule:
         - cron: "0 0 1 * *"
 
