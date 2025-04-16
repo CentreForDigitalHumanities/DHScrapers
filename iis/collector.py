@@ -1,5 +1,7 @@
-import os
+import fileinput
 import logging
+import os
+import sys
 
 from bs4 import BeautifulSoup
 
@@ -18,18 +20,30 @@ class Collector(BaseCollector):
         Enrich them with bibliographic data from Zotero and export to output folder
         '''
         change_file = os.path.join('iis', 'harvest-metadata', 'harvested-files.txt')
-        with open(change_file, 'r') as changed:
-            for line in changed:
-                filename = line.split("  ")[1].rstrip()
-                inscription_id = os.path.splitext(filename)[0]
-                with open(os.path.join(import_folder, filename), 'r') as xml_file:
-                    xml = xml_file.read()
-                    xml = self.enrich(inscription_id, xml)
-                    self.export(
-                        os.path.join(export_folder, os.path.basename(filename)),
-                        xml,
-                    )
-        os.remove(change_file)
+        with open(change_file) as f:
+            num_records = sum(1 for _ in f)
+        for _index in range(num_records):
+            line = self.get_document_and_save_progress(change_file)
+            filename = line.split("  ")[1].rstrip()
+            logging.info(f"Processing file {filename}")
+            inscription_id = os.path.splitext(filename)[0]
+            with open(os.path.join(import_folder, filename), 'r') as xml_file:
+                xml = xml_file.read()
+                xml = self.enrich(inscription_id, xml)
+                self.export(
+                    os.path.join(export_folder, filename),
+                    xml,
+                )
+
+    def get_document_and_save_progress(self, change_file: str) -> str:
+        """Get the first document from the harvest file and remove it from the harvest file"""
+        with fileinput.input(files=(change_file), inplace=True) as changed:
+            for index, line in enumerate(changed):
+                if index == 0:
+                    output = line
+                else:
+                    sys.stdout.write(line)  # `print` would introduce newlines
+            return output
 
     def enrich(self, inscription_id: str, xml: BeautifulSoup):
         '''
