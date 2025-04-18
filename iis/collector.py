@@ -22,13 +22,16 @@ class Collector(BaseCollector):
             changed_documents = f.readlines()
         for line in changed_documents:
             filename = line.split("  ")[1].rstrip()
+            export_file = os.path.join(export_folder, filename)
+            if os.path.exists(export_file):
+                continue
             logging.info(f"Processing file {filename}")
             inscription_id = os.path.splitext(filename)[0]
             with open(os.path.join(import_folder, filename), 'r') as xml_file:
                 xml = xml_file.read()
                 xml = self.enrich(inscription_id, xml)
                 self.export(
-                    os.path.join(export_folder, filename),
+                    export_file,
                     xml,
                 )
 
