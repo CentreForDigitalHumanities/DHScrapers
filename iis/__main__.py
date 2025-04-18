@@ -40,6 +40,15 @@ def parse_arguments(sys_args):
         '--export_folder', '-ef', dest='export_folder', type=folder_path, required=True,
         help='''Path to the folder where you want the exports to appear. Should be a path to a folder, not a file.''')
 
+    parser.add_argument(
+        '--job_name',
+        '-j',
+        dest='job_name',
+        type=str,
+        required=True,
+        help="Name of the job, to keep track of consecutive harvests",
+    )
+
     return parser.parse_args()
 
 if __name__ == "__main__":

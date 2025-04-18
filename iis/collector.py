@@ -1,7 +1,5 @@
-import fileinput
 import logging
 import os
-import sys
 
 from bs4 import BeautifulSoup
 
@@ -14,16 +12,15 @@ logger = logging.getLogger(__name__)
 
 class Collector(BaseCollector):
 
-    def collect(self, import_folder: str, export_folder: str):
+    def collect(self, import_folder: str, export_folder: str, job_name: str):
         '''
         Collect all Epidoc xml files which have changed since last harvest
         Enrich them with bibliographic data from Zotero and export to output folder
         '''
-        change_file = os.path.join('iis', 'harvest-metadata', 'harvested-files.txt')
+        change_file = os.path.join('iis', 'harvest-metadata', f'{job_name}.txt')
         with open(change_file) as f:
-            num_records = sum(1 for _ in f)
-        for _index in range(num_records):
-            line = self.get_document_and_save_progress(change_file)
+            changed_documents = f.readlines()
+        for line in changed_documents:
             filename = line.split("  ")[1].rstrip()
             logging.info(f"Processing file {filename}")
             inscription_id = os.path.splitext(filename)[0]
@@ -34,16 +31,6 @@ class Collector(BaseCollector):
                     os.path.join(export_folder, filename),
                     xml,
                 )
-
-    def get_document_and_save_progress(self, change_file: str) -> str:
-        """Get the first document from the harvest file and remove it from the harvest file"""
-        with fileinput.input(files=(change_file), inplace=True) as changed:
-            for index, line in enumerate(changed):
-                if index == 0:
-                    output = line
-                else:
-                    sys.stdout.write(line)  # `print` would introduce newlines
-            return output
 
     def enrich(self, inscription_id: str, xml: BeautifulSoup):
         '''

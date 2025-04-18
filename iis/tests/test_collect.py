@@ -16,9 +16,4 @@ def change_file(tmp_path):
 
 def test_track_changes_in_file(change_file):
     collector = Collector()
-    line = collector.get_document_and_save_progress(change_file)
-    assert line == 'akld0024.xml\n'
-    with open(change_file, 'r') as f:
-        lines = f.readlines()
-        assert len(lines) == 2
-        assert lines[0] == 'beth0004.xml\n'
+    # TO DO: test that the `harvested-files.txt` tmp file produces xmls
