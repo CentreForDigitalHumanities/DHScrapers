@@ -4,7 +4,7 @@ name: Build and push of all images
 
 on:
     workflow_dispatch:
-    push:
+    #push:
     schedule:
     - cron: "0 0 1 * *"
 
