@@ -19,5 +19,5 @@ jobs:
       run: |
         curl -LO https://dl.k8s.io/release/$KUBECTL_VERSION/bin/linux/amd64/kubectl
         chmod +x ./kubectl
-        ./kubectl apply -f ./kmanifests/harvest-job.yaml --token=${{ secrets.SA_TOKEN }} --namespace gw-humit-sandbox
+        ./kubectl apply -f ./kmanifests/harvest-job.yaml --token=${{ secrets.SA_TOKEN }} --namespace gw-dev-rslab-peaceportal
       #./kubectl rollout restart deployment/kb-server --token=${{ secrets.SA_TOKEN }} --namespace gw-humit-sandbox
