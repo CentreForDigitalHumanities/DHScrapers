@@ -9,7 +9,7 @@ spec:
       - name: ubuntu
         image: ubuntu
         command: ["/bin/sh"]
-        args: ["-c", "while true; do sleep 10; echo 'Hello crunchy world!'; done"]
+        args: ["-c", "while true; do sleep 10; echo 'Hello crunchy world!' >> /proc/1/fd/1; done"]
         # logger()
         #- echo "hello I am crunching" >> /proc/1/fd/1
         #- sleep
