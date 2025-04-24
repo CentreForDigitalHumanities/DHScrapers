@@ -8,8 +8,9 @@ spec:
       containers:
       - name: ubuntu
         image: ubuntu
-        args:
-        - echo "hello I am crunching" >> /proc/1/fd/1
+        command: ["/bin/sh"]
+        args: ["-c", "while true; do sleep 10; echo 'Hello crunchy world!'; done"]
+        #- echo "hello I am crunching" >> /proc/1/fd/1
         #- sleep
         #- "2d"
       restartPolicy: OnFailure
