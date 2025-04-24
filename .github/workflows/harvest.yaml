@@ -5,7 +5,6 @@ run-name: ${{ github.actor }} is harvesting
 on: [workflow_dispatch]
 
 jobs:
-  harvest:
   deploy-harvestjob-to-kubernetes:
     runs-on: self-hosted
     env:
