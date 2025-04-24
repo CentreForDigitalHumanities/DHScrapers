@@ -10,6 +10,6 @@ spec:
         image: ubuntu
         args:
         - echo "hello I am crunching" >> /proc/1/fd/1
-        - sleep
-        - "2d"
+        #- sleep
+        #- "2d"
       restartPolicy: OnFailure
