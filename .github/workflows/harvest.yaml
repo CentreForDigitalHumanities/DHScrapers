@@ -1,4 +1,4 @@
-name: test-github-actions
+name: Harvest
 run-name: ${{ github.actor }} is harvesting
 on: [workflow_dispatch]
 
