@@ -9,7 +9,7 @@ spec:
       - name: ubuntu
         image: ubuntu
         command: ["/bin/sh"]
-        args: ["-c", "for i in {1..10}; do echo 'Hello crunchy world!' >> /proc/1/fd/1; sleep 17280; done"]
+        args: ["-c", "for i in {1..100}; do echo 'Hello crunchy world!' >> /proc/1/fd/1; sleep 1728; done"] # two days
         # logger()
         #- echo "hello I am crunching" >> /proc/1/fd/1
         #- sleep
