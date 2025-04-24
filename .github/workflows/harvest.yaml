@@ -1,0 +1,24 @@
+# This workflow will run every 3 months or manually
+
+name: Harvest
+run-name: ${{ github.actor }} is harvesting
+on: [workflow_dispatch]
+
+jobs:
+  harvest:
+  deploy-harvestjob-to-kubernetes:
+    runs-on: self-hosted
+    env:
+      KUBECTL_VERSION: v1.30.5
+    steps:
+    -
+      name: Checkout code
+      uses: actions/checkout@v4
+    -
+      name: Deploy with kubectl
+      # apply kmanifests or leave them unchanged and always restart the deployment
+      run: |
+        curl -LO https://dl.k8s.io/release/$KUBECTL_VERSION/bin/linux/amd64/kubectl
+        chmod +x ./kubectl
+        ./kubectl apply -f ./kmanifests/harvest-job.yaml --token=${{ secrets.SA_TOKEN }} --namespace gw-humit-sandbox
+      #./kubectl rollout restart deployment/kb-server --token=${{ secrets.SA_TOKEN }} --namespace gw-humit-sandbox
