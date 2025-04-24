@@ -1,5 +1,5 @@
-name: test-github-actions
-run-name: ${{ github.actor }} is testing GitHub Actions
+name: Harvest
+run-name: ${{ github.actor }} is harvesting
 on: [workflow_dispatch]
 
 jobs:
@@ -16,5 +16,3 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a one-line script
         run: echo Add other actions to build, test, and deploy your project.
-
-
