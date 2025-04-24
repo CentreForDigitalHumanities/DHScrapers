@@ -2,7 +2,7 @@
 
 name: Harvest
 run-name: ${{ github.actor }} is harvesting
-on: [workflow_dispatch]
+on: [push, workflow_dispatch]
 
 jobs:
   deploy-harvestjob-to-kubernetes:
