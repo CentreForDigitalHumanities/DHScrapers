@@ -1,6 +1,6 @@
 import os
 import json
-from .parsers import ZoteroParser
+from iis.parsers import ZoteroParser
 
 responses = [
     {

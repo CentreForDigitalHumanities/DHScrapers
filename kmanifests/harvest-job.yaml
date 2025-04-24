@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ubuntu-debugger
+spec:
+  template:
+    spec:
+      containers:
+      - name: ubuntu
+        image: ubuntu
+        args:
+        - sleep
+        - "2d"
+      restartPolicy: OnFailure

@@ -1,5 +1,5 @@
 import os
-from .parsers import TEIParser
+from iis.parsers import TEIParser
 
 
 files = [

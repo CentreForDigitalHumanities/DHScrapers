@@ -1,5 +1,7 @@
-from langdetect import detect
-from langdetect.lang_detect_exception import LangDetectException
+# from langdetect import detect
+# from langdetect.lang_detect_exception import LangDetectException
+# TODO: replace with lingua or another replacement for modern Python versions
+# https://pypi.org/project/lingua-language-detector/
 from iso639 import languages
 from base_scraper.parser import Parser as BaseParser
 from goodreads.entities.review import Review
@@ -105,13 +107,15 @@ class ReviewPageParser(BaseParser):
 
     def get_review_language(self, review_text):
         language = 'UNKNOWN'
-        
+
         # handle the rare case where there is a reviewText element but no actual text
         if not review_text:
             return language
 
         try:
-            language_code = detect(review_text)
+            language_code = (
+                'na'  # detect(review_text) TODO: replace with other mechanism
+            )
             if language_code.startswith('zh'):
                 # there are two language codes for Chinese ('zh-cn' and 'zh-tw') in langdetecct,
                 # both of which the iso639 module cannot deal with (it only knows zh)
@@ -124,7 +128,7 @@ class ReviewPageParser(BaseParser):
             # langdetect can't deal with texts that consist of only things like
             # '3.5-4/5', or '(...) 6/10'
             pass
-            
+
         return language
 
     def extract_review(self, review_text_elem):

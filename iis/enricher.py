@@ -1,4 +1,3 @@
-import html
 from base_scraper.parser import Parser as BaseParser
 
 class TEIEnricher(BaseParser):
@@ -35,4 +34,3 @@ class TEIEnricher(BaseParser):
             new_element.append(pub)
         self.soup.find('msIdentifier').append(new_element)
         return self.soup
-

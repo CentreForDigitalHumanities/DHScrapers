@@ -1,18 +1,6 @@
 from base_scraper.parser import Parser as BaseParser
 
 
-class InputParser(BaseParser):
-
-    def get_inscription_ids(self):
-        ids = []
-
-        docs = self.soup.find_all('doc')
-        for doc in docs:
-            ids.append(self.remove_whitespace(doc.get_text()))
-
-        return ids
-
-
 class ZoteroParser(BaseParser):
 
     def get_source(self):

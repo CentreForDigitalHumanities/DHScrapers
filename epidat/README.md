@@ -4,11 +4,6 @@ This is a scraper for the [Epidat](http://www.steinheim-institut.de/cgi-bin/epid
 
 Note that the epidat corpus is grouped based on a (geographically based) code, e.g. `aha` (Ahaus), `bme` (Bad Münstereifel), etc. This structure is kept: each group ends up in its own folder.
 
-## Requirements
-
-Note that this module has its own `requirements.txt`. This imports the main requirements file, and adds a single dependency:
-'lxml'. This package is notorious for not installing on Windows machines. If you want to use the Epidat scraper, please don't have a Windows machine, and go: `pip install -r epidat/requirements.txt`.
-
 ## Scraping
 
 Getting the scraper in action is easy as pie. There is only one parameter: `--export_folder`, i.e. the folder where you need the results to end up.
