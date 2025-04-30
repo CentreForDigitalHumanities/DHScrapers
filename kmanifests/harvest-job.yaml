@@ -5,30 +5,15 @@ metadata:
 spec:
   template:
     spec:
-      # initContainers:
-      # - name: initc1
-      #   image: busybox
-      #   command: ['sh', '-c', "for i in {1..100}; do echo 'printy' >> /proc/1/fd/1; sleep 1; done"] # 100s
-      # - name: initc2
-      #   image: busybox
-      #   command: ["/bin/sh"]
-      #   args: ["-c", "for i in {1..100}; do echo 'Hello crunchy world!' >> /proc/1/fd/1; sleep 1728; done"] # 1728s*100=2days
-      # containers:
-      # - name: ubuntu
-      #   image: ubuntu
-      #   command: ['sh', '-c', "echo 'Init containers finished'"]
-
-      # restartPolicy: Never #OnFailure
-
       initContainers:
-      - name: job-1
+      - name: quicky
         image: busybox
-        command: ['sh', '-c', 'for i in 1 2 3; do echo "job-1 `date`" && sleep 30s; done;']
-      - name: job-2
+        command: ['sh', '-c', 'for i in 1 2 3; do echo "quicky `date`" && sleep 30s; done;'] # 3*30s=90s=1.5m
+      - name: crunchy
         image: busybox
-        command: ['sh', '-c', 'for i in 1 2 3; do echo "job-2 `date`" && sleep 5s; done;']
+        command: ['sh', '-c', 'for i in {1..100}; do echo "crunchy `date`" && sleep 1728s; done;'] # 100*1728s=172800s=2days
       containers:
       - name: job-done
         image: busybox
-        command: ['sh', '-c', 'echo "job-1 and job-2 completed"']
+        command: ['sh', '-c', 'echo "Init containers completed"']
       restartPolicy: Never
