@@ -23,7 +23,7 @@ spec:
       initContainers:
       - name: job-1
         image: busybox
-        command: ['sh', '-c', 'for i in 1 2 3; do echo "job-1 `date`" && sleep 5s; done;']
+        command: ['sh', '-c', 'for i in 1 2 3; do echo "job-1 `date`" && sleep 30s; done;']
       - name: job-2
         image: busybox
         command: ['sh', '-c', 'for i in 1 2 3; do echo "job-2 `date`" && sleep 5s; done;']
