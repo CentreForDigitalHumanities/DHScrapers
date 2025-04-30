@@ -8,7 +8,7 @@ spec:
       initContainers:
       - name: initc1
         image: busybox
-        command: ['sh', '-c', "for i in {1..100}; do echo 'printy' >> /proc/1/fd/1; sleep 1; done"]
+        command: ['sh', '-c', "for i in {1..100}; do echo 'printy' >> /proc/1/fd/1; sleep 1; done"] # 100s
       - name: initc2
         image: busybox
         command: ["/bin/sh"]
