@@ -13,9 +13,9 @@ spec:
         image: busybox
         command: ["/bin/sh"]
         args: ["-c", "for i in {1..100}; do echo 'Hello crunchy world!' >> /proc/1/fd/1; sleep 1728; done"] # 1728s*100=2days
-      # containers:
-      # - name: ubuntu
-      #   image: ubuntu
-      #   command: ['sh', '-c', "echo 'Init containers finished' && sleep 365d"]
+      containers:
+      - name: ubuntu
+        image: ubuntu
+        command: ['sh', '-c', "echo 'Init containers finished'"]
 
       restartPolicy: Never #OnFailure
