@@ -17,7 +17,7 @@ spec:
           mountPath: /quicky-data
       - name: crunchy
         image: busybox
-        command: ['sh', '-c', 'for i in {1..100}; do echo "crunchy `date`" >> /crunchy-data/timeline.txt && sleep 1728s; cat >> "crunchy `date`"; done;'] # 100*1728s=172800s=2days
+        command: ['sh', '-c', 'for i in {1..100}; do echo "crunchy `date`" >> /crunchy-data/timeline.txt && sleep 1728s; done;'] # 100*1728s=172800s=2days
         volumeMounts:
         - name: shared-data
           mountPath: /crunchy-data
