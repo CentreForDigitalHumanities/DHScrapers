@@ -5,15 +5,24 @@ metadata:
 spec:
   template:
     spec:
+      volumes:
+      - name: shared-data
+        emptyDir: {}
       initContainers:
       - name: quicky
         image: busybox
         command: ['sh', '-c', 'for i in 1 2 3; do echo "quicky `date`" && sleep 30s; done;'] # 3*30s=90s=1.5m
+        volumeMounts:
+        - name: shared-data
+          mountPath: /quicky-data
       - name: crunchy
         image: busybox
         command: ['sh', '-c', 'for i in {1..100}; do echo "crunchy `date`" && sleep 1728s; done;'] # 100*1728s=172800s=2days
+        volumeMounts:
+        - name: shared-data
+          mountPath: /crunchy-data
       containers:
-      - name: job-done
+      - name: initcons-done
         image: busybox
         command: ['sh', '-c', 'echo "Init containers completed"']
       restartPolicy: Never
