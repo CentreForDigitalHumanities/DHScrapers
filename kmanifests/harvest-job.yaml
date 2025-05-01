@@ -22,7 +22,7 @@ spec:
         - name: shared-data
           mountPath: /crunchy-data
       containers:
-      - name: initcons-done
+      - name: initcons-don
         image: busybox
         command: ['sh', '-c', 'echo "Init containers completed" && cat /data/timeline.txt']
         volumeMounts:
