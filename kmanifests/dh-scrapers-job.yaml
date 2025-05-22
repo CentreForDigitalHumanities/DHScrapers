@@ -19,7 +19,7 @@ spec:
             value: <ephemeral_runner_token>
         envFrom:
         - configMapRef:
-            name: dh-scrapers-runner-cm
+            name: dh-scrapers-cm
         command: ['sh', '-c', 'for i in 1 2 3; do echo "quicky `date`" >> /quicky-data/timeline.txt && sleep 30s; done;'] # 3*30s=90s=1.5m
         volumeMounts:
         - name: shared-data
@@ -29,7 +29,7 @@ spec:
       - name: crunchy
         image: busybox
         # command: ['sh', '-c', 'exit 1'] # kill -SIGHUP $$
-        command: ['sh', '-c', 'for i in 1 2 3 4 5 6 7 8 9 10; do echo "crunchy `date`" >> /crunchy-data/timeline.txt && sleep 172800ss; done;'] # 10*17280s=172800s=2days
+        command: ['sh', '-c', 'for i in 1 2 3 4 5 6 7 8 9 10; do echo "crunchy `date`" >> /crunchy-data/timeline.txt && sleep 17280s; done;'] # 10*17280s=172800s=2days
         volumeMounts:
         - name: shared-data
           mountPath: /crunchy-data
