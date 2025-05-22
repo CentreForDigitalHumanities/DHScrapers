@@ -1,11 +1,11 @@
 # This workflow will run every 3 months or manually
 
-name: Harvest
-run-name: ${{ github.actor }} is harvesting
-on: [workflow_dispatch]
+name: ScrapersFlow
+run-name: ${{ github.actor }} is deploying scrapers
+on: [push, workflow_dispatch]
 
 jobs:
-  deploy-harvestjob-to-kubernetes:
+  deploy-scrapejob-to-kubernetes:
     runs-on: self-hosted
     env:
       KUBECTL_VERSION: v1.30.5
@@ -19,6 +19,7 @@ jobs:
       run: |
         curl -LO https://dl.k8s.io/release/$KUBECTL_VERSION/bin/linux/amd64/kubectl
         chmod +x ./kubectl
-        ./kubectl delete job harvest-job --ignore-not-found=true --now --token=${{ secrets.SA_TOKEN }} --namespace gw-dev-rslab-peaceportal
-        ./kubectl apply -f ./kmanifests/harvest-job.yaml --token=${{ secrets.SA_TOKEN }} --namespace gw-dev-rslab-peaceportal
+        ./kubectl apply -f ./kmanifests/dh-scrapers-cm.yaml --token=${{ secrets.SA_TOKEN }} --namespace gw-dev-rslab-peaceportal # create/modify
+        ./kubectl delete job dh-scrapers-job --ignore-not-found=true --now --token=${{ secrets.SA_TOKEN }} --namespace gw-dev-rslab-peaceportal
+        ./kubectl apply -f ./kmanifests/dh-scrapers-job.yaml --token=${{ secrets.SA_TOKEN }} --namespace gw-dev-rslab-peaceportal
       #./kubectl rollout restart deployment/kb-server --token=${{ secrets.SA_TOKEN }} --namespace gw-humit-sandbox

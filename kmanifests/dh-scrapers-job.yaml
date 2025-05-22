@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: harvest-job
+  name: dh-scrapers-job
 spec:
   template:
     spec:
@@ -11,6 +11,12 @@ spec:
       initContainers:
       - name: quicky
         image: busybox
+        env:
+          - name: RUNNER_TOKEN
+            value: <ephemeral_runner_token>
+        envFrom:
+        - configMapRef:
+            name: dh-scrapers-runner-cm
         command: ['sh', '-c', 'for i in 1 2 3; do echo "quicky `date`" >> /quicky-data/timeline.txt && sleep 30s; done;'] # 3*30s=90s=1.5m
         volumeMounts:
         - name: shared-data
