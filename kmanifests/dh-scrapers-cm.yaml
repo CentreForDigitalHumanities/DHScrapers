@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: dh-scrapers-cm
 data:
-  IAM_AVALUE: centrefordigitalhumanities-DHscrapers
+  IAM_ASTRING: loremipsum
