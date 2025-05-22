@@ -29,7 +29,6 @@ class Collector:
         if remove_newlines: return r.text.replace("\n", "")
         return r.text
 
-
     def collect_json(self, url, ignore_failed_request=False):
         '''
         Do the actual request and return the response, i.e. response.json().
@@ -40,8 +39,8 @@ class Collector:
             url -- the url to make the request to.
         '''
         r = self.make_request(url, ignore_failed_request)
-        return r.json()
-
+        if r:
+            return r.json()
 
     def make_request(self, url, ignore_failed_request):
         r = requests.get(url)
@@ -53,7 +52,6 @@ class Collector:
                 return None
             raise RuntimeError("Could not collect from url {}".format(url))
         return r
-    
 
     def get_base_url(self, url):
         '''
@@ -62,7 +60,6 @@ class Collector:
         parsed_url = urlparse(url)
         return urljoin(url, parsed_url.path)
 
-    
     def get_number_of_pages(self, total_items, items_per_page):
         '''
         Given a certain number of items per page,

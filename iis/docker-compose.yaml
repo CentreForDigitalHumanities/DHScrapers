@@ -1,0 +1,69 @@
+services:
+  harvest:
+    image: ghcr.io/centrefordigitalhumanities/dh-scrapers-iis:latest
+    environment:
+      - JOB=JOB
+    volumes:
+      - iis-files:/iis-files
+      - epidoc-stylesheets:/epidoc-stylesheets
+      - type: bind
+        source: harvest-metadata
+        target: /harvest-metadata
+    command: sh /scripts/export-newest.sh
+  parse:
+    image: ghcr.io/centrefordigitalhumanities/dh-scrapers:latest
+    depends_on:
+      harvest:
+        condition: service_completed_successfully
+    volumes:
+      - iis-files/$JOB:/iis-files
+      - type: bind
+        source: $OUTPUT_FOLDER/$JOB
+        target: /output
+      - type: bind
+        source: .
+        target: /dh-scrapers/iis
+    stdin_open: true
+    tty: true
+    command: python -m iis --import_folder /iis-files --export_folder /output --job_name $JOB
+  prepare_postprocess:
+    image: FROM docker.io/library/alpine:3
+    depends_on:
+      parse:
+        condition: service_completed_successfully
+    environment:
+      - JOB=JOB
+    volumes:
+      - type: bind
+        source: ./check_progress.sh
+        target: /check_progress.sh
+      - type: bind
+        source: $OUTPUT_FOLDER
+        target: /output
+      - type: bind
+        source: $OUTPUT_POSTPROCESSED
+        target: /postprocessed
+      
+    command: sh check_progress.sh
+
+  postprocess:
+    image: atomgraph/saxon
+    platform: linux/amd64
+    environment:
+      - JOB=JOB
+    depends_on:
+      prepare_postprocess:
+        condition: service_completed_successfully
+    volumes:
+      - epidoc-stylesheets:/xsl
+      - type: bind
+        source: $OUTPUT_FOLDER/$JOB
+        target: /output
+      - type: bind
+        source: $OUTPUT_POSTPROCESSED/$JOB
+        target: /postprocessed
+    command: -s:/output -xsl:/xsl/start-txt.xsl -o:/postprocessed
+
+volumes:
+  iis-files:
+  epidoc-stylesheets:
