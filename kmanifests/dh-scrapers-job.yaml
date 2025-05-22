@@ -8,6 +8,9 @@ spec:
       volumes:
       - name: shared-data
         emptyDir: {}
+      - name: dh-scrapers-vol
+        persistentVolumeClaim:
+          claimName: dh-scrapers-pvc
       initContainers:
       - name: quicky
         image: busybox
@@ -21,6 +24,8 @@ spec:
         volumeMounts:
         - name: shared-data
           mountPath: /quicky-data
+        - name: dh-scrapers-vol
+          mountPath: /scrapers-data
       - name: crunchy
         image: busybox
         # command: ['sh', '-c', 'exit 1'] # kill -SIGHUP $$
