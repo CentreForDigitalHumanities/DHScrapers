@@ -36,7 +36,7 @@ spec:
         volumeMounts:
         - name: dh-scrapers-vol
           mountPath: /scrapers_data
-        command: ['sh', '-c', 'DIR_STAMP=$(cat /scrapers_data/current_run/is-scraping); echo $DIR_STAMP; echo "apple" >> /scrapers_data/current_run/$DIR_STAMP/basket.txt; echo "peach" >> /scrapers_data/current_run/$DIR_STAMP/basket.txt; cat /scrapers_data/current_run/$DIR_STAMP/basket.txt; mv /scrapers_data/current_run/$DIR_STAMP /scrapers_data/old_runs/; rm /scrapers_data/current_run/is-scraping']
+        command: ['sh', '-c', 'DIR_STAMP=$(cat /scrapers_data/current_run/is-scraping); echo "apple" >> /scrapers_data/current_run/$DIR_STAMP/basket.txt; echo "peach" >> /scrapers_data/current_run/$DIR_STAMP/basket.txt; cat /scrapers_data/current_run/$DIR_STAMP/basket.txt; mv /scrapers_data/current_run/$DIR_STAMP /scrapers_data/old_runs/; rm /scrapers_data/current_run/is-scraping']
       - name: number-crunch-timeline
         image: busybox
         volumeMounts:
