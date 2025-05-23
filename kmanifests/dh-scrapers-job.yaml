@@ -9,19 +9,22 @@ spec:
       - name: dh-scrapers-vol
         persistentVolumeClaim:
           claimName: dh-scrapers-pvc
+      - name: dh-scrapers-secret
+        secret:
+          secretName: elasticsearch-apikey
       initContainers:
-      - name: quicky
+      - name: echoes-in-the-ocean
         image: busybox
-        env:
-          - name: RUNNER_TOKEN
-            value: <ephemeral_runner_token>
         envFrom:
         - configMapRef:
             name: dh-scrapers-cm
-        command: ['sh', '-c', 'for i in 1 2 3; do echo "quicky `date`" >> /quicky-data/timeline.txt && sleep 30s; done;'] # 3*30s=90s=1.5m
         volumeMounts:
         - name: dh-scrapers-vol
           mountPath: /quicky-data
+        - name: dh-scrapers-secret
+          mountPath: "/secrets"
+          readOnly: true
+        command: ['sh', '-c', 'ls /secrets; echo $FAV_FRUIT']
       - name: crunchy
         image: busybox
         # command: ['sh', '-c', 'exit 1'] # kill -SIGHUP $$
