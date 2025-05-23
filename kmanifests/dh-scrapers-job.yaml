@@ -24,7 +24,7 @@ spec:
         - name: dh-scrapers-secret
           mountPath: "/secrets"
           readOnly: true
-        command: ['sh', '-c', 'ls /secrets; echo $FAV_FRUIT']
+        command: ['sh', '-c', 'cat /secrets/elastic-apikey; echo $FAV_FRUIT']
       - name: crunchy
         image: busybox
         # command: ['sh', '-c', 'exit 1'] # kill -SIGHUP $$
