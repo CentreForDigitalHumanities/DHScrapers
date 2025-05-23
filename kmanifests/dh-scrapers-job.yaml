@@ -25,18 +25,18 @@ spec:
           mountPath: "/secrets"
           readOnly: true
         command: ['sh', '-c', 'cat /secrets/elastic-apikey; echo $FAV_FRUIT;']
-      - name: dir-tree
+      - name: directory-tree
         image: busybox
         volumeMounts:
         - name: dh-scrapers-vol
           mountPath: /scrapers-data
-        command: ['sh', '-c', 'mkdir']
+        command: ['sh', '-c', 'mkdir /scrapers-data/old_runs; mkdir /scrapers-data/current_run/$(date +%Y%m%d_%H%M%S); touch /scrapers-data/current_run/is-running.txt']
       - name: fill-n-empty
         image: busybox
         volumeMounts:
         - name: dh-scrapers-vol
           mountPath: /scrapers-data
-        command: ['sh', '-c', 'echo "apple" >> /scrapers-data/basket.txt; echo "peach" >> /scrapers-data/basket.txt; cat /scrapers-data/basket.txt; > /scrapers-data/fruits.txt; cat /scrapers-data/basket.txt']
+        command: ['sh', '-c', 'echo "apple" >> /scrapers-data/current-run/*/basket.txt; echo "peach" >> /scrapers-data/current-run/*/basket.txt; cat /scrapers-data/current-run/*/basket.txt; > /scrapers-data/current-run/*/basket.txt; cat /scrapers-data/current-run/*/basket.txt']
       - name: number-crunch-timeline
         image: busybox
         volumeMounts:
