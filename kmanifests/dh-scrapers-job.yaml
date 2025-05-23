@@ -20,7 +20,7 @@ spec:
             name: dh-scrapers-cm
         volumeMounts:
         - name: dh-scrapers-vol
-          mountPath: /scrapers-data
+          mountPath: /scrapers_data
         - name: dh-scrapers-secret
           mountPath: "/secrets"
           readOnly: true
@@ -29,14 +29,14 @@ spec:
         image: busybox
         volumeMounts:
         - name: dh-scrapers-vol
-          mountPath: /scrapers-data
-        command: ['sh', '-c', 'mkdir /scrapers-data/old_runs; mkdir -p /scrapers-data/current_run/$(date +%Y%m%d_%H%M%S); touch /scrapers-data/current_run/is-scraping']
+          mountPath: /scrapers_data
+        command: ['sh', '-c', 'mkdir /scrapers_data/old_runs; mkdir -p /scrapers_data/current_run/$(date +%Y%m%d_%H%M%S); touch /scrapers_data/current_run/is-scraping']
       - name: fill-move-delete
         image: busybox
         volumeMounts:
         - name: dh-scrapers-vol
-          mountPath: /scrapers-data
-        command: ['sh', '-c', 'echo "apple" >> /scrapers-data/current-run/*/basket.txt; echo "peach" >> /scrapers-data/current-run/*/basket.txt; cat /scrapers-data/current-run/*/basket.txt; mv /scrapers-data/current-run/* /scrapers-data/old-runs; rm /scrapers-data/current-run/is-scraping']
+          mountPath: /scrapers_data
+        command: ['sh', '-c', 'echo "apple" >> /scrapers_data/current_run/*/basket.txt; echo "peach" >> /scrapers_data/current_run/*/basket.txt; cat /scrapers_data/current_run/*/basket.txt; mv /scrapers_data/current_run/* /scrapers_data/old_runs; rm /scrapers_data/current_run/is-scraping']
       - name: number-crunch-timeline
         image: busybox
         volumeMounts:
@@ -47,9 +47,9 @@ spec:
       containers:
       - name: initcons-done
         image: busybox
-        command: ['sh', '-c', 'echo "Init containers completed" && cat /scrapers-data/timeline.txt; ls /scrapers-data/old-runs; ls /scrapers-data/current-run']
+        command: ['sh', '-c', 'echo "Init containers completed" && cat /scrapers_data/timeline.txt; ls /scrapers_data/old-runs; ls /scrapers_data/current-run']
         volumeMounts:
         - name: dh-scrapers-vol
-          mountPath: /scrapers-data
+          mountPath: /scrapers_data
       restartPolicy: Never
   backoffLimit: 0
