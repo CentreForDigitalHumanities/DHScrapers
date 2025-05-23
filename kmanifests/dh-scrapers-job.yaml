@@ -30,7 +30,7 @@ spec:
         volumeMounts:
         - name: dh-scrapers-vol
           mountPath: /scrapers-data
-        command: ['sh', '-c', 'mkdir /scrapers-data/old_runs; mkdir /scrapers-data/current_run/$(date +%Y%m%d_%H%M%S); touch /scrapers-data/current_run/is-running.txt']
+        command: ['sh', '-c', 'mkdir /scrapers-data/old_runs; mkdir -p /scrapers-data/current_run/$(date +%Y%m%d_%H%M%S); touch /scrapers-data/current_run/is-running.txt']
       - name: fill-n-empty
         image: busybox
         volumeMounts:
