@@ -47,7 +47,7 @@ spec:
       containers:
       - name: initcons-done
         image: busybox
-        command: ['sh', '-c', 'echo "Init containers completed" && cat /scrapers-data/timeline.txt']
+        command: ['sh', '-c', 'echo "Init containers completed" && cat /scrapers-data/timeline.txt; ls /scrapers-data/old-runs; ls /scrapers-data/current-run']
         volumeMounts:
         - name: dh-scrapers-vol
           mountPath: /scrapers-data
