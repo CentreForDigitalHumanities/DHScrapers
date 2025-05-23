@@ -20,11 +20,11 @@ spec:
             name: dh-scrapers-cm
         volumeMounts:
         - name: dh-scrapers-vol
-          mountPath: /quicky-data
+          mountPath: /scrapers-data
         - name: dh-scrapers-secret
           mountPath: "/secrets"
           readOnly: true
-        command: ['sh', '-c', 'cat /secrets/elastic-apikey; echo $FAV_FRUIT']
+        command: ['sh', '-c', 'cat /secrets/elastic-apikey; echo $FAV_FRUIT; echo "appel" >> /scrapers-data/fruits.txt']
       - name: crunchy
         image: busybox
         # command: ['sh', '-c', 'exit 1'] # kill -SIGHUP $$
