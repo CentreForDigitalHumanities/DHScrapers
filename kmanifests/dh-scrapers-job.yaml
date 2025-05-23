@@ -30,13 +30,13 @@ spec:
         volumeMounts:
         - name: dh-scrapers-vol
           mountPath: /scrapers-data
-        command: ['sh', '-c', 'mkdir /scrapers-data/old_runs; mkdir -p /scrapers-data/current_run/$(date +%Y%m%d_%H%M%S); touch /scrapers-data/current_run/is-running.txt']
-      - name: fill-n-empty
+        command: ['sh', '-c', 'mkdir /scrapers-data/old_runs; mkdir -p /scrapers-data/current_run/$(date +%Y%m%d_%H%M%S); touch /scrapers-data/current_run/is-scraping']
+      - name: fill-move-delete
         image: busybox
         volumeMounts:
         - name: dh-scrapers-vol
           mountPath: /scrapers-data
-        command: ['sh', '-c', 'echo "apple" >> /scrapers-data/current-run/*/basket.txt; echo "peach" >> /scrapers-data/current-run/*/basket.txt; cat /scrapers-data/current-run/*/basket.txt; > /scrapers-data/current-run/*/basket.txt; cat /scrapers-data/current-run/*/basket.txt']
+        command: ['sh', '-c', 'echo "apple" >> /scrapers-data/current-run/*/basket.txt; echo "peach" >> /scrapers-data/current-run/*/basket.txt; cat /scrapers-data/current-run/*/basket.txt; mv /scrapers-data/current-run/* /scrapers-data/old-runs; rm /scrapers-data/current-run/is-scraping']
       - name: number-crunch-timeline
         image: busybox
         volumeMounts:
