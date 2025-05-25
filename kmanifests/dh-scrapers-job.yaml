@@ -27,7 +27,7 @@ spec:
         image: busybox
         volumeMounts:
         - name: dh-scrapers-vol
-          mountPath: /current_run # on pod
+          mountPath: /current_run # on Pod
           subPath: current_run # inside PVC
         command: ['sh', '-c', 'DIR_STAMP=$(date +%Y%m%d_%H%M%S); mkdir /current_run/$DIR_STAMP; echo "$DIR_STAMP" > /current_run/is-scraping; cat /current_run/is-scraping']
       - name: fill-move-delete
