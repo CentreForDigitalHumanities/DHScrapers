@@ -23,7 +23,7 @@ spec:
           mountPath: "/secrets"
           readOnly: true
         command: ['sh', '-c', 'cat /secrets/elastic-apikey; echo $FAV_FRUIT;']
-      - name: directory-tree
+      - name: timestamped-directory
         image: busybox
         volumeMounts:
         - name: dh-scrapers-vol
