@@ -19,8 +19,6 @@ spec:
         - configMapRef:
             name: dh-scrapers-cm
         volumeMounts:
-        - name: dh-scrapers-vol
-          mountPath: /scrapers_data
         - name: dh-scrapers-secret
           mountPath: "/secrets"
           readOnly: true
@@ -29,14 +27,19 @@ spec:
         image: busybox
         volumeMounts:
         - name: dh-scrapers-vol
-          mountPath: /scrapers_data
-        command: ['sh', '-c', 'DIR_STAMP=$(date +%Y%m%d_%H%M%S); mkdir /scrapers_data/old_runs; mkdir -p /scrapers_data/current_run/$DIR_STAMP; echo "$DIR_STAMP" > /scrapers_data/current_run/is-scraping; cat /scrapers_data/current_run/is-scraping']
+          mountPath: /current_run # on pod
+          subPath: current_run # inside PVC
+        command: ['sh', '-c', 'DIR_STAMP=$(date +%Y%m%d_%H%M%S); mkdir /current_run/$DIR_STAMP; echo "$DIR_STAMP" > /current_run/is-scraping; cat /current_run/is-scraping']
       - name: fill-move-delete
         image: busybox
         volumeMounts:
         - name: dh-scrapers-vol
-          mountPath: /scrapers_data
-        command: ['sh', '-c', 'DIR_STAMP=$(cat /scrapers_data/current_run/is-scraping); echo "apple" >> /scrapers_data/current_run/$DIR_STAMP/basket.txt; echo "peach" >> /scrapers_data/current_run/$DIR_STAMP/basket.txt; cat /scrapers_data/current_run/$DIR_STAMP/basket.txt; mv /scrapers_data/current_run/$DIR_STAMP /scrapers_data/old_runs/; rm /scrapers_data/current_run/is-scraping']
+          mountPath: /current_run
+          subPath: current_run
+        - name: dh-scrapers-vol
+          mountPath: /previous_runs
+          subPath: previous_runs
+        command: ['sh', '-c', 'DIR_STAMP=$(cat /current_run/is-scraping); echo "apple" >> /current_run/$DIR_STAMP/basket.txt; echo "peach" >> /current_run/$DIR_STAMP/basket.txt; cat /current_run/$DIR_STAMP/basket.txt; mv /current_run/$DIR_STAMP /previous_runs/; rm /current_run/is-scraping']
       - name: number-crunch-timeline
         image: busybox
         volumeMounts:
@@ -47,7 +50,7 @@ spec:
       containers:
       - name: initcons-done
         image: busybox
-        command: ['sh', '-c', 'echo "Init containers completed" && cat /scrapers_data/timeline.txt; ls /scrapers_data/old_runs; ls /scrapers_data/current_run']
+        command: ['sh', '-c', 'echo "Init containers completed" && cat /scrapers_data/timeline.txt; ls /scrapers_data/previous_runs; ls /scrapers_data/current_run']
         volumeMounts:
         - name: dh-scrapers-vol
           mountPath: /scrapers_data
