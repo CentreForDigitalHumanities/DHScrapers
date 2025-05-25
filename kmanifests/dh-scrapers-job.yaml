@@ -40,7 +40,7 @@ spec:
           mountPath: /previous_runs
           subPath: previous_runs
         command: ['sh', '-c', 'DIR_STAMP=$(cat /current_run/is-scraping); echo "apple" >> /current_run/$DIR_STAMP/basket.txt; echo "peach" >> /current_run/$DIR_STAMP/basket.txt; cat /current_run/$DIR_STAMP/basket.txt; mv /current_run/$DIR_STAMP /previous_runs/; rm /current_run/is-scraping']
-      - name: number-crunch-timeline
+      - name: number-crunch2timeline
         image: busybox
         volumeMounts:
         - name: dh-scrapers-vol
