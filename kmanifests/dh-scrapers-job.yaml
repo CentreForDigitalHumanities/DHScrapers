@@ -19,14 +19,14 @@ spec:
         - name: dh-scrapers-vol
           mountPath: /current_run # on Pod
           subPath: current_run # inside PVC
-        command: ['sh', '-c', 'DIR_STAMP=$(date +%Y%m%d_%H%M%S); mkdir /current_run/$DIR_STAMP; echo "$DIR_STAMP" > /current_run/is-scraping; cat /current_run/is-scraping']
+        command: ['sh', '-c', 'DIR_STAMP=$(date +%Y%m%d_%H%M%S); #mkdir /current_run/$DIR_STAMP; echo "$DIR_STAMP" > /current_run/is-scraping; cat /current_run/is-scraping']
       - name: dh-scrapers-iis # here attach!!!!
         image: ghcr.io/centrefordigitalhumanities/dh-scrapers-iis:latest
         volumeMounts:
         - name: dh-scrapers-vol
           mountPath: /current_run # on Pod
           subPath: current_run # inside PVC
-        command: ['sh', '-c','sleep 365d']
+        command: ['sh', '-c','/scripts/export-newest.sh']
       - name: echoes-from-the-sea
         image: busybox
         envFrom:
