@@ -28,6 +28,7 @@ jobs:
         platforms: linux/amd64,linux/arm64
   deploy-scrapejob-to-kubernetes:
     runs-on: self-hosted
+    needs: rebuild
     env:
       KUBECTL_VERSION: v1.30.5
     steps:
