@@ -24,8 +24,11 @@ spec:
         image: ghcr.io/centrefordigitalhumanities/dh-scrapers-iis:latest
         volumeMounts:
         - name: dh-scrapers-vol
-          mountPath: /current_run # on Pod
-          subPath: current_run # inside PVC
+          mountPath: /harvest-metadata # on Pod
+          subPath: current_run/harvest-metadata # inside PVC
+        - name: dh-scrapers-vol
+          mountPath: /iis-files # on Pod
+          subPath: current_run/iis-files # inside PVC
         command: ['sh', '-c','/scripts/export-newest.sh']
       - name: echoes-from-the-sea
         image: busybox
