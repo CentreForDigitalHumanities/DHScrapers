@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 mkdir /iis-harvester-data/harvest-metadata
 mkdir /iis-harvester-data/iis-files
 git fetch
