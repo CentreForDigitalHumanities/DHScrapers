@@ -24,7 +24,7 @@ spec:
         image: ghcr.io/centrefordigitalhumanities/dh-scrapers-iis:latest
         volumeMounts:
         - name: dh-scrapers-vol
-          mountPath: /iis-harvester-data # on Pod
+          mountPath: /current_run # on Pod
           subPath: current_run # inside PVC
         command: ['sh', '-c','/scripts/export-newest.sh']
       - name: echoes-from-the-sea
