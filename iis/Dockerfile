@@ -15,3 +15,4 @@ RUN chmod -R g+rwx /iip-texts # rootless
 RUN git sparse-checkout set --no-cone /epidoc-files
 
 COPY export-newest.sh /scripts/
+RUN chmod -R g+rwx /scripts # rootless
