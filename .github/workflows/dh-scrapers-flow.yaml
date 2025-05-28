@@ -22,4 +22,4 @@ jobs:
         ./kubectl apply -f ./kmanifests/dh-scrapers-cm.yaml --token=${{ secrets.SA_TOKEN }} --namespace gw-dev-rslab-peaceportal # create/modify
         ./kubectl delete job dh-scrapers-job --ignore-not-found=true --now --token=${{ secrets.SA_TOKEN }} --namespace gw-dev-rslab-peaceportal
         ./kubectl apply -f ./kmanifests/dh-scrapers-job.yaml --token=${{ secrets.SA_TOKEN }} --namespace gw-dev-rslab-peaceportal
-      #./kubectl rollout restart deployment/kb-server --token=${{ secrets.SA_TOKEN }} --namespace gw-humit-sandbox
+      # ./kubectl rollout restart deployment/kb-server --token=${{ secrets.SA_TOKEN }} --namespace gw-humit-sandbox
