@@ -9,18 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     -
-      uses: trstringer/manual-approval@v1
-      with:
-        secret: ${{ github.TOKEN }}
-        approvers: gdamaskos
-        minimum-approvals: 1
-        issue-title: "JustBuildIt"
-        issue-body: "IIS Harvester"
-        exclude-workflow-initiator-as-approver: false
-        fail-on-denial: true
-        additional-approved-words: ''
-        additional-denied-words: ''
-    -
       uses: actions/checkout@v4
     -
       uses: docker/setup-buildx-action@v3
