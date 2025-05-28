@@ -26,7 +26,7 @@ spec:
         - name: dh-scrapers-vol
           mountPath: /iis-harvester-data # on Pod
           subPath: current_run # inside PVC
-        command: ['sh', '-c','/scripts/export-newest.sh']
+        command: ['sh', '-c','sh /scripts/export-newest.sh']
       - name: echoes-from-the-sea
         image: busybox
         envFrom:
