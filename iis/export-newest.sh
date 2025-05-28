@@ -1,9 +1,9 @@
 #!/bin/bash
 git fetch
-export FILE="/harvest-metadata/$JOB.txt"
+export FILE="/harvest-metadata/harvested-files.txt"
 git status --porcelain epidoc-files > $FILE
 FILE_LENGTH=$(wc -l <"$FILE")
 if [ "$FILE_LENGTH" -gt 0 ]; then
     git checkout
-    mv *.xml /iis-files/$JOB
+    mv epidoc-files/*.xml /iis-files/
 fi
