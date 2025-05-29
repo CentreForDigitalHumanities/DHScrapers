@@ -49,7 +49,7 @@ spec:
         - name: dh-scrapers-vol
           mountPath: /previous_runs
           subPath: previous_runs
-        command: ['sh', '-c', 'DIR_STAMP=$(cat /current_run/is-scraping); echo "apple" >> /current_run/basket.txt; echo "peach" >> /current_run/basket.txt; cat /current_run/basket.txt; mv /current_run/ /previous_runs/$DIR_STAMP; rm /current_run/$DIR_STAMP/is-scraping']
+        command: ['sh', '-c', 'DIR_STAMP=$(cat /current_run/is-scraping); echo "apple" >> /current_run/basket.txt; echo "peach" >> /current_run/basket.txt; cat /current_run/basket.txt; mv /current_run/ /previous_runs/$DIR_STAMP; rm /previous_runs/$DIR_STAMP/is-scraping']
       - name: number-crunch2timeline
         image: busybox
         volumeMounts:
