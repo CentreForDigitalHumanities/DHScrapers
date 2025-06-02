@@ -38,3 +38,11 @@ jobs:
             push: true
             tags: ghcr.io/centrefordigitalhumanities/dh-scrapers-iis:latest
             platforms: linux/amd64,linux/arm64
+        - name: Build for Openshift
+          uses: docker/build-push-action
+          with:
+            context: .
+            file: Dockerfile-Openshift
+            push: false
+            tags: ghcr.io/centrefordigitalhumanities/dh-openshift:latest
+            platforms: linux/amd64,linux/arm64
