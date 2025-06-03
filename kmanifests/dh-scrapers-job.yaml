@@ -21,7 +21,7 @@ spec:
           subPath: current_run # inside PVC
         command: ['sh', '-c', 'DIR_STAMP=$(date +%Y%m%d_%H%M%S); echo "$DIR_STAMP" > /current_run/is-scraping; cat /current_run/is-scraping']
       - name: dh-scrapers-iis
-        image: ghcr.io/centrefordigitalhumanities/dh-scrapers-iis:latest
+        image: ghcr.io/centrefordigitalhumanities/dh-scrapers-openshift:latest
         volumeMounts:
         - name: dh-scrapers-vol
           mountPath: /harvest-metadata # on Pod

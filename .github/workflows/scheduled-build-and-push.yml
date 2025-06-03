@@ -22,27 +22,27 @@ jobs:
             registry: ghcr.io
             username: ${{ github.actor }}
             password: ${{ secrets.GITHUB_TOKEN }}
-        - name: Build DH scrapers image
-          uses: docker/build-push-action@v6
-          with:
-            context: .
-            file: Dockerfile
-            push: true
-            tags: ghcr.io/centrefordigitalhumanities/dh-scrapers:latest
-            platforms: linux/amd64,linux/arm64
-        - name: Build iis image
-          uses: docker/build-push-action@v6
-          with:
-            context: iis/.
-            file: iis/Dockerfile
-            push: true
-            tags: ghcr.io/centrefordigitalhumanities/dh-scrapers-iis:latest
-            platforms: linux/amd64,linux/arm64
+        # - name: Build DH scrapers image
+        #   uses: docker/build-push-action@v6
+        #   with:
+        #     context: .
+        #     file: Dockerfile
+        #     push: true
+        #     tags: ghcr.io/centrefordigitalhumanities/dh-scrapers:latest
+        #     platforms: linux/amd64,linux/arm64
+        # - name: Build iis image
+        #   uses: docker/build-push-action@v6
+        #   with:
+        #     context: iis/.
+        #     file: iis/Dockerfile
+        #     push: true
+        #     tags: ghcr.io/centrefordigitalhumanities/dh-scrapers-iis:latest
+        #     platforms: linux/amd64,linux/arm64
         - name: Build for Openshift
           uses: docker/build-push-action@v6
           with:
             context: .
             file: Dockerfile-Openshift
             push: false
-            tags: ghcr.io/centrefordigitalhumanities/dh-openshift:latest
+            tags: ghcr.io/centrefordigitalhumanities/dh-scrapers-openshift:latest
             platforms: linux/amd64,linux/arm64
