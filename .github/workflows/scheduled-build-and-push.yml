@@ -43,6 +43,6 @@ jobs:
           with:
             context: .
             file: Dockerfile-Openshift
-            push: false
+            push: true
             tags: ghcr.io/centrefordigitalhumanities/dh-scrapers-openshift:latest
             platforms: linux/amd64,linux/arm64
