@@ -5,5 +5,5 @@ git status --porcelain epidoc-files > $FILE
 FILE_LENGTH=$(wc -l <"$FILE")
 if [ "$FILE_LENGTH" -gt 0 ]; then
     git checkout
-    mv epidoc-files/*.xml /iis-files/
+    cp epidoc-files/*.xml /iis-files/
 fi
