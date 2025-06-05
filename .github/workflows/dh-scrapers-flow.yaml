@@ -2,7 +2,7 @@
 
 name: ScrapersFlow
 run-name: ${{ github.actor }} is deploying scrapers
-on: [push, workflow_dispatch]
+on: [workflow_dispatch]
 
 jobs:
   deploy-scrapejob-to-kubernetes:
