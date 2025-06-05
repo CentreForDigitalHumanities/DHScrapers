@@ -35,6 +35,3 @@ RUN pip install -r requirements.txt
 # to fix the urllib3 version error (see: https://stackoverflow.com/questions/78163280/no-module-named-urllib3-packages-six-moves)
 RUN pip install requests --upgrade && pip install urllib3 --upgrade
 RUN chmod -R g+rwx /dh-scrapers # rootless
-
-# where do I check a stopped current_run? in a script - alter entrypoint command to run one after the other!
-

@@ -1,4 +1,5 @@
 #!/bin/sh
+cd /iip-texts
 git fetch
 export FILE="/harvest-metadata/harvested-files.txt"
 git status --porcelain epidoc-files > $FILE
