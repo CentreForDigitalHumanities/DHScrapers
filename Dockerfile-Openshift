@@ -1,5 +1,6 @@
 FROM docker.io/library/python:alpine
 
+# first phase
 RUN apk add --no-cache git
 RUN git config --system --add safe.directory '*' # rootless
 
@@ -14,5 +15,25 @@ RUN chmod -R g+rwx /iip-texts # rootless
 # check out only the /epidoc-files directory
 RUN git sparse-checkout set --no-cone /epidoc-files
 
-COPY ./iis/export-newest.sh /scripts/
+COPY ./scripts/export-newest.sh /scripts/
 RUN chmod -R g+rwx /scripts # rootless
+
+# # second phase
+# ENV PYTHONUNBUFFERED=1
+
+# # equals a mkdir and a cd
+# WORKDIR /dh-scrapers
+
+# COPY base_scraper /dh-scrapers/base_scraper
+# COPY utilities /dh-scrapers/utilities
+# COPY requirements.txt /dh-scrapers
+# RUN chmod -R g+rwx /dh-scrapers # rootless
+
+# RUN pip install --upgrade pip
+# RUN pip install -r requirements.txt
+
+# fully containerize by COPY iis to use as module
+# fix folder attechments
+# add parse step
+# where do I check a stopped current_run? in a script - alter entrypoint command to run one after the other!
+
