@@ -1,6 +1,6 @@
 services:
   harvest:
-    image: dh-scrapers-openshift:latest
+    image: ghcr.io/centrefordigitalhumanities/dh-scrapers-openshift:latest
     user: "1000:0" # need this to check rootless
     volumes:
       - type: bind
@@ -14,49 +14,8 @@ services:
         target: /output
     stdin_open: true
     tty: true
-    #command: /scripts/export-newest.sh
     command: sh -c "/scripts/export-newest.sh && cd /dh-scrapers && python -m iis --import_folder /iis-files --export_folder /output"
-  # parse:
-  #   image: ghcr.io/centrefordigitalhumanities/dh-scrapers:latest
-  #   depends_on:
-  #     harvest:
-  #       condition: service_completed_successfully
-  #   volumes:
-  #     - type: bind
-  #       source: $OUTPUT_FOLDER/$JOB
-  #       target: /output
-  #   stdin_open: true
-  #   tty: true
-  #   command: python -m iis --import_folder /iis-files --export_folder /output --job_name $JOB
 
-#   services:
-#   harvest:
-#     image: ghcr.io/centrefordigitalhumanities/dh-scrapers-iis:latest
-#     environment:
-#       - JOB=JOB
-#     volumes:
-#       - iis-files:/iis-files
-#       - epidoc-stylesheets:/epidoc-stylesheets
-#       - type: bind
-#         source: harvest-metadata
-#         target: /harvest-metadata
-#     command: sh /scripts/export-newest.sh
-#   parse:
-#     image: ghcr.io/centrefordigitalhumanities/dh-scrapers:latest
-#     depends_on:
-#       harvest:
-#         condition: service_completed_successfully
-#     volumes:
-#       - iis-files/$JOB:/iis-files
-#       - type: bind
-#         source: $OUTPUT_FOLDER/$JOB
-#         target: /output
-#       - type: bind
-#         source: .
-#         target: /dh-scrapers/iis
-#     stdin_open: true
-#     tty: true
-#     command: python -m iis --import_folder /iis-files --export_folder /output --job_name $JOB
 #   prepare_postprocess:
 #     image: FROM docker.io/library/alpine:3
 #     depends_on:
