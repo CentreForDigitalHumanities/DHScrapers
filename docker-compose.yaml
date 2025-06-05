@@ -9,7 +9,13 @@ services:
       - type: bind
         source: ./volumes/iis-files # mkdir iis-files [or after autocreation: sudo chmod -R g+rwx ./iis-files]
         target: /iis-files
-    command: /scripts/export-newest.sh
+      - type: bind
+        source: ./volumes/output
+        target: /output
+    stdin_open: true
+    tty: true
+    #command: /scripts/export-newest.sh
+    command: /scripts/export-newest.sh && python -m iis --import_folder /iis-files --export_folder /output
   # parse:
   #   image: ghcr.io/centrefordigitalhumanities/dh-scrapers:latest
   #   depends_on:
@@ -19,9 +25,6 @@ services:
   #     - type: bind
   #       source: $OUTPUT_FOLDER/$JOB
   #       target: /output
-  #     - type: bind
-  #       source: .
-  #       target: /dh-scrapers/iis # this will not run in K8s because the directory is not present/filled with files in as in the local repo. it needs to be in the top level Dockerfile
   #   stdin_open: true
   #   tty: true
   #   command: python -m iis --import_folder /iis-files --export_folder /output --job_name $JOB

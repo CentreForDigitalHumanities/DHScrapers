@@ -1,5 +1,5 @@
-import logging
 import os
+import logging
 
 from bs4 import BeautifulSoup
 
@@ -12,28 +12,24 @@ logger = logging.getLogger(__name__)
 
 class Collector(BaseCollector):
 
-    def collect(self, import_folder: str, export_folder: str, job_name: str):
+    def collect(self, import_folder: str, export_folder: str):
         '''
         Collect all Epidoc xml files which have changed since last harvest
         Enrich them with bibliographic data from Zotero and export to output folder
         '''
-        change_file = os.path.join('iis', 'harvest-metadata', f'{job_name}.txt')
-        with open(change_file) as f:
-            changed_documents = f.readlines()
-        for line in changed_documents:
-            filename = line.split("  ")[1].rstrip()
-            export_file = os.path.join(export_folder, filename)
-            if os.path.exists(export_file):
-                continue
-            logging.info(f"Processing file {filename}")
-            inscription_id = os.path.splitext(filename)[0]
-            with open(os.path.join(import_folder, filename), 'r') as xml_file:
-                xml = xml_file.read()
-                xml = self.enrich(inscription_id, xml)
-                self.export(
-                    export_file,
-                    xml,
-                )
+        change_file = os.path.join('/harvest-metadata', 'harvested-files.txt')
+        with open(change_file, 'r') as changed:
+            for line in changed:
+                filename = line.split("  ")[1].rstrip()
+                inscription_id = os.path.splitext(filename)[0]
+                with open(os.path.join(import_folder, os.path.basename(filename)), 'r') as xml_file:
+                    xml = xml_file.read()
+                    xml = self.enrich(inscription_id, xml)
+                    self.export(
+                        os.path.join(export_folder, os.path.basename(filename)),
+                        xml,
+                    )
+        os.remove(change_file)
 
     def enrich(self, inscription_id: str, xml: BeautifulSoup):
         '''
