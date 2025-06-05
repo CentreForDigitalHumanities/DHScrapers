@@ -1,20 +1,31 @@
 services:
   harvest:
-    image: ghcr.io/centrefordigitalhumanities/dh-scrapers-openshift:latest
+    image: ghcr.io/centrefordigitalhumanities/dh-scrapers-iis:latest
     user: "1000:0" # need this to check rootless
     volumes:
       - type: bind
-        source: ./volumes/harvest-metadata # mkdir harvest-metadata [or after autocreation] sudo chmod -R g+rwx ./harvest-metadata
+        source: ./volumes/harvest-metadata
         target: /harvest-metadata
       - type: bind
-        source: ./volumes/iis-files # mkdir iis-files [or after autocreation: sudo chmod -R g+rwx ./iis-files]
+        source: ./volumes/iis-files
+        target: /iis-files
+    command: /scripts/export-newest.sh
+  parse:
+    image: ghcr.io/centrefordigitalhumanities/dh-scrapers-basescraper:latest
+    user: "1000:0" # need this to check rootless
+    volumes:
+      - type: bind
+        source: ./volumes/harvest-metadata
+        target: /harvest-metadata
+      - type: bind
+        source: ./volumes/iis-files
         target: /iis-files
       - type: bind
         source: ./volumes/output
         target: /output
     stdin_open: true
     tty: true
-    command: sh -c "/scripts/export-newest.sh && cd /dh-scrapers && python -m iis --import_folder /iis-files --export_folder /output"
+    command: python -m iis --import_folder /iis-files --export_folder /output
 
 #   prepare_postprocess:
 #     image: FROM docker.io/library/alpine:3

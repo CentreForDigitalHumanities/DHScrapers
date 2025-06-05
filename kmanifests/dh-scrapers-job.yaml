@@ -20,8 +20,18 @@ spec:
           mountPath: /current_run # on Pod
           subPath: current_run # inside PVC
         command: ['sh', '-c', 'DIR_STAMP=$(date +%Y%m%d_%H%M%S); echo "$DIR_STAMP" > /current_run/is-scraping; cat /current_run/is-scraping']
-      - name: dh-scrapers-openshift
-        image: ghcr.io/centrefordigitalhumanities/dh-scrapers-openshift:latest
+      - name: dh-scrapers-iis
+        image: ghcr.io/centrefordigitalhumanities/dh-scrapers-iis:latest
+        volumeMounts:
+        - name: dh-scrapers-vol
+          mountPath: /harvest-metadata # on Pod
+          subPath: current_run/harvest-metadata # inside PVC
+        - name: dh-scrapers-vol
+          mountPath: /iis-files # on Pod
+          subPath: current_run/iis-files # inside PVC
+        command: ['sh', '-c','/scripts/export-newest.sh']
+      - name: dh-scrapers-basescraper
+        image: ghcr.io/centrefordigitalhumanities/dh-scrapers-basescraper:latest
         volumeMounts:
         - name: dh-scrapers-vol
           mountPath: /harvest-metadata # on Pod
@@ -32,8 +42,8 @@ spec:
         - name: dh-scrapers-vol
           mountPath: /output # on Pod
           subPath: current_run/output # inside PVC
-        command: ['sh', '-c','/scripts/export-newest.sh && cd /dh-scrapers && python -m iis --import_folder /iis-files --export_folder /output']
-      - name: echoes-from-the-sea
+        command: ['sh', '-c','python -m iis --import_folder /iis-files --export_folder /output']
+      - name: echoes-from-the-ocean
         image: busybox
         envFrom:
         - configMapRef:
