@@ -1,12 +1,13 @@
 #!/bin/bash
 # compare the output and postprocessed directories
-cd /output/$JOB/
+export $TIMESTAMP=(%Y%m%d_%H%M%S)
+cd /output/inprogress/
 ls *.xml > ~/enriched.txt
-cd /postprocessed/$JOB
+cd /postprocessed/inprogress
 ls *.xml > ~/postprocessed.txt
 comm -12 ~/enriched.txt ~/postprocessed.txt > ~/finished.txt
 # move all files that are shared between output and postprocessed to $JOB-finished
-mkdir /output/$JOB-finished
-cd /output/$JOB
-for file in $(cat ~/finished.txt); do mv "$file" /output/$JOB-finished; done
-# now in the next step, only files which haven't been postprocessed yet will be in the /output/$JOB directory
+mkdir /output/$TIMESTAMP
+cd /output/inprogress/
+for file in $(cat ~/finished.txt); do mv "$file" /output/$TIMESTAMP; done
+# now in the next step, only files which haven't been postprocessed yet will be in the /output/inprogress directory
