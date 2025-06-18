@@ -10,6 +10,7 @@ services:
       - PGUSER=dh-scrapers
       - PGDATABASE=dh-scrapers
       - PGPASSWORD=dh-scrapers
+  
   iis-harvest:
     image: ghcr.io/centrefordigitalhumanities/dh-scrapers-iis:latest
     user: "1000:0" # need this to check rootless
@@ -24,6 +25,7 @@ services:
         source: ./volumes/iis-files
         target: /iis-files
     command: /scripts/export-newest.sh
+  
   iis-parse:
     image: ghcr.io/centrefordigitalhumanities/dh-scrapers-basescraper:latest
     user: "1000:0" # need this to check rootless
@@ -58,8 +60,7 @@ services:
         target: /output
       - type: bind
         source: ./volumes/iis-postprocessed
-        target: /postprocessed
-      
+        target: /postprocessed  
     command: sh check_progress.sh
 
   iis-postprocess:
@@ -83,9 +84,10 @@ services:
   iis-index:
     image: ghcr.io/centrefordigitalhumanities/ianalyzer-backend-dependencies:latest
     depends_on:
-      - db
-      - iis-postprocess:
+      iis-postprocess:
         condition: service_completed_successfully
+      db:
+        condition: service_started
     volumes:
       - type: bind
         source: ./volumes/iis-postprocessed
@@ -93,7 +95,6 @@ services:
       - type: bind
         source: ./settings/iis_settings.py
         target: /backend/ianalyzer/settings.py
-
     command: python manage.py loadcorpora && python manage.py index peaceportal-iis -p
 
 
