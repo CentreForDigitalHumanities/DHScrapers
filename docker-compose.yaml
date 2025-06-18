@@ -1,70 +1,99 @@
 services:
-  harvest:
+  db:
+    image: docker.io/library/postgres:17
+    environment:
+      - POSTGRES_DB=dh-scrapers
+      - POSTGRES_USER=dh-scrapers
+      - POSTGRES_PASSWORD=dh-scrapers
+      - PGHOST=db
+      - PGPORT=5432
+      - PGUSER=dh-scrapers
+      - PGDATABASE=dh-scrapers
+      - PGPASSWORD=dh-scrapers
+  iis-harvest:
     image: ghcr.io/centrefordigitalhumanities/dh-scrapers-iis:latest
     user: "1000:0" # need this to check rootless
     volumes:
       - type: bind
-        source: ./volumes/harvest-metadata
+        source: ./volumes/iis-metadata
         target: /harvest-metadata
+      - type: bind
+        source: ./volumes/epidoc-stylesheets
+        target: /epidoc-stylesheets
       - type: bind
         source: ./volumes/iis-files
         target: /iis-files
     command: /scripts/export-newest.sh
-  parse:
+  iis-parse:
     image: ghcr.io/centrefordigitalhumanities/dh-scrapers-basescraper:latest
     user: "1000:0" # need this to check rootless
+    depends_on:
+      iis-harvest:
+        condition: service_completed_successfully
     volumes:
       - type: bind
-        source: ./volumes/harvest-metadata
+        source: ./volumes/iis-harvest-metadata
         target: /harvest-metadata
       - type: bind
         source: ./volumes/iis-files
         target: /iis-files
       - type: bind
-        source: ./volumes/output
+        source: ./volumes/iis-output
         target: /output
     stdin_open: true
     tty: true
     command: python -m iis --import_folder /iis-files --export_folder /output
 
-#   prepare_postprocess:
-#     image: FROM docker.io/library/alpine:3
-#     depends_on:
-#       parse:
-#         condition: service_completed_successfully
-#     environment:
-#       - JOB=JOB
-#     volumes:
-#       - type: bind
-#         source: ./check_progress.sh
-#         target: /check_progress.sh
-#       - type: bind
-#         source: $OUTPUT_FOLDER
-#         target: /output
-#       - type: bind
-#         source: $OUTPUT_POSTPROCESSED
-#         target: /postprocessed
+  iis-prepare-postprocess:
+    image: FROM docker.io/library/alpine:3
+    depends_on:
+      iis-parse:
+        condition: service_completed_successfully
+    volumes:
+      - type: bind
+        source: ./check_progress.sh
+        target: /check_progress.sh
+      - type: bind
+        source: ./volumes/iis-output
+        target: /output
+      - type: bind
+        source: ./volumes/iis-postprocessed
+        target: /postprocessed
       
-#     command: sh check_progress.sh
+    command: sh check_progress.sh
 
-#   postprocess:
-#     image: atomgraph/saxon
-#     platform: linux/amd64
-#     environment:
-#       - JOB=JOB
-#     depends_on:
-#       prepare_postprocess:
-#         condition: service_completed_successfully
-#     volumes:
-#       - epidoc-stylesheets:/xsl
-#       - type: bind
-#         source: $OUTPUT_FOLDER/$JOB
-#         target: /output
-#       - type: bind
-#         source: $OUTPUT_POSTPROCESSED/$JOB
-#         target: /postprocessed
-#     command: -s:/output -xsl:/xsl/start-txt.xsl -o:/postprocessed
+  iis-postprocess:
+    image: atomgraph/saxon
+    platform: linux/amd64
+    environment:
+      - JOB=JOB
+    depends_on:
+      iis-prepare-postprocess:
+        condition: service_completed_successfully
+    volumes:
+      - ./volumes/epidoc-stylesheets:/xsl
+      - type: bind
+        source: ./volumes/iis-output
+        target: /output
+      - type: bind
+        source: ./volumes/iis-postprocessed
+        target: /postprocessed
+    command: -s:/output -xsl:/xsl/start-txt.xsl -o:/postprocessed
+  
+  iis-index:
+    image: ghcr.io/centrefordigitalhumanities/ianalyzer-backend-dependencies:latest
+    depends_on:
+      - db
+      - iis-postprocess:
+        condition: service_completed_successfully
+    volumes:
+      - type: bind
+        source: ./volumes/iis-postprocessed
+        target: /postprocessed
+      - type: bind
+        source: ./settings/iis_settings.py
+        target: /backend/ianalyzer/settings.py
 
-# volumes:
-#   iis-files:
-#   epidoc-stylesheets:
+    command: python manage.py loadcorpora && python manage.py index peaceportal-iis -p
+
+
