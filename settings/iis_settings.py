@@ -14,17 +14,19 @@ CORPORA = {
 SERVERS = {
     # Default ElasticSearch server
     'default': {
-        'host': os.environ.get('ES_HOST', 'localhost'),
+        'host': os.environ.get('ES_HOST', 'elasticsearch'),
         'port': os.environ.get('ES_PORT', 9200),
         'api_id': os.environ.get('ES_API_ID'),
         'api_key': os.environ.get('ES_API_KEY'),
         'certs_location': os.environ.get('CERTS_LOCATION'),
         'chunk_size': 900,  # Maximum number of documents sent during ES bulk operation
-        'max_chunk_bytes': 1*1024*1024,  # Maximum size of ES chunk during bulk operation
+        'max_chunk_bytes': 1
+        * 1024
+        * 1024,  # Maximum size of ES chunk during bulk operation
         'bulk_timeout': '60s',  # Timeout of ES bulk operation
         'scroll_timeout': '3m',  # Time before scroll results time out
         'scroll_page_size': 5000,  # Number of results per scroll page
-        'index_prefix': 'ianalyzer'  # Prefix applied to index names created on this server
+        'index_prefix': 'ianalyzer',  # Prefix applied to index names created on this server
     }
 }
 
