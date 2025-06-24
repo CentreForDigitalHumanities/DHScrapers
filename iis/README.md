@@ -13,10 +13,27 @@ To refer back to the previous scraper, look at [release 1.0.0](https://github.co
 To work with this harvesting script, you need Docker and DockerEngine: this proved to be the easiest way to fully integrate harvesting from GitHub in this repository. As the Docker configuration is using named volumes, the harvested data will persist.
 
 ## Scraper
+### Locally
+To scrape locally, use the [docker-compose-iis file](https://github.com/CentreForDigitalHumanities/DHScrapers/blob/a59ffe8d21612d2aa130889b667a62b0faf6dc71/docker-compose-iis.yaml) in the base path of this repository. `docker-compose -f docker-compose-iis.yaml up` will do the following:
+- iis-harvest:
+    - pulls the image [dh-scrapers-iis](https://github.com/CentreForDigitalHumanities/DHScrapers/pkgs/container/dh-scrapers-iis), and checks the contents of the directory mounted from `./volumes/iis-files/originals` against the Brown University GitHub repository, and pulls in changed files in the `epidoc-files` subdirectory. The changed files will also be written to a `inprogress.txt` file on a shared volume (mounted from `./volumes/iis-metadata`)
+    - if the file `inprogress.txt` is already present, the harvester skips the above step.
+    - the `dh-scrapers-iis` image also contains `epidoc` stylesheets, which are copied to a shared volume (mounted from `./volumes/epidoc-stylesheets`). These are needed to process the `xml` format of the inscriptions, which include rich information about illegible or missing fragments, into plaintext.
+- iis-parse:
+    - the script in `iis/collect.py` walks over the files in the `inprogress.txt` file and enriches them with bibliographical information via Zotero. The parsed files will be in `./volumes/iis-output/`.
+    - should the parse process be interrupted, the parser will skip files existing in `./volumes/iis-output`.
+    - once the parse process is complete, the `inprogress.txt` document will be renamed to a `{timestamp}.txt` file, so that the next time `git diff` is run, it goes to a fresh `inprogress.txt` file.
+- iis-prepare-postprocess:
+    - checks which of the parsed files have already been postprocessed by comparing the contents of the volumes mounted at `./volumes/iis-output` and `./volumes/iis-postprocessed`.
+    - the postprocessed files will be moved to a subdirectory, `./volumes/iis-output/{timestamp}`. This is done to avoid postprocessing multiple times, as postprocessing is by far the most time-intensitive step of the pipeline.
+- iis-postprocess:
+    - uses a third-party image for Saxon to convert the `xml` files with the xml stylesheets downloaded by the `iis-harvest` step.
+- iis-index:
+    - uses the `ghcr.io/centrefordigitalhumanities/ianalyzer-backend-dependencies:latest` image to index to Elasticsearch. The Elasticsearch settings come from the `./settings/iis_settings` file.
 
-This is a very basic scraper. The command line takes two intuitive arguments:
+### For production
+The pipeline described above has also been implemented through Kubernetes. The manifests can be found in `./kmanifests/`. The manifests set up a persistent volume, and the config map for non-sensitive information.
 
-| Option | Alternative form | Required? | Description |
-| ------- | ---- | --- | --- |
-| 'inscriptions_xml_path' | '-in' | Required | Path of the inscription id xml file. Typically in the input folder of this module. |
-| '--export_folder' | '-ef' | Required | Path to the folder where you want the exports to appear. Should be a path to a folder, not a file. |
+The Kubernetes job is triggered through the [dh-scrapers-flow](https://github.com/CentreForDigitalHumanities/DHScrapers/blob/a59ffe8d21612d2aa130889b667a62b0faf6dc71/.github/workflows/dh-scrapers-flow.yaml) GitHub action.
+
+Refer to the [kmanifests README](https://github.com/CentreForDigitalHumanities/DHScrapers/blob/a59ffe8d21612d2aa130889b667a62b0faf6dc71/.github/workflows/dh-scrapers-flow.yaml) for more information.
