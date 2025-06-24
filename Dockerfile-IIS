@@ -3,16 +3,16 @@ FROM docker.io/library/alpine
 RUN apk add --no-cache git
 RUN git config --system --add safe.directory '*' # rootless
 
-WORKDIR /epidoc-stylesheets
-# the most recent version of Epidoc stylesheets fails with the saxon image
+WORKDIR /epidoc-repo
+# the most recent version of Epidoc stylesheets fails with the saxon image, so clone version 9.5
 RUN git clone -b v9.5 --single-branch https://github.com/EpiDoc/Stylesheets .
 
-WORKDIR /iip-texts
+WORKDIR /iis-repo
 RUN git clone -n --depth=1 --filter=tree:0 \
 https://github.com/Brown-University-Library/iip-texts/ .
-RUN chmod -R g+rwx /iip-texts # rootless
+RUN chmod -R g+rwx /iis-repo # rootless
 # check out only the /epidoc-files directory
 RUN git sparse-checkout set --no-cone /epidoc-files
 
-COPY ./scripts/export-newest.sh /scripts/
+COPY ./scripts/iis-export-newest.sh /scripts/export-newest.sh
 RUN chmod -R g+rwx /scripts # rootless
