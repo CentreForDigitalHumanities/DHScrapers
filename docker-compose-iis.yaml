@@ -33,9 +33,7 @@ services:
 
   
   iis-harvest:
-    # image: ghcr.io/centrefordigitalhumanities/dh-scrapers-iis:latest
-    build:
-      dockerfile: Dockerfile-IIS
+    image: ghcr.io/centrefordigitalhumanities/dh-scrapers-iis:latest
     user: "1000:0" # need this to check rootless
     volumes:
       - type: bind
@@ -50,9 +48,7 @@ services:
     command: /scripts/export-newest.sh
   
   iis-parse:
-    # image: ghcr.io/centrefordigitalhumanities/dh-scrapers-basescraper:latest
-    build:
-      dockerfile: Dockerfile-BaseScraper
+    image: ghcr.io/centrefordigitalhumanities/dh-scrapers-basescraper:latest
     user: "1000:0" # need this to check rootless
     depends_on:
       iis-harvest:

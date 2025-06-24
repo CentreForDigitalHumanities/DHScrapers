@@ -4,15 +4,16 @@ name: Build and push of all images
 
 on:
     workflow_dispatch:
-    #push:
     schedule:
     - cron: "0 0 1 * *"
     push:
       paths:
         - requirements.txt
         - Dockerfile-BaseScraper
+        - Dockerfile-IIS
         - /base-scraper
         - /iis
+        - /scripts
 
 jobs:
     build-scheduled:
