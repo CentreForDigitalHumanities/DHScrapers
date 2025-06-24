@@ -1,5 +1,6 @@
-import os
+from datetime import datetime
 import logging
+import os
 
 from bs4 import BeautifulSoup
 
@@ -17,12 +18,12 @@ class Collector(BaseCollector):
         Collect all Epidoc xml files which have changed since last harvest
         Enrich them with bibliographic data from Zotero and export to output folder
         '''
-        change_file = os.path.join('iis', 'harvest-metadata', 'inprogress.txt')
+        change_file = os.path.join('/harvest-metadata', 'inprogress.txt')
         with open(change_file) as f:
             changed_documents = f.readlines()
         for line in changed_documents:
             filename = line.split("  ")[1].rstrip()
-            export_file = os.path.join(export_folder, filename)
+            export_file = os.path.join(export_folder, os.path.basename(filename))
             if os.path.exists(export_file):
                 continue
             logging.info(f"Processing file {filename}")
@@ -34,6 +35,10 @@ class Collector(BaseCollector):
                     export_file,
                     xml,
                 )
+        timestamp = datetime.now().strftime('%Y%m%d_%H:%M')
+        os.rename(
+            change_file, os.path.join('/harvest-metadata', f'harvest-{timestamp}.txt')
+        )  # once all files are processed, the `inprogress.txt` file is renamed to a timestamped file
 
     def enrich(self, inscription_id: str, xml: BeautifulSoup):
         '''
@@ -58,6 +63,6 @@ class Collector(BaseCollector):
         Helper method to export inscription xml to an .xml file,
         `filename` is expected to be the full path to the file.
         '''
-        with open(filename, 'w', encoding='utf-8', newline='\n') as out_file:
+        with open(filename, 'w+', encoding='utf-8', newline='\n') as out_file:
             out_file.write(xml)
             logger.info("Exported inscription to '{}'".format(filename))
