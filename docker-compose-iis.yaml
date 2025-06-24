@@ -10,24 +10,49 @@ services:
       - PGUSER=dh-scrapers
       - PGDATABASE=dh-scrapers
       - PGPASSWORD=dh-scrapers
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.16.3
+    environment:
+      - node.name=dhscrapers-node
+      - discovery.type=single-node
+      - cluster.name=dhscrapers-cluster
+      - bootstrap.memory_lock=true
+      - xpack.security.enabled=false
+      - logger.org.elasticsearch.discovery=ERROR
+      - logger.org.elasticsearch.transport=ERROR
+      - logger.org.elasticsearch.http=ERROR
+      - logger.org.elasticsearch.cluster=ERROR
+      - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
+      - ELASTIC_PASSWORD=dontuseinproduction
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - 127.0.0.1:9200:9200
+
   
   iis-harvest:
-    image: ghcr.io/centrefordigitalhumanities/dh-scrapers-iis:latest
+    # image: ghcr.io/centrefordigitalhumanities/dh-scrapers-iis:latest
+    build:
+      dockerfile: Dockerfile-IIS
     user: "1000:0" # need this to check rootless
     volumes:
       - type: bind
         source: ./volumes/iis-metadata
         target: /harvest-metadata
       - type: bind
-        source: ./volumes/epidoc-stylesheets
-        target: /epidoc-stylesheets
+        source: ./volumes/epidoc
+        target: /epidoc
       - type: bind
         source: ./volumes/iis-files
         target: /iis-files
     command: /scripts/export-newest.sh
   
   iis-parse:
-    image: ghcr.io/centrefordigitalhumanities/dh-scrapers-basescraper:latest
+    # image: ghcr.io/centrefordigitalhumanities/dh-scrapers-basescraper:latest
+    build:
+      dockerfile: Dockerfile-BaseScraper
     user: "1000:0" # need this to check rootless
     depends_on:
       iis-harvest:
@@ -37,7 +62,7 @@ services:
         source: ./volumes/iis-metadata
         target: /harvest-metadata
       - type: bind
-        source: ./volumes/iis-files
+        source: ./volumes/iis-files/originals
         target: /iis-files
       - type: bind
         source: ./volumes/iis-output
@@ -53,7 +78,7 @@ services:
         condition: service_completed_successfully
     volumes:
       - type: bind
-        source: ./scripts/check_progress.sh
+        source: ./scripts/iis-check_progress.sh
         target: /check_progress.sh
       - type: bind
         source: ./volumes/iis-output
@@ -75,7 +100,7 @@ services:
       iis-prepare-postprocess:
         condition: service_completed_successfully
     volumes:
-      - ./volumes/epidoc-stylesheets:/xsl
+      - ./volumes/epidoc/stylesheets:/xsl
       - type: bind
         source: ./volumes/iis-output
         target: /output
@@ -90,6 +115,8 @@ services:
   #     iis-postprocess:
   #       condition: service_completed_successfully
   #     db:
+  #       condition: service_started
+  #     elasticsearch:
   #       condition: service_started
   #   volumes:
   #     - type: bind
