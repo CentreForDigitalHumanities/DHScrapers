@@ -78,8 +78,8 @@ services:
         condition: service_completed_successfully
     volumes:
       - type: bind
-        source: ./scripts/iis-check_progress.sh
-        target: /check_progress.sh
+        source: ./scripts/iis-check-progress.sh
+        target: /check-progress.sh
       - type: bind
         source: ./volumes/iis-output
         target: /output
@@ -89,7 +89,7 @@ services:
       - type: bind
         source: ./volumes/iis-metadata
         target: /metadata
-    command: sh /check_progress.sh
+    command: sh /check-progress.sh
 
   iis-postprocess:
     image: atomgraph/saxon

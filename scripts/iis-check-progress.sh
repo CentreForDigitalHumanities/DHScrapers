@@ -1,11 +1,15 @@
 #!/bin/bash
 # compare the output and postprocessed directories
 export TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-echo $TIMESTAMP
 cd /output
 ls *.xml > /metadata/enriched.txt
 cd /postprocessed
-ls *.xml > /metadata/postprocessed.txt
+# check if there are already xml files in the postprocessed folder
+if find . -type f -name "*.xml" | grep -q .; then
+    ls *.xml > /metadata/postprocessed.txt # if so, write them out
+else
+    exit 0 # otherwise, skip this step until the next run
+fi
 comm -12 /metadata/enriched.txt /metadata/postprocessed.txt > /metadata/finished.txt
 FILE_LENGTH=$(wc -l </metadata/finished.txt)
 if [ "$FILE_LENGTH" -gt 0 ]; then
