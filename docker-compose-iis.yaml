@@ -33,7 +33,7 @@ services:
 
   
   iis-harvest:
-    image: ghcr.io/centrefordigitalhumanities/dh-scrapers-iis:latest
+    image: ghcr.io/centrefordigitalhumanities/dh-scrapers:latest
     user: "1000:0" # need this to check rootless
     volumes:
       - type: bind
@@ -48,7 +48,7 @@ services:
     command: /scripts/export-newest.sh
   
   iis-parse:
-    image: ghcr.io/centrefordigitalhumanities/dh-scrapers-basescraper:latest
+    image: ghcr.io/centrefordigitalhumanities/dh-scrapers:latest
     user: "1000:0" # need this to check rootless
     depends_on:
       iis-harvest:
@@ -58,7 +58,7 @@ services:
         source: ./volumes/iis-metadata
         target: /harvest-metadata
       - type: bind
-        source: ./volumes/iis-files/originals
+        source: ./volumes/iis-files
         target: /iis-files
       - type: bind
         source: ./volumes/iis-output
@@ -68,14 +68,11 @@ services:
     command: python -m iis --import_folder /iis-files --export_folder /output
 
   iis-prepare-postprocess:
-    image: docker.io/library/alpine:3
+    image: ghcr.io/centrefordigitalhumanities/dh-scrapers:latest
     depends_on:
       iis-parse:
         condition: service_completed_successfully
     volumes:
-      - type: bind
-        source: ./scripts/iis-check-progress.sh
-        target: /check-progress.sh
       - type: bind
         source: ./volumes/iis-output
         target: /output

@@ -1,6 +1,7 @@
 # This workflow will run every first of the month, to make sure we update the underlying images and libraries
+# It will also rebuild every time we have changes in the Dockerfile, directories copied into the image, or in the requirements
 
-name: Build and push of all images
+name: Build and push dh-scrapers image
 
 on:
     workflow_dispatch:
@@ -9,15 +10,15 @@ on:
     push:
       paths:
         - requirements.txt
-        - Dockerfile-BaseScraper
-        - Dockerfile-IIS
+        - Dockerfile
         - /base-scraper
         - /iis
         - /scripts
+        - /utilities
 
 jobs:
     build-scheduled:
-        name: Rebuild images
+        name: Rebuild image
         runs-on: ubuntu-latest
         steps:
         - uses: actions/checkout@v4
@@ -29,19 +30,11 @@ jobs:
             registry: ghcr.io
             username: ${{ github.actor }}
             password: ${{ secrets.GITHUB_TOKEN }}
-        - name: Build IIS image
-          uses: docker/build-push-action@v6
-          with:
-            context: .
-            file: Dockerfile-IIS
-            push: true
-            tags: ghcr.io/centrefordigitalhumanities/dh-scrapers-iis:latest
-            platforms: linux/amd64,linux/arm64
         - name: Build DH scrapers image
           uses: docker/build-push-action@v6
           with:
             context: .
-            file: Dockerfile-BaseScraper
             push: true
-            tags: ghcr.io/centrefordigitalhumanities/dh-scrapers-basescraper:latest
+            tags: ghcr.io/centrefordigitalhumanities/dh-scrapers:latest
             platforms: linux/amd64,linux/arm64
+

@@ -15,5 +15,7 @@ RUN pip install -r requirements.txt
 RUN pip install requests --upgrade && pip install urllib3 --upgrade
 RUN chmod -R g+rwx /dh-scrapers # rootless
 
+COPY ./scripts /dh-scrapers/scripts
+
 # copy python module for iis scraper
 COPY ./iis /dh-scrapers/iis
