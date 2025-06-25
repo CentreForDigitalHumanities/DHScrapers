@@ -90,8 +90,6 @@ services:
   iis-postprocess:
     image: atomgraph/saxon
     platform: linux/amd64
-    environment:
-      - JOB=JOB
     depends_on:
       iis-prepare-postprocess:
         condition: service_completed_successfully
