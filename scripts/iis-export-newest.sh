@@ -12,10 +12,12 @@ if [ ! -d stylesheets ]; then
 fi
 cd /iis-files
 # clone iip-texts repository from git, if this hasn't been done yet
-if [ ! -d epidoc-files ]; then
-    git clone -n --depth=1 --filter=tree:0 https://github.com/Brown-University-Library/iip-texts/ .
+if [ ! -d originals ]; then
+    git clone -n --depth=1 --filter=tree:0 https://github.com/Brown-University-Library/iip-texts/ originals
+    cd originals
     # check out only the /epidoc-files directory
     git sparse-checkout set --no-cone /epidoc-files
+    cd ..
 fi
 # check if there are differences on the remote since the last run
 git status --porcelain epidoc-files > $FILE

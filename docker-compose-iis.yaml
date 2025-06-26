@@ -45,7 +45,7 @@ services:
       - type: bind
         source: ./volumes/iis-files
         target: /iis-files
-    command: /scripts/export-newest.sh
+    command: sh ./scripts/iis-export-newest.sh
   
   iis-parse:
     image: ghcr.io/centrefordigitalhumanities/dh-scrapers:latest
@@ -65,7 +65,7 @@ services:
         target: /output
     stdin_open: true
     tty: true
-    command: python -m iis --import_folder /iis-files --export_folder /output
+    command: python -m iis --import_folder /iis-files/originals --export_folder /output
 
   iis-prepare-postprocess:
     image: ghcr.io/centrefordigitalhumanities/dh-scrapers:latest
@@ -82,7 +82,7 @@ services:
       - type: bind
         source: ./volumes/iis-metadata
         target: /metadata
-    command: sh /check-progress.sh
+    command: sh ./scripts/iis-check-progress.sh
 
   iis-postprocess:
     image: atomgraph/saxon
@@ -100,20 +100,20 @@ services:
         target: /postprocessed
     command: -s:/output -xsl:/xsl/start-txt.xsl -o:/postprocessed
   
-  # iis-index:
-  #   image: ghcr.io/centrefordigitalhumanities/ianalyzer-backend-dependencies:latest
-  #   depends_on:
-  #     iis-postprocess:
-  #       condition: service_completed_successfully
-  #     db:
-  #       condition: service_started
-  #     elasticsearch:
-  #       condition: service_started
-  #   volumes:
-  #     - type: bind
-  #       source: ./volumes/iis-postprocessed
-  #       target: /postprocessed
-  #     - type: bind
-  #       source: ./settings/iis_settings.py
-  #       target: /backend/ianalyzer/settings.py
-  #   command: python manage.py loadcorpora && python manage.py index peaceportal-iis -p
+  iis-index:
+    image: ghcr.io/centrefordigitalhumanities/ianalyzer-backend-dependencies:latest
+    depends_on:
+      iis-postprocess:
+        condition: service_completed_successfully
+      db:
+        condition: service_started
+      elasticsearch:
+        condition: service_started
+    volumes:
+      - type: bind
+        source: ./volumes/iis-postprocessed
+        target: /postprocessed
+      - type: bind
+        source: ./settings/iis_settings.py
+        target: /backend/ianalyzer/settings.py
+    command: python manage.py loadcorpora && python manage.py index peaceportal-iis -p
