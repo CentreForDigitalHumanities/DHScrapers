@@ -116,4 +116,4 @@ services:
       - type: bind
         source: ./settings/iis_settings.py
         target: /backend/ianalyzer/settings.py
-    command: python manage.py loadcorpora && python manage.py index peaceportal-iis -p
+    command: python manage.py migrate && python manage.py loadcorpora && python manage.py index peaceportal-iis -p
