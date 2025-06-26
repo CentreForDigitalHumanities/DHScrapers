@@ -20,6 +20,7 @@ if [ ! -d originals ]; then
     cd ..
 fi
 # check if there are differences on the remote since the last run
+cd originals
 git status --porcelain epidoc-files > $FILE
 FILE_LENGTH=$(wc -l <"$FILE")
 if [ "$FILE_LENGTH" -gt 0 ]; then
