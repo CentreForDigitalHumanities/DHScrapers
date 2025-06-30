@@ -2,7 +2,12 @@
 # compare the output and postprocessed directories
 export TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 cd /output
-ls *.xml > /metadata/enriched.txt
+# check if there are unprocessed files in output folder
+if find . -type f -name "*.xml" | grep -q .; then
+    ls *.xml > /metadata/enriched.txt
+else
+    exit 0 # if not, skip this step
+fi
 cd /postprocessed
 # check if there are already xml files in the postprocessed folder
 if find . -type f -name "*.xml" | grep -q .; then
