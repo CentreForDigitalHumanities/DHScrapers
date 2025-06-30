@@ -101,7 +101,7 @@ services:
     command: -s:/output -xsl:/xsl/start-txt.xsl -o:/postprocessed
   
   iis-index:
-    image: ghcr.io/centrefordigitalhumanities/ianalyzer-backend-dependencies:latest
+    image: ghcr.io/centrefordigitalhumanities/ianalyzer-indexing:latest
     depends_on:
       iis-postprocess:
         condition: service_completed_successfully
@@ -113,6 +113,9 @@ services:
       - type: bind
         source: ./volumes/iis-postprocessed
         target: /postprocessed
+      - type: bind
+        source: ./volumes/iis-output
+        target: /output
       - type: bind
         source: ./settings/iis_settings.py
         target: /backend/ianalyzer/settings.py
