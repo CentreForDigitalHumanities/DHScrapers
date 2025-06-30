@@ -4,7 +4,13 @@ import os
 
 from ianalyzer.common_settings import *
 
-PEACEPORTAL_IIS_DATA = '/postprocessed'
+PROXY_FRONTEND = None
+SITE_NAME = 'IANALYZER'
+HOST = 'localhost:8000'
+CORPUS_SERVER_NAMES = {}
+
+PEACEPORTAL_IIS_DATA = '/output'
+PEACEPORTAL_IIS_TXT_DATA = '/postprocessed'
 PEACEPORTAL_IIS_ES_INDEX = 'peace-iis'
 
 CORPORA = {
