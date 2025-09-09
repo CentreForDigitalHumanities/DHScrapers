@@ -1,4 +1,5 @@
-# This workflow will run every first of the month, to make sure we update the underlying images and libraries
+# This workflow will run every first of the month, to make sure we update the underlying images and libraries.
+# In order for cron schedule to run it needs to be present in the default branch of the repo. 
 # It will also rebuild every time we have changes in the Dockerfile, directories copied into the image, or in the requirements
 
 name: Build and push dh-scrapers image
